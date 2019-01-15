@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CARNET" pageWidth="153" pageHeight="243" columnWidth="153" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2e68c8d1-47a3-407c-aad7-293b5d48e6ed">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="txtDireccionImagen" class="java.lang.String"/>
+	<field name="txtPersonalImagen" class="java.lang.String"/>
+	<field name="txtNombreApe" class="java.lang.String"/>
+	<field name="txtCargo" class="java.lang.String"/>
+	<field name="txtVigencia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="243" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+			<image>
+				<reportElement x="0" y="0" width="153" height="243" uuid="b11ad583-9528-4765-85bb-50ff8c085346">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<imageExpression><![CDATA["src/com/migraciones/talentoHumano/graphics/credencial_front.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="44" y="64" width="69" height="84" uuid="8893a69f-5199-4bac-b780-e64ddcb47f93">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="cm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<imageExpression><![CDATA[new File($F{txtDireccionImagen},$F{txtPersonalImagen})]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="149" width="152" height="12" uuid="5039f8e6-76fc-47f8-9628-d842f7af412f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph leftIndent="0" rightIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtNombreApe}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="4" y="161" width="146" height="18" uuid="7376bd38-671a-49d2-a474-8b401ef07b45"/>
+				<textElement textAlignment="Center">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtCargo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="50" width="10" height="76" uuid="88d631f1-39ed-4f87-a110-3a7d7076e6aa"/>
+				<textElement textAlignment="Left" rotation="Left">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtVigencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+</jasperReport>

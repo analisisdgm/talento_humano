@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="bb7381c9-e9cf-4617-ac9e-7b932b133d92">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="txtCI" class="java.lang.String"/>
+	<field name="txtNombres" class="java.lang.String"/>
+	<field name="txtApellidos" class="java.lang.String"/>
+	<field name="txtPeriodo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="txtFechaDesde" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="txtDescripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="txtDireccionImagen" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="txtPersonalImagen" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="txtEstado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="txtFechaHasta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="txtItem" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="192" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="120" y="172" width="434" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="d4846270-31f6-4271-98b2-6e9234089865"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="172" width="45" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="73c4a664-6bfe-4746-a9af-a02d7bfc8250">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[DESDE]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="0" width="534" height="62" uuid="a1b42fbd-c97e-45f0-8a13-498f18ae802c"/>
+				<imageExpression><![CDATA["src/com/migraciones/talentoHumano/graphics/membrete_2018.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="199" y="60" width="155" height="20" uuid="4a941c9e-2502-4df3-a460-583232016b7d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHA DE JUSTIFICACIONES]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="80" width="554" height="92" uuid="f1dd2f53-e32f-4b4c-826f-50ae275285d8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="99" width="79" height="10" uuid="fcbd53de-a0f1-4153-b97d-448ff7132488"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<text><![CDATA[C.I. :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="109" width="79" height="10" uuid="9f98a2cf-9768-4d01-8d98-8c50653e7857"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nombres :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="119" width="79" height="10" uuid="304b8e4c-cf87-4c66-a6ed-7fa4084d6e93"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<text><![CDATA[Apellidos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="99" width="110" height="10" uuid="cbf3d6e0-a8c2-4c3f-83aa-b56fc4d1f19e"/>
+				<textElement>
+					<font size="7"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtCI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="109" width="270" height="10" uuid="943a151f-7376-41ff-ac2a-5db9d8f26498"/>
+				<textElement>
+					<font size="7"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtNombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="119" width="270" height="10" uuid="397abd48-d44b-4443-9d80-e59d531fda9b"/>
+				<textElement>
+					<font size="7"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtApellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="153" width="160" height="19" uuid="5d8a4a22-11e8-493a-97bd-ccf188561949"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtPeriodo}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="468" y="81" width="58" height="73" uuid="915ae3c0-c842-4788-8f4e-bdcdb2a5b360"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Double"/>
+					<leftPen lineWidth="0.0" lineStyle="Double"/>
+					<bottomPen lineWidth="0.0" lineStyle="Double"/>
+					<rightPen lineWidth="0.0" lineStyle="Double"/>
+				</box>
+				<imageExpression><![CDATA[new File($F{txtDireccionImagen},$F{txtPersonalImagen})]]></imageExpression>
+			</image>
+			<textField pattern="d/M/yy h:mm a">
+				<reportElement x="490" y="68" width="64" height="12" uuid="9553ca6d-4598-4b96-b187-7693faa61714"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="468" y="154" width="58" height="16" uuid="a05a1ce6-6806-4718-b1ac-e7c5ad7f1d20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtEstado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="172" width="30" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="356c857a-3577-4557-908f-6ea00720630c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[ITEM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="75" y="172" width="45" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="8104e994-e7b7-43cd-912b-c57c1fa3003c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[HASTA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="10" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="" stretchType="RelativeToBandHeight" x="30" y="0" width="45" height="10" uuid="a4723dac-885d-4ef0-9404-6423b56c0d05">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtFechaDesde}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="" stretchType="RelativeToBandHeight" x="120" y="0" width="434" height="10" uuid="8d6b05c4-c965-4006-b8a8-0819b9bffadb"/>
+				<box leftPadding="0">
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="5"/>
+					<paragraph firstLineIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtDescripcion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="75" y="0" width="45" height="10" uuid="c9739fd8-6f2f-4759-9bd2-dbc0ef384078"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtFechaHasta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="30" height="10" uuid="66e68e1a-1a14-4814-971e-86bb7d440572"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtItem}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="97" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="63" width="554" height="1" uuid="595057ee-f380-448a-aab7-2ee15ad944e3"/>
+			</line>
+			<textField>
+				<reportElement x="500" y="63" width="20" height="12" uuid="22d80e04-7a10-46e2-9606-fcd1841e1704"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="524" y="63" width="24" height="12" uuid="c75eb1f9-c96a-4173-993e-d5efd01d502b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="520" y="63" width="4" height="14" uuid="6229c1a7-0610-4612-8d3b-ba81518a7912"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="64" width="36" height="10" uuid="f9abbc4f-af6e-4d73-8f3b-39de4e44b425"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[pagina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="63" width="208" height="25" uuid="3da20f4b-2534-4679-85b9-5dfe7b3ab429"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN DE 
+GESTIÓN DE TALENTO HUMANO]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

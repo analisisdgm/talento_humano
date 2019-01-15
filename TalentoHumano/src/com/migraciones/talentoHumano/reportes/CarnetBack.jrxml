@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-03-02T16:34:14 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CARNET" pageWidth="153" pageHeight="243" columnWidth="153" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2e68c8d1-47a3-407c-aad7-293b5d48e6ed">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="txtNombres" class="java.lang.String"/>
+	<field name="txtApellidos" class="java.lang.String"/>
+	<field name="txtCI" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="243" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+			<image>
+				<reportElement x="0" y="0" width="153" height="243" uuid="9acf17eb-0a91-44a0-b361-4abc54419c1b">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<imageExpression><![CDATA["src/com/migraciones/talentoHumano/graphics/credencial_back.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="50" y="80" width="102" height="10" uuid="87a4d4a9-8002-4a95-88a7-08e959e27d3f"/>
+				<textElement textAlignment="Left">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtCI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="67" width="94" height="10" uuid="240d1e36-f57c-4864-b161-c65516ca5102"/>
+				<textElement textAlignment="Left">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtApellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="55" width="94" height="10" uuid="deec5fc1-7d57-44dd-950d-5e0fef0b46f0"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtNombres}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+</jasperReport>
