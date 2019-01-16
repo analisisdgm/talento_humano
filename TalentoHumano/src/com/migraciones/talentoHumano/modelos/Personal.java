@@ -51,6 +51,7 @@ public class Personal {
 	private String categoria;
 	private String catObservacion;
 	private Date catFechaIni;
+	private Date catFechaFin;
 
 	public String getCedula() {
 		return cedula;
@@ -327,6 +328,46 @@ public class Personal {
 	public String getRutaImagen() {
 		String rutaImagen = GlobalUtil.PATH_CARNET + String.format("%010d", Integer.parseInt(this.cedula)) + ".jpg";
 		return rutaImagen;
+	}
+
+	public String getCodCategoria() {
+		return codCategoria;
+	}
+
+	public void setCodCategoria(String codCategoria) {
+		this.codCategoria = codCategoria;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getCatObservacion() {
+		return catObservacion;
+	}
+
+	public void setCatObservacion(String catObservacion) {
+		this.catObservacion = catObservacion;
+	}
+
+	public Date getCatFechaIni() {
+		return catFechaIni;
+	}
+
+	public void setCatFechaIni(Date catFechaIni) {
+		this.catFechaIni = catFechaIni;
+	}
+
+	public Date getCatFechaFin() {
+		return catFechaFin;
+	}
+
+	public void setCatFechaFin(Date catFechaFin) {
+		this.catFechaFin = catFechaFin;
 	}
 
 }

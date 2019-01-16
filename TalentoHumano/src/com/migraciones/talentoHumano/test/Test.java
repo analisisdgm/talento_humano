@@ -29,6 +29,26 @@ public class Test {
 	static ArrayList<String> listaFuncionariosPg = new ArrayList<String>();
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException, ParseException, IOException {
+		pruebaFichaAsistencia();
+	}
+
+	public static void llenarTablaCategorías() throws ClassNotFoundException, SQLException {
+		PersonalCont personalCont = new PersonalCont();
+		ArrayList<Personal> personales = personalCont.getAll();
+		ConexionPostgresql connpg = new ConexionPostgresql();
+		try {
+			for (Personal p : personales) {
+				String sql = "INSERT INTO ficha_personal.personales_categorias(personal_cedula,categoria_id,percat_fecha_inicio,percat_fecha_fin,admin_login) VALUES ('"
+						+ p.getCedula() + "','2','2019-01-01','2019-01-01','administrador')";
+				System.out.println(sql);
+				// connpg.pstmt = connpg.conexion.prepareStatement(sql);
+				// connpg.pstmt.executeUpdate();
+			}
+			// System.out.println(personales.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
 	}
 
 	public static void llenarTablaCredenciales() throws ClassNotFoundException, SQLException {
@@ -52,27 +72,6 @@ public class Test {
 		} finally {
 			connpg.conexion.close();
 		}
-	}
-
-	public static void llenarTablaCategorías() throws ClassNotFoundException, SQLException {
-		PersonalCont personalCont = new PersonalCont();
-		ArrayList<Personal> personales = personalCont.getAll();
-		ConexionPostgresql connpg = new ConexionPostgresql();
-//		try {
-//			for (Temporal c : personales) {
-//				String sql = "INSERT INTO ficha_personal.personales_categorias() VALUES (" + c.getId() + ",'"
-//						+ c.getCedula() + "'," + c.getCargo_id() + ",'" + c.getEstado() + "','" + c.getFecha_inicio()
-//						+ "','" + c.getFecha_fin() + "','" + c.getObservacion() + "','" + c.getAdmin() + "')";
-//				System.out.println(sql);
-//				// connpg.pstmt = connpg.conexion.prepareStatement(sql);
-//				// connpg.pstmt.executeUpdate();
-//			}
-//			System.out.println(credenciales.size());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			connpg.conexion.close();
-//		}
 	}
 
 	public static void bertaPedidoFeriados() throws ParseException, ClassNotFoundException {
@@ -138,7 +137,7 @@ public class Test {
 		// sis.imprimirFichaAsistencia("5099813", 8, 2017);
 		// sis.imprimirFichaAsistencia("3827955", 8,2017);
 		// sis.imprimirFichaAsistencia("426581", 2,2018);
-		sis.imprimirFichaAsistencia("4347382", 2, 2018);
+		sis.imprimirFichaAsistencia("3827955", 2, 2018);
 	}
 
 	public static void consultaSqlServer() throws ClassNotFoundException, SQLException {
