@@ -1,4 +1,4 @@
-package com.migraciones.talentoHumano.test;
+package com.migraciones.talentoHumano.controladores;
 
 import java.util.Date;
 

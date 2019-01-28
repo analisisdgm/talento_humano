@@ -38,7 +38,7 @@ import com.migraciones.talentoHumano.utilities.GlobalUtil;
 import com.migraciones.talentoHumano.views.componentesGUI.ModeloTablaUtil;
 import com.toedter.calendar.JDateChooser;
 
-public class FeriadoVista extends AncestroVista {
+public class PermisoIndividualVista extends AncestroVista {
 	private static final long serialVersionUID = 1L;
 	private TalentoHumano sistema = new TalentoHumano();
 	private ModeloTablaUtil modelo = new ModeloTablaUtil();
@@ -61,7 +61,7 @@ public class FeriadoVista extends AncestroVista {
 	private JButton btnFuncionario;
 
 	@SuppressWarnings({ "rawtypes" })
-	public FeriadoVista() throws ClassNotFoundException {
+	public PermisoIndividualVista() throws ClassNotFoundException {
 		panelBotones.btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnAgregarActionPerformed(e);
@@ -71,7 +71,8 @@ public class FeriadoVista extends AncestroVista {
 		setPreferredSize(new Dimension(800, 111));
 		setNormalBounds(new Rectangle(100, 100, 800, 504));
 		panelCampos.setBackground(Color.WHITE);
-		setTitle("PROCESOS - ASIGNACION DE FERIADOS Y PERMISOS COLECTIVOS");
+//		setTitle("PROCESOS - ASIGNACION DE FERIADOS Y PERMISOS COLECTIVOS");
+		setTitle("PROCESOS - PERMISOS INDIVIDUALES");
 		panelDatos.cargarDatos();
 		JPanel panelParametros = new JPanel();
 		panelParametros
@@ -173,7 +174,7 @@ public class FeriadoVista extends AncestroVista {
 		});
 		btnFuncionario.setEnabled(false);
 		btnFuncionario.setIcon(
-				new ImageIcon(FeriadoVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
+				new ImageIcon(PermisoIndividualVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
 		btnFuncionario.setBounds(185, 42, 25, 21);
 		panelParametros.add(btnFuncionario);
 
@@ -204,7 +205,7 @@ public class FeriadoVista extends AncestroVista {
 		panelParametros.add(btnOficina);
 		btnOficina.setEnabled(false);
 		btnOficina.setIcon(
-				new ImageIcon(FeriadoVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
+				new ImageIcon(PermisoIndividualVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
 		txtOficina = new JTextField();
 		txtOficina.setBounds(215, 17, 421, 20);
 		panelParametros.add(txtOficina);
@@ -220,7 +221,7 @@ public class FeriadoVista extends AncestroVista {
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(
-				new ImageIcon(FeriadoVista.class.getResource("/com/migraciones/talentoHumano/graphics/busqueda.png")));
+				new ImageIcon(PermisoIndividualVista.class.getResource("/com/migraciones/talentoHumano/graphics/busqueda.png")));
 		lblNewLabel.setBounds(657, 44, 157, 150);
 		panelCampos.add(lblNewLabel);
 		formatearTabla();
@@ -289,7 +290,7 @@ public class FeriadoVista extends AncestroVista {
 	@Override
 	protected void agregarObjeto() {
 		// opcion 1 es agregar nuevo justificativo
-		this.setTitle("PROCESOS - ASIGNACION DE FERIADOS Y PERMISOS COLECTIVOS   (AGREGANDO)");
+		this.setTitle("PROCESOS - PERMISOS INDIVIDUALES (AGREGANDO)");
 		this.opcion = 1;
 		activarFormulario();
 		limpiarTabla();
@@ -301,7 +302,7 @@ public class FeriadoVista extends AncestroVista {
 		// opcion 2 es editar nuevo justificativo
 		if (tbJustificaciones.getSelectedRow() != -1
 				&& tbJustificaciones.getValueAt(tbJustificaciones.getSelectedRow(), 0) != null) {
-			this.setTitle("PROCESOS - ASIGNACION DE FERIADOS Y PERMISOS COLECTIVOS (MODIFICANDO)");
+			this.setTitle("PROCESOS - PERMISOS INDIVIDUALES (MODIFICANDO)");
 			this.opcion = 2;
 			activarFormulario();
 			cargarDatosModificar();
@@ -319,7 +320,7 @@ public class FeriadoVista extends AncestroVista {
 		// opcion 3 es actualiza una justificacion a estado historico
 		if (tbJustificaciones.getSelectedRow() != -1
 				&& tbJustificaciones.getValueAt(tbJustificaciones.getSelectedRow(), 0) != null) {
-			this.setTitle("PROCESOS - ASIGNACION DE FERIADOS Y PERMISOS COLECTIVOS (ELIMINANDO)");
+			this.setTitle("PROCESOS - PERMISOS INDIVIDUALES (ELIMINANDO)");
 			this.opcion = 3;
 			activarFormulario();
 			cargarDatosModificar();
@@ -362,7 +363,7 @@ public class FeriadoVista extends AncestroVista {
 	@Override
 	protected void cancelarOperacion() {
 		// se inicializa la opcion
-		this.setTitle("PROCESOS - ASIGNACION DE FERIADOS Y PERMISOS COLECTIVOS");
+		this.setTitle("PROCESOS - PERMISOS INDIVIDUALES");
 		desactivarFormulario();
 		this.panelBotones.deshabilitar();
 
@@ -646,7 +647,7 @@ public class FeriadoVista extends AncestroVista {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void desactivarFormulario() {
-		this.setTitle("PROCESOS - ASIGNACION DE FERIADOS Y PERMISOS COLECTIVOS");
+		this.setTitle("PROCESOS - PERMISOS INDIVIDUALES");
 		btnFuncionario.setEnabled(false);
 		btnOficina.setEnabled(false);
 		cbTipo.setEnabled(false);
