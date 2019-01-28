@@ -60,8 +60,8 @@ public class Test {
 			for (Personal p : personales) {
 				String sql = "INSERT INTO ficha_personal.personales_categorias(personal_cedula,categoria_id,percat_fecha_inicio,percat_fecha_fin,admin_login) VALUES ('"
 						+ p.getCedula() + "',999,'2016-01-01','2019-01-01','administrador')";
-				// connpg.pstmt = connpg.conexion.prepareStatement(sql);
-				// connpg.pstmt.executeUpdate();
+				connpg.pstmt = connpg.conexion.prepareStatement(sql);
+				connpg.pstmt.executeUpdate();
 			}
 			System.out.println(personales.size());
 		} catch (Exception e) {

@@ -9,23 +9,35 @@ public class GlobalUtil {
 	public static final int agregarObjeto = 0;
 	public static final int editarObjeto = 1;
 	public static final int borrarObjeto = 2;
-	private static String SERVER = "192.168.1.245";
 
-	// pruebas locales
+	// #############################
+	// ######## PATH LOCALES #######
+	// #############################
+
 	// private static String PATH_REPORTE = System.getProperty("user.dir")
 	// + "/src/com/migraciones/talentoHumano/reportes/";
 	// private static String PATH_REPORTE_IMG =
 	// "C:\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
 	// public static String PATH_CARNET =
 	// "C:\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
-	// fin pruebas locales
+
+	// #############################
+	// ######## PATH REMOTOS #######
+	// #############################
+
+	private static String SERVER = "192.168.1.245";
+	public static String PATH_CARNET = "\\\\" + SERVER
+			+ "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
+	private static String PATH_REPORTE = "\\\\" + SERVER
+			+ "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\reportes\\";
+	private static String PATH_REPORTE_IMG = "\\\\" + SERVER
+			+ "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
+	public static final String RUTA_REPORTE_IMG_CARNET = PATH_REPORTE_IMG;
 
 	// #############################
 	// ######### IMAGENES ##########
 	// #############################
 
-	public static String PATH_CARNET = "\\\\" + SERVER
-			+ "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
 	private static String PATH_IMG = "/com/migraciones/talentoHumano/graphics/";
 	public static final String RUTA_LOGO_MIGRACIONES = PATH_IMG + "logoMigraciones.png";
 	public static final String RUTA_FAVICON_MIGRACIONES = PATH_IMG + "faviconGobierno.png";
@@ -57,11 +69,6 @@ public class GlobalUtil {
 	// ######### REPORTES ##########
 	// #############################
 
-	private static String PATH_REPORTE = "\\\\" + SERVER
-			+ "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\reportes\\";
-	private static String PATH_REPORTE_IMG = "\\\\" + SERVER
-			+ "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
-	public static final String RUTA_REPORTE_IMG_CARNET = PATH_REPORTE_IMG;
 	public static final String RUTA_REPORTE_JL = PATH_REPORTE + "JustificacionLista.jasper";
 	public static final String RUTA_REPORTE_JP = PATH_REPORTE + "JustificacionPersonal.jasper";
 	public static final String RUTA_REPORTE_FD = PATH_REPORTE + "FaltaDisciplinaria.jasper";
