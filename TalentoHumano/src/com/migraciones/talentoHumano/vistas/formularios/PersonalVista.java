@@ -41,13 +41,17 @@ import javax.swing.table.TableColumn;
 
 import com.migraciones.talentoHumano.app.TalentoHumano;
 import com.migraciones.talentoHumano.modelos.Cargo;
+import com.migraciones.talentoHumano.modelos.Categoria;
 import com.migraciones.talentoHumano.modelos.Dependencia;
 import com.migraciones.talentoHumano.modelos.Evaluacion;
 import com.migraciones.talentoHumano.modelos.Oficina;
 import com.migraciones.talentoHumano.modelos.PerCar;
+import com.migraciones.talentoHumano.modelos.PerCat;
 import com.migraciones.talentoHumano.modelos.PerCon;
 import com.migraciones.talentoHumano.modelos.PerDep;
+import com.migraciones.talentoHumano.modelos.PerDias;
 import com.migraciones.talentoHumano.modelos.PerOfi;
+import com.migraciones.talentoHumano.modelos.PerTipos;
 import com.migraciones.talentoHumano.modelos.PerTur;
 import com.migraciones.talentoHumano.modelos.Personal;
 import com.migraciones.talentoHumano.modelos.TipoPersonal;
@@ -63,12 +67,19 @@ public class PersonalVista extends AncestroVista {
 	private int OPCION = 0;// 1.- agregar; 2.- modificar; 3.- eliminar
 	private TalentoHumano sistema = new TalentoHumano();
 	private ModeloTablaUtil modelo = new ModeloTablaUtil();
+	private ModeloTablaUtil modeloCat = new ModeloTablaUtil();
+	private ModeloTablaUtil modeloDep = new ModeloTablaUtil();
+	private ModeloTablaUtil modeloOfi = new ModeloTablaUtil();
+	private ModeloTablaUtil modeloTipo = new ModeloTablaUtil();
+	private ModeloTablaUtil modeloTurnos = new ModeloTablaUtil();
+	private ModeloTablaUtil modeloDias = new ModeloTablaUtil();
 	private Personal personal;
 	private PerCon perCon;
 	private PerCar perCar;
 	private PerDep perDep;
 	private PerOfi perOfi;
 	private PerTur perTur;
+	private PerCat perCat;
 	@SuppressWarnings("rawtypes")
 	private JComboBox cbSexo;
 	@SuppressWarnings("rawtypes")
@@ -86,14 +97,10 @@ public class PersonalVista extends AncestroVista {
 	private JTextField txtOficina;
 	private JTextField txtDependencia;
 	private JTextField txtObsCondicion;
-	private JTextField txtObsHorario;
-	private JTextField txtEntrada;
-	private JTextField txtSalida;
 	private JTextField txtCondicion;
 	private JTextField txtCodCond;
 	private JTextField txtCodDep;
 	private JTextField txtCodOfi;
-	private JTextField txtCodHor;
 
 	private JTabbedPane tbVentanas;
 	private JPanel pnDatosLaborales;
@@ -102,18 +109,21 @@ public class PersonalVista extends AncestroVista {
 	private File fichero;
 	private JLabel lblFotoCarnet;
 	private JPanel pnFuncionario;
+	// ------------------------------
+	private JPanel pnHistorialCategoria;
+	private JPanel pnHistorialDependencia;
+	private JPanel pnHistorialOficina;
+	private JPanel pnHistorialTipo;
+	private JPanel pnHistorialTurnos;
+	private JPanel pnHistorialDias;
 
 	private JDateChooser dcVigCondicion;
 	private JDateChooser dcVigDependencia;
 	private JDateChooser dcVigOficina;
-	private JDateChooser dcVigHorario;
-	private JDateChooser dcVigCargo;
 
 	private JButton btnCondicion;
 	private JButton btnDependencia;
 	private JButton btnOficina;
-	private JButton btnCargo;
-	private JButton btnHorario;
 
 	private JButton btnDirectorio;
 	private JButton btnImagen;
@@ -121,15 +131,20 @@ public class PersonalVista extends AncestroVista {
 	private JButton btnActualizarEstado;
 	private JButton btnFuncionario;
 	private JTable tbEvaluaciones;
+	// -------------------------------------
+	private JTable tbCategoria;
+	private JTable tbDependencia;
+	private JTable tbOficina;
+	private JTable tbTipos;
+	private JTable tbTurnos;
+	private JTable tbDias;
 	private JTextField txtTelefonos;
 	private JTextField txtCorreo;
 
 	private JLabel lblCondicion;
 	private JLabel lblDependencia;
 	private JLabel lblOficina;
-	private JLabel lblHorario;
 	private JLabel lblVigCondicion;
-	private JLabel lblVigHorario;
 	private JLabel lblVigOficina;
 	private JLabel lblVigDependencia;
 	private JLabel lblFechaNacimento;
@@ -140,32 +155,59 @@ public class PersonalVista extends AncestroVista {
 	private FileInputStream entrada;
 	private FileOutputStream salida;
 	private byte[] bytesImg;
+	private JScrollPane scrollPane_1;
+	private JLabel label_13;
+	private JTextField txtObsHorario;
+	private JLabel label_14;
+	private JTextField txtEntrada;
+	private JLabel label_15;
+	private JTextField txtSalida;
+	private JLabel lblVigHorario;
+	private JButton btnHorario;
+	private JLabel lblHorario;
+	private JTextField txtCodHor;
+	private JLabel lblCargo;
+	private JLabel lblObs;
 	private JTextField txtObsCargo;
+	private JLabel lblCategoria;
 	private JTextField txtCodCargo;
 	private JTextField txtCargo;
-	private JLabel lblCargo;
+	private JButton btnCargo;
 	private JLabel lblVigCargo;
-	private JScrollPane scrollPane_1;
+	private JDateChooser dcVigCargo;
+	private JDateChooser dcVigCat;
+	private JTextField txtCodCategoria;
+	private JTextField txtCategoria;
+	
+	private JButton btnCategoria;
+	private JLabel lblVigCategoria;
+	private JLabel label_1;
+	private JTextField txtObsCategoria;
+	private JDateChooser dcVigHorario;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public PersonalVista() {
-		setNormalBounds(new Rectangle(100, 100, 780, 622));
+		panelBotones.btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		setNormalBounds(new Rectangle(100, 100, 780, 600));
 		panelBotones.btnEliminar.setVisible(false);
 		panelBotones.btnVer.setEnabled(false);
 		panelBotones.btnEliminar.setEnabled(false);
 		panelBotones.btnModificar.setEnabled(false);
-		setBounds(new Rectangle(100, 100, 770, 622));
-		setPreferredSize(new Dimension(770, 622));
+		setBounds(new Rectangle(100, 100, 770, 600));
+		setPreferredSize(new Dimension(770, 600));
 		panelBotones.btnVer.setVisible(false);
 		setTitle("PERSONAL");
 		panelBotones.btnImprimir.setEnabled(false);
 		panelCampos.setLayout(null);
 
 		pnFuncionario = new JPanel();
+		pnFuncionario.setBounds(10, 11, 575, 143);
 		pnFuncionario.setLayout(null);
 		pnFuncionario.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
 		pnFuncionario.setBackground(Color.WHITE);
-		pnFuncionario.setBounds(10, 11, 575, 143);
 		panelCampos.add(pnFuncionario);
 
 		txtApellidos = new JTextField();
@@ -233,27 +275,28 @@ public class PersonalVista extends AncestroVista {
 		pnFuncionario.add(btnFuncionario);
 
 		lblFotoCarnet = new JLabel("");
-		lblFotoCarnet.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
 		lblFotoCarnet.setBounds(595, 11, 117, 118);
+		lblFotoCarnet.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
 		panelCampos.add(lblFotoCarnet);
 
 		txtEstado = new JTextField();
+		txtEstado.setBounds(595, 134, 117, 20);
 		txtEstado.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEstado.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txtEstado.setEnabled(false);
 		txtEstado.setColumns(10);
-		txtEstado.setBounds(595, 134, 117, 20);
 		panelCampos.add(txtEstado);
 
 		btnImagen = new JButton("");
+		btnImagen.setBounds(716, 11, 25, 23);
 		btnImagen.setIcon(new ImageIcon(
 				PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/btnImagen.png")));
 		btnImagen.setToolTipText("Capturar imagen");
 		btnImagen.setEnabled(false);
-		btnImagen.setBounds(716, 11, 25, 23);
 		panelCampos.add(btnImagen);
 
 		btnDirectorio = new JButton("");
+		btnDirectorio.setBounds(716, 36, 25, 23);
 		btnDirectorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -271,10 +314,10 @@ public class PersonalVista extends AncestroVista {
 				PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/btnDirectorio.png")));
 		btnDirectorio.setToolTipText("Cambiar imagen");
 		btnDirectorio.setEnabled(false);
-		btnDirectorio.setBounds(716, 36, 25, 23);
 		panelCampos.add(btnDirectorio);
 
 		btnCredencial = new JButton("");
+		btnCredencial.setBounds(716, 61, 25, 23);
 		btnCredencial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -292,10 +335,10 @@ public class PersonalVista extends AncestroVista {
 				PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/btnCarnet.png")));
 		btnCredencial.setToolTipText("Generar carnet");
 		btnCredencial.setEnabled(false);
-		btnCredencial.setBounds(716, 61, 25, 23);
 		panelCampos.add(btnCredencial);
 
 		btnActualizarEstado = new JButton("");
+		btnActualizarEstado.setBounds(716, 131, 25, 23);
 		btnActualizarEstado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnEstadoActionPerformed(arg0);
@@ -305,15 +348,14 @@ public class PersonalVista extends AncestroVista {
 				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/salir.png")));
 		btnActualizarEstado.setToolTipText("Activar/Inactivar");
 		btnActualizarEstado.setEnabled(false);
-		btnActualizarEstado.setBounds(716, 131, 25, 23);
 		panelCampos.add(btnActualizarEstado);
 
 		tbVentanas = new JTabbedPane(JTabbedPane.TOP);
-		tbVentanas.setBounds(10, 165, 731, 349);
+		tbVentanas.setBounds(10, 165, 731, 327);
 		panelCampos.add(tbVentanas);
 
 		pnDatosLaborales = new JPanel();
-		tbVentanas.addTab("Datos Laborales", null, pnDatosLaborales, null);
+		tbVentanas.addTab("Datos Laborales I", null, pnDatosLaborales, null);
 		pnDatosLaborales.setLayout(null);
 		pnDatosLaborales.setBackground(Color.WHITE);
 
@@ -418,7 +460,7 @@ public class PersonalVista extends AncestroVista {
 		dcVigCondicion = new JDateChooser();
 		dcVigCondicion.setEnabled(false);
 		dcVigCondicion.setDateFormatString("dd/MM/yyyy");
-		dcVigCondicion.setBounds(628, 15, 87, 20);
+		dcVigCondicion.setBounds(628, 12, 87, 20);
 		pnDatosLaborales.add(dcVigCondicion);
 
 		txtObsCondicion = new JTextField();
@@ -432,59 +474,6 @@ public class PersonalVista extends AncestroVista {
 		txtObsCondicion.setColumns(10);
 		txtObsCondicion.setBounds(109, 42, 606, 20);
 		pnDatosLaborales.add(txtObsCondicion);
-
-		JLabel label_13 = new JLabel("Obs.:");
-		label_13.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_13.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_13.setBounds(10, 279, 80, 14);
-		pnDatosLaborales.add(label_13);
-
-		txtObsHorario = new JTextField();
-		txtObsHorario.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-				txtObsHorarioKeyTyped(arg0);
-			}
-		});
-		txtObsHorario.setEnabled(false);
-		txtObsHorario.setColumns(10);
-		txtObsHorario.setBounds(108, 276, 607, 20);
-		pnDatosLaborales.add(txtObsHorario);
-
-		JLabel label_14 = new JLabel("Entrada:");
-		label_14.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_14.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_14.setBounds(179, 250, 60, 14);
-		pnDatosLaborales.add(label_14);
-
-		txtEntrada = new JTextField();
-		txtEntrada.setEnabled(false);
-		txtEntrada.setColumns(10);
-		txtEntrada.setBounds(243, 247, 100, 20);
-		pnDatosLaborales.add(txtEntrada);
-
-		JLabel label_15 = new JLabel("Salida:");
-		label_15.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_15.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_15.setBounds(347, 250, 56, 14);
-		pnDatosLaborales.add(label_15);
-
-		txtSalida = new JTextField();
-		txtSalida.setEnabled(false);
-		txtSalida.setColumns(10);
-		txtSalida.setBounds(407, 247, 100, 20);
-		pnDatosLaborales.add(txtSalida);
-
-		lblVigHorario = new JLabel("Vigencia:");
-		lblVigHorario.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblVigHorario.setBounds(562, 250, 61, 14);
-		pnDatosLaborales.add(lblVigHorario);
-
-		dcVigHorario = new JDateChooser();
-		dcVigHorario.setEnabled(false);
-		dcVigHorario.setDateFormatString("dd/MM/yyyy");
-		dcVigHorario.setBounds(628, 247, 87, 20);
-		pnDatosLaborales.add(dcVigHorario);
 
 		btnCondicion = new JButton("");
 		btnCondicion.addActionListener(new ActionListener() {
@@ -537,29 +526,6 @@ public class PersonalVista extends AncestroVista {
 		btnOficina.setBounds(519, 127, 25, 21);
 		pnDatosLaborales.add(btnOficina);
 
-		btnHorario = new JButton("");
-		btnHorario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					btnHorarioActionPerformed(e);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnHorario.setIcon(
-				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
-		btnHorario.setEnabled(false);
-		btnHorario.setBounds(519, 246, 25, 21);
-		pnDatosLaborales.add(btnHorario);
-
-		lblHorario = new JLabel("Horario:");
-		lblHorario.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblHorario.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblHorario.setBounds(10, 244, 80, 24);
-		pnDatosLaborales.add(lblHorario);
-
 		txtCondicion = new JTextField();
 		txtCondicion.setEnabled(false);
 		txtCondicion.setColumns(10);
@@ -584,11 +550,220 @@ public class PersonalVista extends AncestroVista {
 		txtCodOfi.setBounds(108, 127, 49, 20);
 		pnDatosLaborales.add(txtCodOfi);
 
+		JPanel pnDatosLaboralesII = new JPanel();
+		pnDatosLaboralesII.setLayout(null);
+		pnDatosLaboralesII.setBackground(Color.WHITE);
+		tbVentanas.addTab("Datos Laborales II", null, pnDatosLaboralesII, null);
+
+		label_13 = new JLabel("Obs.:");
+		label_13.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_13.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_13.setBounds(10, 160, 80, 14);
+		pnDatosLaboralesII.add(label_13);
+
+		txtObsHorario = new JTextField();
+		txtObsHorario.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				txtObsHorarioKeyTyped(e);
+			}
+		});
+		txtObsHorario.setEnabled(false);
+		txtObsHorario.setColumns(10);
+		txtObsHorario.setBounds(109, 157, 607, 20);
+		pnDatosLaboralesII.add(txtObsHorario);
+
+		label_14 = new JLabel("Entrada:");
+		label_14.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_14.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_14.setBounds(167, 130, 60, 14);
+		pnDatosLaboralesII.add(label_14);
+
+		txtEntrada = new JTextField();
+		txtEntrada.setEnabled(false);
+		txtEntrada.setColumns(10);
+		txtEntrada.setBounds(237, 127, 100, 20);
+		pnDatosLaboralesII.add(txtEntrada);
+
+		label_15 = new JLabel("Salida:");
+		label_15.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_15.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_15.setBounds(347, 130, 56, 14);
+		pnDatosLaboralesII.add(label_15);
+
+		txtSalida = new JTextField();
+		txtSalida.setEnabled(false);
+		txtSalida.setColumns(10);
+		txtSalida.setBounds(413, 127, 100, 20);
+		pnDatosLaboralesII.add(txtSalida);
+
+		lblVigHorario = new JLabel("Vigencia:");
+		lblVigHorario.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblVigHorario.setBounds(558, 130, 61, 14);
+		pnDatosLaboralesII.add(lblVigHorario);
+
+		dcVigHorario = new JDateChooser();
+		dcVigHorario.setEnabled(false);
+		dcVigHorario.setDateFormatString("dd/MM/yyyy");
+		dcVigHorario.setBounds(629, 130, 87, 20);
+		pnDatosLaboralesII.add(dcVigHorario);
+
+		btnHorario = new JButton("");
+		btnHorario.setEnabled(false);
+		btnHorario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					btnHorarioActionPerformed(e);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnHorario.setIcon(
+				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
+		btnHorario.setBounds(523, 130, 25, 21);
+		pnDatosLaboralesII.add(btnHorario);
+
+		lblHorario = new JLabel("Horario:");
+		lblHorario.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblHorario.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblHorario.setBounds(10, 130, 80, 24);
+		pnDatosLaboralesII.add(lblHorario);
+
 		txtCodHor = new JTextField();
 		txtCodHor.setEnabled(false);
 		txtCodHor.setColumns(10);
-		txtCodHor.setBounds(108, 245, 49, 20);
-		pnDatosLaborales.add(txtCodHor);
+		txtCodHor.setBounds(108, 127, 49, 20);
+		pnDatosLaboralesII.add(txtCodHor);
+
+		lblCargo = new JLabel("Credencial:");
+		lblCargo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCargo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCargo.setBounds(10, 15, 80, 14);
+		pnDatosLaboralesII.add(lblCargo);
+
+		lblObs = new JLabel("Obs:");
+		lblObs.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblObs.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblObs.setBounds(10, 45, 80, 14);
+		pnDatosLaboralesII.add(lblObs);
+
+		txtObsCargo = new JTextField();
+		txtObsCargo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				txtObsCargoKeyTyped(e);
+			}
+		});
+		txtObsCargo.setEnabled(false);
+		txtObsCargo.setColumns(10);
+		txtObsCargo.setBounds(109, 42, 607, 20);
+		pnDatosLaboralesII.add(txtObsCargo);
+
+		lblCategoria = new JLabel("Categoria:");
+		lblCategoria.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCategoria.setBounds(10, 73, 80, 20);
+		pnDatosLaboralesII.add(lblCategoria);
+
+		txtCodCargo = new JTextField();
+		txtCodCargo.setEnabled(false);
+		txtCodCargo.setColumns(10);
+		txtCodCargo.setBounds(108, 12, 49, 20);
+		pnDatosLaboralesII.add(txtCodCargo);
+
+		txtCargo = new JTextField();
+		txtCargo.setEnabled(false);
+		txtCargo.setColumns(10);
+		txtCargo.setBounds(164, 12, 344, 20);
+		pnDatosLaboralesII.add(txtCargo);
+
+		btnCargo = new JButton("");
+		btnCargo.setEnabled(false);
+		btnCargo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					btnCargoActionPerformed(e);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnCargo.setIcon(
+				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
+		btnCargo.setBounds(519, 11, 25, 21);
+		pnDatosLaboralesII.add(btnCargo);
+
+		lblVigCargo = new JLabel("Vigencia:");
+		lblVigCargo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblVigCargo.setBounds(564, 15, 60, 14);
+		pnDatosLaboralesII.add(lblVigCargo);
+
+		dcVigCargo = new JDateChooser();
+		dcVigCargo.setEnabled(false);
+		dcVigCargo.setDateFormatString("dd/MM/yyyy");
+		dcVigCargo.setBounds(628, 12, 87, 20);
+		pnDatosLaboralesII.add(dcVigCargo);
+
+		txtCodCategoria = new JTextField();
+		txtCodCategoria.setEnabled(false);
+		txtCodCategoria.setColumns(10);
+		txtCodCategoria.setBounds(108, 70, 49, 20);
+		pnDatosLaboralesII.add(txtCodCategoria);
+
+		txtCategoria = new JTextField();
+		txtCategoria.setEnabled(false);
+		txtCategoria.setColumns(10);
+		txtCategoria.setBounds(164, 70, 344, 20);
+		pnDatosLaboralesII.add(txtCategoria);
+
+		dcVigCat = new JDateChooser();
+		dcVigCat.setEnabled(false);
+		dcVigCat.setDateFormatString("dd/MM/yyyy");
+		dcVigCat.setBounds(628, 73, 87, 20);
+		pnDatosLaboralesII.add(dcVigCat);
+
+		btnCategoria = new JButton("");
+		btnCategoria.setEnabled(false);
+		btnCategoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					btnCategoriaActionPerformed(e);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnCategoria.setIcon(
+				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
+		btnCategoria.setBounds(519, 72, 25, 21);
+		pnDatosLaboralesII.add(btnCategoria);
+
+		lblVigCategoria = new JLabel("Vigencia:");
+		lblVigCategoria.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblVigCategoria.setBounds(564, 76, 60, 14);
+		pnDatosLaboralesII.add(lblVigCategoria);
+
+		label_1 = new JLabel("Obs:");
+		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_1.setBounds(10, 101, 80, 14);
+		pnDatosLaboralesII.add(label_1);
+
+		txtObsCategoria = new JTextField();
+		txtObsCategoria.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				txtObsCategoriaKeyTyped(e);
+			}
+		});
+		txtObsCategoria.setEnabled(false);
+		txtObsCategoria.setColumns(10);
+		txtObsCategoria.setBounds(108, 98, 607, 20);
+		pnDatosLaboralesII.add(txtObsCategoria);
 
 		pnDatosPersonales = new JPanel();
 		pnDatosPersonales.setBackground(Color.WHITE);
@@ -630,63 +805,6 @@ public class PersonalVista extends AncestroVista {
 		dcFechaNacimiento.setEnabled(false);
 		dcVigCondicion.setDateFormatString("dd/MM/yyyy");
 
-		lblCargo = new JLabel("Cargo:");
-		lblCargo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCargo.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCargo.setBounds(10, 191, 80, 14);
-		pnDatosLaborales.add(lblCargo);
-
-		JLabel lblObs = new JLabel("Obs:");
-		lblObs.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblObs.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblObs.setBounds(10, 219, 80, 14);
-		pnDatosLaborales.add(lblObs);
-
-		txtObsCargo = new JTextField();
-		txtObsCargo.setEnabled(false);
-		txtObsCargo.setColumns(10);
-		txtObsCargo.setBounds(108, 216, 607, 20);
-		pnDatosLaborales.add(txtObsCargo);
-
-		txtCodCargo = new JTextField();
-		txtCodCargo.setEnabled(false);
-		txtCodCargo.setColumns(10);
-		txtCodCargo.setBounds(108, 188, 49, 20);
-		pnDatosLaborales.add(txtCodCargo);
-
-		txtCargo = new JTextField();
-		txtCargo.setEnabled(false);
-		txtCargo.setColumns(10);
-		txtCargo.setBounds(165, 188, 344, 20);
-		pnDatosLaborales.add(txtCargo);
-
-		btnCargo = new JButton("");
-		btnCargo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					btnCargoActionPerformed(arg0);
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		btnCargo.setIcon(
-				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
-		btnCargo.setEnabled(false);
-		btnCargo.setBounds(519, 188, 25, 21);
-		pnDatosLaborales.add(btnCargo);
-
-		lblVigCargo = new JLabel("Vigencia:");
-		lblVigCargo.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblVigCargo.setBounds(564, 191, 60, 14);
-		pnDatosLaborales.add(lblVigCargo);
-
-		dcVigCargo = new JDateChooser();
-		dcVigCargo.setEnabled(false);
-		dcVigCargo.setDateFormatString("dd/MM/yyyy");
-		dcVigCargo.setBounds(628, 188, 87, 20);
-		pnDatosLaborales.add(dcVigCargo);
 		dcFechaNacimiento.setBounds(104, 17, 95, 20);
 
 		cbSexo = new JComboBox();
@@ -745,7 +863,7 @@ public class PersonalVista extends AncestroVista {
 		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane_1.setBounds(104, 182, 612, 128);
+		scrollPane_1.setBounds(104, 182, 612, 94);
 		pnDatosPersonales.add(scrollPane_1);
 
 		txtObservacion = new JTextArea();
@@ -772,11 +890,80 @@ public class PersonalVista extends AncestroVista {
 		tbEvaluaciones = new JTable();
 		scrollPane.setViewportView(tbEvaluaciones);
 
-		JPanel pnHistorial = new JPanel();
-		pnHistorial.setBackground(Color.WHITE);
-		tbVentanas.addTab("Historial", null, pnHistorial, null);
 		formatearTablaEvaluaciones();
 		panelDatos.cargarDatos();
+
+		// Formato Historial Categoria
+		pnHistorialCategoria = new JPanel();
+		pnHistorialCategoria.setBackground(Color.WHITE);
+		tbVentanas.addTab("Historial Categoria", null, pnHistorialCategoria, null);
+		pnHistorialCategoria.setLayout(null);
+		tbCategoria = new JTable();
+		JScrollPane scrollPaneCat = new JScrollPane();
+		scrollPaneCat.setBounds(0, 0, 726, 256);
+		pnHistorialCategoria.add(scrollPaneCat);
+		scrollPaneCat.setViewportView(tbCategoria);
+		formatearTablaHistorial(tbCategoria, "tbCategoria");
+
+		// Formato Historial Dependencia
+		pnHistorialDependencia = new JPanel();
+		pnHistorialDependencia.setBackground(Color.WHITE);
+		tbVentanas.addTab("Historla Dependencia", null, pnHistorialDependencia, null);
+		pnHistorialDependencia.setLayout(null);
+		tbDependencia = new JTable();
+		JScrollPane scrollPaneDep = new JScrollPane();
+		scrollPaneDep.setBounds(0, 0, 726, 256);
+		pnHistorialDependencia.add(scrollPaneDep);
+		scrollPaneDep.setViewportView(tbDependencia);
+		formatearTablaHistorial(tbDependencia, "tbDependencia");
+
+		// Formato Historial Oficina
+		pnHistorialOficina = new JPanel();
+		pnHistorialOficina.setBackground(Color.WHITE);
+		tbVentanas.addTab("Historial Oficina", null, pnHistorialOficina, null);
+		pnHistorialOficina.setLayout(null);
+		tbOficina = new JTable();
+		JScrollPane scrollPaneOfi = new JScrollPane();
+		scrollPaneOfi.setBounds(0, 0, 726, 256);
+		pnHistorialOficina.add(scrollPaneOfi);
+		scrollPaneOfi.setViewportView(tbOficina);
+		formatearTablaHistorial(tbOficina, "tbOficina");
+
+		// FORMATO HISTORIAL TIPO
+		pnHistorialTipo = new JPanel();
+		pnHistorialTipo.setBackground(Color.WHITE);
+		tbVentanas.addTab("Historial Tipo", null, pnHistorialTipo, null);
+		pnHistorialTipo.setLayout(null);
+		tbTipos = new JTable();
+		JScrollPane scrollPaneTipo = new JScrollPane();
+		scrollPaneTipo.setBounds(0, 0, 726, 256);
+		pnHistorialTipo.add(scrollPaneTipo);
+		scrollPaneTipo.setViewportView(tbTipos);
+		formatearTablaHistorial(tbTipos, "tbTipos");
+
+		// FORMATO HISTORIAL TURNOS
+		pnHistorialTurnos = new JPanel();
+		pnHistorialTurnos.setBackground(Color.WHITE);
+		tbVentanas.addTab("Historial Turnos", null, pnHistorialTurnos, null);
+		pnHistorialTurnos.setLayout(null);
+		tbTurnos = new JTable();
+		JScrollPane scrollPaneTurnos = new JScrollPane();
+		scrollPaneTurnos.setBounds(0, 0, 726, 256);
+		pnHistorialTurnos.add(scrollPaneTurnos);
+		scrollPaneTurnos.setViewportView(tbTurnos);
+		formatearTablaHistorial(tbTurnos, "tbTurnos");
+
+		// FORMATO HISTORIAL DIAS
+		pnHistorialDias = new JPanel();
+		pnHistorialDias.setBackground(Color.WHITE);
+		tbVentanas.addTab("Historial Días", null, pnHistorialDias, null);
+		pnHistorialDias.setLayout(null);
+		tbDias = new JTable();
+		JScrollPane scrollPaneDias = new JScrollPane();
+		scrollPaneDias.setBounds(0, 0, 726, 256);
+		pnHistorialDias.add(scrollPaneDias);
+		scrollPaneDias.setViewportView(tbDias);
+		formatearTablaHistorial(tbDias, "tbDias");
 
 	}
 
@@ -883,8 +1070,11 @@ public class PersonalVista extends AncestroVista {
 		}
 	}
 
-	protected void txtObsHorarioKeyTyped(KeyEvent arg0) {
-		convertirMayusculas(arg0);
+	// --------------------------------------------Boton Categotia
+	protected void btnCategoriaActionPerformed(ActionEvent e) throws ClassNotFoundException {
+		CategoriaModal vista = new CategoriaModal();
+		vista.setVisible(true);
+		obtenerCategoria(vista);
 	}
 
 	protected void txtObsOficinaKeyTyped(KeyEvent arg0) {
@@ -896,6 +1086,16 @@ public class PersonalVista extends AncestroVista {
 	}
 
 	protected void txtObsCondicionKeyTyped(KeyEvent e) {
+		convertirMayusculas(e);
+	}
+
+	protected void txtObsCategoriaKeyTyped(KeyEvent e) {
+		convertirMayusculas(e);
+	}
+	protected void txtObsCargoKeyTyped(KeyEvent e) {
+		convertirMayusculas(e);		
+	}
+	protected void txtObsHorarioKeyTyped(KeyEvent e){
 		convertirMayusculas(e);
 	}
 
@@ -975,8 +1175,8 @@ public class PersonalVista extends AncestroVista {
 
 	// /////////////////// METODOS DEL SISTEMA ///////////////////////////
 	private void guardarActualizacion() throws ParseException, ClassNotFoundException, SQLException, IOException {
-		boolean ctrlCond = false, ctrlDep = false, ctrlOfi = false, ctrlCar = false, ctrlHor = false;
-		String opCond = "", opDep = "", opOfi = "", opCar = "", opHor = "";
+		boolean ctrlCond = false, ctrlDep = false, ctrlOfi = false, ctrlCar = false, ctrlHor = false, ctrlCat = false;
+		String opCond = "", opDep = "", opOfi = "", opCar = "", opHor = "", opCat = "";
 		// ######## DATOS LABORALES ########
 		// guardar datos de la condicion del personal
 		cargarNuevaCondicion();
@@ -990,6 +1190,7 @@ public class PersonalVista extends AncestroVista {
 			ctrlCond = true;
 			opCond = "A";
 		}
+		
 		// guardar datos de la dependencia del personal
 		cargarNuevaDependencia();
 		if (modificoDependencia()) {
@@ -1002,8 +1203,10 @@ public class PersonalVista extends AncestroVista {
 			ctrlDep = true;
 			opDep = "A";
 		}
+		
 		// guardar datos de la oficina del personal
 		cargarNuevaOficina();
+		;
 		if (modificoOficina()) {
 			if (verificarPeriodoOficina() == true) {
 				ctrlOfi = true;
@@ -1015,13 +1218,27 @@ public class PersonalVista extends AncestroVista {
 			ctrlOfi = true;
 			opOfi = "A";
 		}
+		
+		// guardar datos de la categoria del personal
+		cargarNuevaCategoria();
+		if (modificoCategoria()) {
+			if (verificarPeriodoCategoria() == true) {
+				ctrlCat = true;
+				opCat = "I";
+
+			}
+		} else {
+			// modificacion de la observacion
+			ctrlCat = true;
+			opCat = "A";
+		}
+		
 		// guardar datos de la oficina del personal
 		cargarNuevoCargo();
 		if (modificoCargo()) {
 			if (verificarPeriodoCargo() == true) {
 				ctrlCar = true;
 				opCar = "I";
-
 			}
 		} else {
 			// modificacion de la observacion
@@ -1043,12 +1260,13 @@ public class PersonalVista extends AncestroVista {
 		}
 
 		// verificar las actualizaciones y desplegar mensaje
-		if (ctrlCond && ctrlDep && ctrlOfi && ctrlCar && ctrlHor && verificarCamposObligatorios()) {
+		if (ctrlCond && ctrlDep && ctrlOfi && ctrlCar && ctrlHor && ctrlCat && verificarCamposObligatorios()) {
 			this.sistema.actualizarCondicionPersonal(this.perCon, opCond);
 			this.sistema.actualizarDependenciaPersonal(this.perDep, opDep);
 			this.sistema.actualizarOficinaPersonal(this.perOfi, opOfi);
 			this.sistema.actualizarCargoPersonal(this.perCar, opCar);
 			this.sistema.actualizarTurnoPersonal(this.perTur, opHor);
+			this.sistema.actualizarCategoriaPersonal(this.perCat, opCat);
 			Personal per = cargarNuevosDatosPersonales();
 			this.sistema.actualizarDatosPersonal(per);
 			if (this.fichero != null) {
@@ -1066,8 +1284,10 @@ public class PersonalVista extends AncestroVista {
 			inicializarCampos();
 			cargarCampos(cedula);
 		} else {
+	
 			JOptionPane.showMessageDialog(null, GlobalUtil.MSG_DATOS_GUARDADOS_FAIL + "Verifique periodos de tiempo",
 					"ATENCION", JOptionPane.ERROR_MESSAGE);
+			
 		}
 
 	}
@@ -1116,6 +1336,16 @@ public class PersonalVista extends AncestroVista {
 		per.setOfiFechaIni(dcVigOficina.getDate());
 		per.setOfiObservacion(txtObsOficina.getText().trim());
 
+		// ########### CARGO ###########
+		per.setCodCargo(Integer.parseInt(txtCodCargo.getText()));
+		per.setCarFechaIni(dcVigCargo.getDate());
+		per.setCarObservacion(txtObsCargo.getText().trim());
+
+		// ########### CATEGORIA ###########
+		per.setCategoriaCodigo(txtCodCategoria.getText());
+		per.setCatFechaInicio(dcVigCat.getDate());
+		per.setCatObservacion(txtObsCategoria.getText().trim());
+
 		// ########### HORARIO ###########
 		per.setCodHorario(Integer.parseInt(txtCodHor.getText()));
 		per.setHorFechaIni(dcVigHorario.getDate());
@@ -1156,6 +1386,12 @@ public class PersonalVista extends AncestroVista {
 			control = false;
 		}
 		if (dcVigOficina.getDate() == null) {
+			control = false;
+		}
+		if (txtCodCategoria.getText().equals("")) {
+			control = false;
+		}
+		if (dcVigCat.getDate() == null) {
 			control = false;
 		}
 		if (txtCodHor.getText().equals("")) {
@@ -1200,6 +1436,11 @@ public class PersonalVista extends AncestroVista {
 		lblVigCargo.setText("*Vigencia:");
 		lblVigCargo.setForeground(Color.RED);
 
+		lblCategoria.setText("*Categoria:");
+		lblCategoria.setForeground(Color.RED);
+		lblVigCategoria.setText("*Vigencia:");
+		lblVigCategoria.setForeground(Color.RED);
+
 		lblHorario.setText("*Horario:");
 		lblHorario.setForeground(Color.RED);
 		lblVigHorario.setText("*Vigencia:");
@@ -1238,6 +1479,11 @@ public class PersonalVista extends AncestroVista {
 		lblVigCargo.setText("Vigencia:");
 		lblVigCargo.setForeground(Color.BLACK);
 
+		lblCategoria.setText("Categoria:");
+		lblCategoria.setForeground(Color.BLACK);
+		lblVigCategoria.setText("Vigencia:");
+		lblVigCategoria.setForeground(Color.BLACK);
+
 		lblHorario.setText("Horario:");
 		lblHorario.setForeground(Color.BLACK);
 		lblVigHorario.setText("Vigencia:");
@@ -1257,6 +1503,18 @@ public class PersonalVista extends AncestroVista {
 		cargarDatosPersonales();
 		// ########### EVALUACIONES ###########
 		cargarEvaluaciones();
+		// ########### HISTORIAL DEPENDENCIA #################
+		cargarHistorialDependencia();
+		// ########### HISTORIAL OFICINA #################
+		cargarHistorialOficina();
+		// ########### HISTORIAL TIPO PERSONAL #################
+		cargarHistorialTipoPersonal();
+		// ########### HISTORIAL TURNO #################
+		cargarHistorialTurno();
+		// ########### HISTORIAL CATEGORIA #################
+		cargarHistorialCategoria();
+		// ########### HISTORIAL CATEGORIA #################
+		cargarHistorialDias();
 	}
 
 	private void habilitarAgregar() {
@@ -1274,6 +1532,7 @@ public class PersonalVista extends AncestroVista {
 		dcVigDependencia.setEnabled(true);
 		dcVigOficina.setEnabled(true);
 		dcVigCargo.setEnabled(true);
+		dcVigCat.setEnabled(true);
 		dcVigHorario.setEnabled(true);
 		habilitarDatosPersonales();
 		btnDirectorio.setEnabled(true);
@@ -1304,6 +1563,18 @@ public class PersonalVista extends AncestroVista {
 		inicailizarDatosPersonales();
 		// ########### EVALUACIONES ###########
 		inicializarEvaluaciones();
+		// ########### HISTORIAL CATEGORIA ###########
+		inicializarCategorias();
+		// ########### HISTORIAL DEPENDENCIA ###########
+		inicializarDependencias();
+		// ########### HISTORIAL OFICINA ###########
+		inicializarOficinas();
+		// ########### HISTORIAL TIPO ###########
+		inicializarTipos();
+		// ########### HISTORIAL TURNOS ###########
+		inicializarTurnos();
+		// ########### HISTORIAL DIAS ###########
+		inicializarDias();
 		this.panelBotones.btnModificar.setEnabled(false);
 	}
 
@@ -1379,7 +1650,13 @@ public class PersonalVista extends AncestroVista {
 		txtEntrada.setText(this.personal.getHorEntrada().toString());
 		txtSalida.setText(this.personal.getHorSalida().toString());
 		txtObsHorario.setText(this.personal.getHorObservacion());
-		dcVigHorario.setDate(this.personal.getHorFechaIni());
+		 dcVigHorario.setDate(this.personal.getHorFechaIni());
+
+		// ########### CATEGORIA ###########
+		txtCodCategoria.setText(this.personal.getCategoriaCodigo());
+		txtCategoria.setText(this.personal.getCategoria());
+		txtObsCategoria.setText(this.personal.getCatObservacion());
+		dcVigCat.setDate(this.personal.getCatFechaInicio());
 	}
 
 	private void habilitarDatosLaborales() {
@@ -1402,6 +1679,10 @@ public class PersonalVista extends AncestroVista {
 		// habilitacion de horario
 		btnHorario.setEnabled(true);
 		txtObsHorario.setEnabled(true);
+
+		// habilitacion de categoria
+		btnCategoria.setEnabled(true);
+		txtObsCategoria.setEnabled(true);
 
 	}
 
@@ -1452,6 +1733,15 @@ public class PersonalVista extends AncestroVista {
 		txtEntrada.setText("");
 		txtSalida.setText("");
 		btnHorario.setEnabled(false);
+
+		// ########### CATEGORIA ###########
+		txtCodCategoria.setText("");
+		txtCategoria.setText("");
+		 dcVigCat.setEnabled(false);
+		// dcVigCategoria.setDate(null);
+		txtObsCategoria.setEnabled(false);
+		txtObsCategoria.setText("");
+		btnCategoria.setEnabled(false);
 
 	}
 
@@ -1527,6 +1817,25 @@ public class PersonalVista extends AncestroVista {
 		if (dcVigCargo.getDate() != null) {
 			Date fechaInicioActual = sdf.parse(String.valueOf(sdf.format(dcVigCargo.getDate())));
 			control = fechaInicioActual.after(this.personal.getCarFechaIni());
+		}
+		return control;
+	}
+
+	private boolean modificoCategoria() {
+		boolean control = true;
+		String codigo = this.personal.getCategoriaCodigo();
+		if (codigo.equals(txtCodCategoria.getText())) {
+			control = false;
+		}
+		return control;
+	}
+
+	private boolean verificarPeriodoCategoria() throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		boolean control = false;
+		if (dcVigCat.getDate() != null) {
+			Date fechaInicioActual = sdf.parse(String.valueOf(sdf.format(dcVigCat.getDate())));
+			control = fechaInicioActual.after(this.personal.getCatFechaInicio());
 		}
 		return control;
 	}
@@ -1608,7 +1917,7 @@ public class PersonalVista extends AncestroVista {
 	// ventana de evaluaciones
 
 	private void cargarEvaluaciones() throws ClassNotFoundException {
-		limpiarTabla(tbEvaluaciones);
+		limpiarTabla(tbEvaluaciones, modelo);
 		Object[] fila = new Object[6];
 		for (Evaluacion eva : sistema.obtenerEvaluaciones(this.personal.getCedula())) {
 			fila[0] = eva.getPeriodo();
@@ -1627,7 +1936,117 @@ public class PersonalVista extends AncestroVista {
 	}
 
 	private void inicializarEvaluaciones() {
-		limpiarTabla(tbEvaluaciones);
+		limpiarTabla(tbEvaluaciones, modelo);
+	}
+	private void inicializarCategorias(){
+		limpiarTabla(tbCategoria, modeloCat);
+	}
+	private void inicializarDependencias(){
+		limpiarTabla(tbDependencia, modeloDep);
+	}
+	private void inicializarOficinas() {
+		limpiarTabla(tbOficina, modeloOfi);
+
+	}
+	private void inicializarTipos(){
+		limpiarTabla(tbTipos, modeloTipo);
+	}
+	private void inicializarTurnos(){
+		limpiarTabla(tbTurnos, modeloTurnos);
+	}
+	private void inicializarDias(){
+		limpiarTabla(tbDias, modeloDias);
+	}
+
+	// ----------------------------------------------------------------------------
+	// ventana HISTORIAL OFICINA
+	private void cargarHistorialOficina() throws ClassNotFoundException {
+		limpiarTabla(tbOficina, modeloOfi);
+		Object[] fila = new Object[6];
+		for (PerOfi ofi : sistema.obtenerHistorialOficina(this.personal.getCedula())) {
+			fila[0] = ofi.getOficinaCodigo();
+			fila[1] = ofi.getOficinaDescripcion();
+			fila[2] = ofi.getFechaInicio();
+			fila[3] = ofi.getFechaFin();
+			fila[4] = ofi.getObservacion();
+			modeloOfi.addRow(fila);
+			tbOficina.setModel(modeloOfi);
+		}
+	}
+
+	// ventana HISTORIAL DEPENDENCIA
+	private void cargarHistorialDependencia() throws ClassNotFoundException {
+		limpiarTabla(tbDependencia, modeloDep);
+		Object[] fila = new Object[6];
+		for (PerDep dep : sistema.obtenerHistorialDependencia(this.personal.getCedula())) {
+			fila[0] = dep.getDependenciaCodigo();
+			fila[1] = dep.getDependenciaDescripcion();
+			fila[2] = dep.getFechaInicio();
+			fila[3] = dep.getFechaFin();
+			fila[4] = dep.getObservacion();
+			modeloDep.addRow(fila);
+			tbDependencia.setModel(modeloDep);
+		}
+	}
+
+	// ventana HISTORIAL TIPO PERSONAL
+	private void cargarHistorialTipoPersonal() throws ClassNotFoundException {
+		limpiarTabla(tbTipos, modeloTipo);
+		Object[] fila = new Object[6];
+		for (PerTipos tipos : sistema.obtenerHistorialTipoPersonal(this.personal.getCedula())) {
+			fila[0] = tipos.getTipoCodigo();
+			fila[1] = tipos.getTipoDescripcion();
+			fila[2] = tipos.getFechaInicio();
+			fila[3] = tipos.getFechaFin();
+			fila[4] = tipos.getObservacion();
+			modeloTipo.addRow(fila);
+			tbTipos.setModel(modeloTipo);
+		}
+	}
+
+	// ventana HISTORIAL TURNO
+	private void cargarHistorialTurno() throws ClassNotFoundException {
+		limpiarTabla(tbTurnos, modeloTurnos);
+		Object[] fila = new Object[6];
+		for (PerTur turnos : sistema.obtenerHistorialTurnos(this.personal.getCedula())) {
+			fila[0] = turnos.getTurnoId();
+			fila[1] = turnos.getDescripcionTurno();
+			fila[2] = turnos.getFechaInicio();
+			fila[3] = turnos.getFechaFin();
+			fila[4] = turnos.getObservacion();
+			modeloTurnos.addRow(fila);
+			tbTurnos.setModel(modeloTurnos);
+		}
+	}
+
+	// ventana HISTORIAL CATEGORIA
+	private void cargarHistorialCategoria() throws ClassNotFoundException {
+		limpiarTabla(tbCategoria, modeloCat);
+		Object[] fila = new Object[6];
+		for (PerCat categoria : sistema.obtenerHistorialCategoria(this.personal.getCedula())) {
+			fila[0] = categoria.getCodigo();
+			fila[1] = categoria.getDescripcion();
+			fila[2] = categoria.getFechaInicio();
+			fila[3] = categoria.getFechaFin();
+			fila[4] = categoria.getObservacion();
+			modeloCat.addRow(fila);
+			tbCategoria.setModel(modeloCat);
+		}
+	}
+
+	// ventana HISTORIAL DIAS
+	private void cargarHistorialDias() throws ClassNotFoundException {
+		limpiarTabla(tbDias, modeloDias);
+		Object[] fila = new Object[6];
+		for (PerDias dias : sistema.obtenerHistorialDias(this.personal.getCedula())) {
+			fila[0] = dias.getDiaId();
+			fila[1] = dias.getDescripciondia();
+			fila[2] = dias.getFechaInicio();
+			fila[3] = dias.getFechaFin();
+			fila[4] = dias.getObservacion();
+			modeloDias.addRow(fila);
+			tbDias.setModel(modeloDias);
+		}
 	}
 
 	// obtener objeto de una lista
@@ -1726,6 +2145,25 @@ public class PersonalVista extends AncestroVista {
 		}
 	}
 
+	// ------------------------------------------------------------------------
+	private void obtenerCategoria(CategoriaModal vista) throws ClassNotFoundException {
+		if (vista.getCategoria() != null) {
+			Categoria cat = this.sistema.obtenerCategoria(vista.getCodigo());
+			txtCodCategoria.setText(cat.getCodigo());
+			txtCategoria.setText(cat.getDescripcion());
+			if (this.OPCION == 2) {
+				if (!this.personal.getCategoriaCodigo().equals(txtCodCategoria.getText())) {
+					txtObsDependencia.setText("");
+					dcVigCat.setEnabled(true);
+				} else {
+					txtObsCategoria.setText(this.personal.getDepObservacion());
+					dcVigHorario.setDate(this.personal.getDepFechaIni());
+					dcVigDependencia.setEnabled(false);
+				}
+			}
+		}
+	}
+
 	private void obtenerFuncionario(PersonalModal vista) throws ClassNotFoundException {
 		if (vista.getCedula() != null) {
 			String cedula = vista.getCedula();
@@ -1777,6 +2215,15 @@ public class PersonalVista extends AncestroVista {
 		this.perTur.setFechaInicio(dcVigHorario.getDate());
 		this.perTur.setObservacion(txtObsHorario.getText().trim());
 		this.perTur.setAdministrador(MenuPrincipalVista.administrador.getLogin());
+	}
+
+	private void cargarNuevaCategoria() {
+		this.perCat = new PerCat();
+		this.perCat.setCedula(txtCedula.getText());
+		this.perCat.setCodigo(txtCodCategoria.getText());
+		this.perCat.setFechaInicio(dcVigCat.getDate());
+		this.perCat.setObservacion(txtObsCategoria.getText().trim());
+		this.perCat.setAdministrador(MenuPrincipalVista.administrador.getLogin());
 	}
 
 	private Personal cargarNuevosDatosPersonales() {
@@ -1837,9 +2284,70 @@ public class PersonalVista extends AncestroVista {
 		columna0.setPreferredWidth(200);
 	}
 
-	private void limpiarTabla(JTable tabla) {
+	// ----------------------------------------------------------//
+	private void formatearTablaHistorial(JTable tabla, String nombre) {
+
+		if (nombre.equals("tbCategoria")) {
+			modeloCat.addColumn("CODIGO");
+			modeloCat.addColumn("DESCRIPCION");
+			modeloCat.addColumn("FECHA INICIO");
+			modeloCat.addColumn("FECHA FIN");
+			modeloCat.addColumn("OBSERVACION");
+			tabla.setModel(modeloCat);
+			TableColumn columna0 = tabla.getColumn("DESCRIPCION");
+			columna0.setPreferredWidth(200);
+		} else if (nombre.equals("tbDependencia")) {
+			modeloDep.addColumn("CODIGO");
+			modeloDep.addColumn("DESCRIPCION");
+			modeloDep.addColumn("FECHA INICIO");
+			modeloDep.addColumn("FECHA FIN");
+			modeloDep.addColumn("OBSERVACION");
+			tabla.setModel(modeloDep);
+			TableColumn columna0 = tabla.getColumn("DESCRIPCION");
+			columna0.setPreferredWidth(200);
+		} else if (nombre.equals("tbOficina")) {
+			modeloOfi.addColumn("CODIGO");
+			modeloOfi.addColumn("DESCRIPCION");
+			modeloOfi.addColumn("FECHA INICIO");
+			modeloOfi.addColumn("FECHA FIN");
+			modeloOfi.addColumn("OBSERVACION");
+			tabla.setModel(modeloOfi);
+			TableColumn columna0 = tabla.getColumn("DESCRIPCION");
+			columna0.setPreferredWidth(200);
+		} else if (nombre.equals("tbTipos")) {
+			modeloTipo.addColumn("CODIGO");
+			modeloTipo.addColumn("DESCRIPCION");
+			modeloTipo.addColumn("FECHA INICIO");
+			modeloTipo.addColumn("FECHA FIN");
+			modeloTipo.addColumn("OBSERVACION");
+			tabla.setModel(modeloTipo);
+			TableColumn columna0 = tabla.getColumn("DESCRIPCION");
+			columna0.setPreferredWidth(200);
+		} else if (nombre.equals("tbTurnos")) {
+			modeloTurnos.addColumn("CODIGO");
+			modeloTurnos.addColumn("DESCRIPCION");
+			modeloTurnos.addColumn("FECHA INICIO");
+			modeloTurnos.addColumn("FECHA FIN");
+			modeloTurnos.addColumn("OBSERVACION");
+			tabla.setModel(modeloTurnos);
+			TableColumn columna0 = tabla.getColumn("DESCRIPCION");
+			columna0.setPreferredWidth(200);
+		} else if (nombre.equals("tbDias")) {
+			modeloDias.addColumn("CODIGO");
+			modeloDias.addColumn("DESCRIPCION");
+			modeloDias.addColumn("FECHA INICIO");
+			modeloDias.addColumn("FECHA FIN");
+			modeloDias.addColumn("OBSERVACION");
+			tabla.setModel(modeloDias);
+			TableColumn columna0 = tabla.getColumn("DESCRIPCION");
+			columna0.setPreferredWidth(200);
+		}
+
+	}
+
+	private void limpiarTabla(JTable tabla, ModeloTablaUtil model) {
 		while (tabla.getRowCount() != 0) {
-			modelo.removeRow(0);
+			model.removeRow(0);
 		}
 	}
 

@@ -63,13 +63,6 @@ public class PersonalHorarioController extends AncestroController {
 				horario.setNombres(conn.resultado.getString("nombres"));
 				horario.setApellidos(conn.resultado.getString("apellidos"));
 
-				horario.setTipoPersonalId(conn.resultado.getInt("tipo_personal_id"));
-				horario.setTipoPersonal(conn.resultado.getString("tipoper_descripcion"));
-				horario.setCodigoDependencia(conn.resultado.getString("codigo_dependencia"));
-				horario.setDependencia(conn.resultado.getString("dependencia"));
-				horario.setCodigoOficina(conn.resultado.getString("codigo_oficina"));
-				horario.setOficina(conn.resultado.getString("oficina"));
-
 				horario.setTurnoId(conn.resultado.getInt("turno_id"));
 				horario.setTurnoEntrada(conn.resultado.getTime("turno_entrada"));
 				horario.setTurnoSalida(conn.resultado.getTime("turno_salida"));

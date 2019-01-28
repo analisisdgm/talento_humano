@@ -203,18 +203,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{txtFechaDesde}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
-				<reportElement key="" stretchType="RelativeToBandHeight" x="84" y="0" width="141" height="10" uuid="48c450a5-af15-40a7-8c1d-1eae63a459b6">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<box leftPadding="2">
-					<pen lineWidth="0.25"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{txtFuncionario}]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement key="" stretchType="RelativeToBandHeight" mode="Transparent" x="304" y="0" width="250" height="10" isPrintWhenDetailOverflows="true" backcolor="rgba(255, 255, 255, 0.0)" uuid="b8f0f2e8-cecc-4094-8207-644a2f5fde85">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
@@ -258,10 +246,27 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{txtItem}]]></textFieldExpression>
 			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="84" y="0" width="141" height="10" uuid="02931197-f3a3-486f-ba46-7bf765b21cd1">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtFuncionario}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="57" splitType="Stretch">
+		<band height="85" splitType="Stretch">
 			<line>
 				<reportElement x="0" y="13" width="554" height="1" uuid="595057ee-f380-448a-aab7-2ee15ad944e3"/>
 			</line>

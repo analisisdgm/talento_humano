@@ -65,6 +65,316 @@ public class PersonalCont extends AncestroCont {
 				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
 				personal.setHorObservacion(conn.resultado.getString("hor_observacion"));
 				personal.setHorFechaIni(conn.resultado.getDate("hor_fecha_inicio"));
+				
+				personal.setCategoriaCodigo(conn.resultado.getString("cat_codigo"));
+				personal.setCategoria(conn.resultado.getString("categoria"));
+				personal.setCatObservacion(conn.resultado.getString("categoria_observacion"));
+				personal.setCatFechaInicio(conn.resultado.getDate("categoria_fecha_inicio"));				
+				
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##############################################
+	// ##### PARA OBTENER PERSONAL POR ABC ########
+	// ##############################################
+	public ArrayList<Personal> getABC() throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE estado = 'A' ORDER BY nombres");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER PERSONAL POR CONDICION ####
+	public ArrayList<Personal> getPersonalCondicion(String codigo) throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE cond_codigo = '" + codigo
+							+ "' AND estado = 'A' ORDER BY nombres, condicion");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER TODOS LOS PERSONALES POR CONDICION ####
+	public ArrayList<Personal> getAllPeronalCondicion(String codigo) throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia.executeQuery(
+					"SELECT * FROM ficha_personal.personales_vista WHERE estado = 'A' ORDER BY nombres,condicion");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER PERSONAL POR DEPENDENCIA ####
+	// Fala agregar las opciones
+	public ArrayList<Personal> getPersonalDependencia(String codigo) throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					// filtrar por campo dependencia
+					.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE dep_codigo = '" + codigo
+							+ "' AND estado = 'A' ORDER BY dependencia");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER TODOS LOS PERSONALES POR DEPENDENCIA ####
+	public ArrayList<Personal> getAllPeronalDependencia(String codigo) throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE estado = 'A' ORDER BY dependencia,nombres");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER PERSONAL POR oficina ####
+	// PASANDO PARAMETROS
+	public ArrayList<Personal> getPersonalOficina(String codigo) throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE ofi_codigo = '" + codigo
+							+ "' AND estado = 'A' ORDER BY nombres");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				personal.setOficina(conn.resultado.getString("oficina"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER PERSONAL POR oficina ####
+	public ArrayList<Personal> getAllPersonalOficina(String codigo) throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia.executeQuery(
+					"SELECT * FROM ficha_personal.personales_vista WHERE estado = 'A' ORDER BY oficina,nombres");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				personal.setOficina(conn.resultado.getString("oficina"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER PERSONAL POR sexo ####
+	public ArrayList<Personal> getPeronalporSexo(String codigo) throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE sexo = '"
+					+ codigo + "' AND estado = 'A' ORDER BY nombres");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				personal.setSexo(conn.resultado.getString("sexo"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER PERSONAL POR sexo ####
+	public ArrayList<Personal> getAllPeronalporSexo(String codigo) throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE estado = 'A' ORDER BY sexo,nombres");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				personal.setSexo(conn.resultado.getString("sexo"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER PERSONAL POR CATEGORIA PANSANDOLE UN PARAMETRO DE
+	// BUSQUEDA ####
+	public ArrayList<Personal> getPeronalCategoria(String codigo) throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE cat_codigo = '" + codigo
+							+ "' AND estado = 'A' ORDER BY nombres");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				personal.setCategoria(conn.resultado.getString("categoria"));
+				personal.setCategoriaCodigo(conn.resultado.getString("cat_codigo"));
+				listaPersonales.add(personal);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPersonales;
+	}
+
+	// ##### PARA OBTENER PERSONAL POR TODAS LAS CATEGORIAS ####
+	public ArrayList<Personal> getAllPeronalCategoria() throws ClassNotFoundException {
+		ArrayList<Personal> listaPersonales = new ArrayList<Personal>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE estado = 'A' ORDER BY nombres");
+			while (conn.resultado.next()) {
+				Personal personal = new Personal();
+				personal.setCedula(conn.resultado.getString("cedula"));
+				personal.setNombres(conn.resultado.getString("nombres"));
+				personal.setApellidos(conn.resultado.getString("apellidos"));
+				personal.setCondicion(conn.resultado.getString("condicion"));
+				personal.setDependencia(conn.resultado.getString("dependencia"));
+				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
+				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
+				personal.setCategoria(conn.resultado.getString("categoria"));
+				personal.setCategoriaCodigo(conn.resultado.getString("cat_codigo"));
 				listaPersonales.add(personal);
 			}
 			conn.conexion.close();
@@ -119,6 +429,12 @@ public class PersonalCont extends AncestroCont {
 				personal.setCargo(conn.resultado.getString("cargo"));
 				personal.setCarObservacion(conn.resultado.getString("cargo_observacion"));
 				personal.setCarFechaIni(conn.resultado.getDate("cargo_fecha_inicio"));
+				
+				personal.setCategoriaCodigo(conn.resultado.getString("cat_codigo"));
+				personal.setCategoria(conn.resultado.getString("categoria"));
+				personal.setCatObservacion(conn.resultado.getString("categoria_observacion"));
+				personal.setCatFechaInicio(conn.resultado.getDate("categoria_fecha_inicio"));
+				
 			}
 			conn.conexion.close();
 		} catch (SQLException e) {
@@ -585,11 +901,11 @@ public class PersonalCont extends AncestroCont {
 		conn.conexion.setAutoCommit(false);
 		PreparedStatement pstmtPersonal = null, pstmtCondicion = null, pstmtDependencia = null, pstmtOficina = null,
 				pstmtInsHorario = null, pstmtUpdHorario = null, pstmtCargo = null, pstmtCargoCredencial = null,
-				pstmtAdmin = null;
+				pstmtAdmin = null, pstmtCategoria = null;
 
 		try {
 			// insertar en tabla ficha_personal.personales
-			String iPersonalSQL = "INSERT INTO ficha_personal.personales(pers_nombre,pers_apellido,pers_cedula_nro,pers_fecha_nacimiento,pers_sexo,pers_estado_civil,pers_telefonos,pers_observacion,pers_correo,pers_domicilio,tipo_personal_id,dependencia_id,oficina_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String iPersonalSQL = "INSERT INTO ficha_personal.personales(pers_nombre,pers_apellido,pers_cedula_nro,pers_fecha_nacimiento,pers_sexo,pers_estado_civil,pers_telefonos,pers_observacion,pers_correo,pers_domicilio) VALUES(?,?,?,?,?,?,?,?,?,?)";
 			pstmtPersonal = conn.conexion.prepareStatement(iPersonalSQL);
 			pstmtPersonal.setString(1, nuevoPersonal.getNombres());
 			pstmtPersonal.setString(2, nuevoPersonal.getApellidos());
@@ -603,9 +919,9 @@ public class PersonalCont extends AncestroCont {
 			pstmtPersonal.setString(9, nuevoPersonal.getCorreo());
 			pstmtPersonal.setString(10, nuevoPersonal.getDomicilio());
 			// a eliminar una vez implementada la nueva consulta y reporte
-			pstmtPersonal.setInt(11, nuevoPersonal.getCodCondicion());
-			pstmtPersonal.setInt(12, getIdDependencia(nuevoPersonal.getCodDependencia()));
-			pstmtPersonal.setInt(13, getIdOficina(nuevoPersonal.getCodOficina()));
+//			pstmtPersonal.setInt(11, nuevoPersonal.getCodCondicion());
+//			pstmtPersonal.setInt(12, getIdDependencia(nuevoPersonal.getCodDependencia()));
+//			pstmtPersonal.setInt(13, getIdOficina(nuevoPersonal.getCodOficina()));
 			pstmtPersonal.executeUpdate();
 
 			// insertar en tabla ficha_personal.personales_tipos
@@ -640,6 +956,17 @@ public class PersonalCont extends AncestroCont {
 			pstmtOficina.setString(4, nuevoPersonal.getAdministradorAlta());
 			pstmtOficina.setString(5, nuevoPersonal.getOfiObservacion());
 			pstmtOficina.executeUpdate();
+
+			// insertar en tabla ficha_personal.personales_categorias
+			String iCategoriaSQL = "INSERT INTO ficha_personal.personales_categorias(personal_cedula,categoria_id,percat_fecha_inicio,admin_login,percat_observacion) VALUES(?,?,?,?,?)";
+			pstmtCategoria = conn.conexion.prepareStatement(iCategoriaSQL);
+			pstmtCategoria.setString(1, nuevoPersonal.getCedula());
+			pstmtCategoria.setInt(2, getIdCategoria(nuevoPersonal.getCategoriaCodigo()));
+			sqlDate = new java.sql.Date(nuevoPersonal.getCatFechaInicio().getTime());
+			pstmtCategoria.setDate(3, sqlDate);
+			pstmtCategoria.setString(4, nuevoPersonal.getAdministradorAlta());
+			pstmtCategoria.setString(5, nuevoPersonal.getCatObservacion());
+			pstmtCategoria.executeUpdate();
 
 			// insertar en tabla control_asistencia.personales_turnos
 			String iHorarioSQL = "INSERT INTO control_asistencia.personales_turnos(personal_cedula,turno_id,pers_fecha_inicio,admin_login,pers_observacion) VALUES(?,?,?,?,?)";
@@ -865,6 +1192,23 @@ public class PersonalCont extends AncestroCont {
 					.executeQuery("SELECT ofi_id FROM ficha_personal.oficinas WHERE ofi_codigo='" + codigo + "'");
 			while (conn.resultado.next()) {
 				id = conn.resultado.getInt("ofi_id");
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+
+	private int getIdCategoria(String codigo) throws ClassNotFoundException {
+		int id = 0;
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT cat_id FROM ficha_personal.categorias WHERE cat_codigo='" + codigo + "'");
+			while (conn.resultado.next()) {
+				id = conn.resultado.getInt("cat_id");
 			}
 			conn.conexion.close();
 		} catch (SQLException e) {

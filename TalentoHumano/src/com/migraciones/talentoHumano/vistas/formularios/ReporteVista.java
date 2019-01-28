@@ -71,6 +71,19 @@ public class ReporteVista extends JInternalFrame {
 	private JButton btnOficina;
 	@SuppressWarnings("rawtypes")
 	private JList listConfiguracion;
+	private JTextField txtCategoria;
+	private JTextField txtDescripcionCat;
+	private JButton btnCategoria;
+	private JTextField txtCondicion;
+	private JTextField txtDescripcionCond;
+	private JButton btnCondicion;
+	private JLabel label_6;
+	private JTextField txtDependencia;
+	private JTextField txtDescripcionDep;
+	private JButton btnDependencia;
+	@SuppressWarnings("rawtypes")
+	private JComboBox cbSexo;
+	
 
 	@SuppressWarnings({ "rawtypes", "unchecked", "serial" })
 	public ReporteVista() throws ClassNotFoundException, ParseException {
@@ -92,13 +105,13 @@ public class ReporteVista extends JInternalFrame {
 		btnSalir.setPreferredSize(new Dimension(95, 27));
 
 		panelRegMensual = new JPanel();
-		panelRegMensual.setBounds(295, 196, 549, 71);
+		panelRegMensual.setBounds(295, 265, 549, 55);
 		panelRegMensual.setBackground(new Color(255, 222, 173));
 		panelRegMensual.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Mensual",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
 		panelRegPeriodo = new JPanel();
-		panelRegPeriodo.setBounds(295, 278, 549, 71);
+		panelRegPeriodo.setBounds(295, 320, 549, 62);
 		panelRegPeriodo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Periodo de tiempo",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelRegPeriodo.setBackground(new Color(135, 206, 250));
@@ -110,19 +123,19 @@ public class ReporteVista extends JInternalFrame {
 		panelConfiguracion.setBackground(Color.WHITE);
 
 		JPanel panelParametros = new JPanel();
-		panelParametros.setBounds(295, 37, 549, 160);
+		panelParametros.setBounds(295, 37, 549, 223);
 		panelParametros.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
 				"Parametro de b\u00FAsqueda", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelParametros.setBackground(Color.WHITE);
 
 		lblImagen = new JLabel("");
-		lblImagen.setBounds(672, 334, 172, 150);
+		lblImagen.setBounds(710, 378, 134, 107);
 		lblImagen.setIcon(
 				new ImageIcon(ReporteVista.class.getResource("/com/migraciones/talentoHumano/graphics/busqueda.png")));
 		panelConfiguracion.setLayout(null);
 
 		txtCedula = new JTextField();
-		txtCedula.setBounds(67, 37, 74, 20);
+		txtCedula.setBounds(108, 34, 74, 20);
 		txtCedula.setEnabled(false);
 		txtCedula.setColumns(10);
 
@@ -131,16 +144,16 @@ public class ReporteVista extends JInternalFrame {
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		JLabel lblOficina = new JLabel("Oficina:");
-		lblOficina.setBounds(16, 97, 41, 14);
+		lblOficina.setBounds(16, 73, 41, 14);
 		lblOficina.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		txtNombres = new JTextField();
-		txtNombres.setBounds(67, 62, 472, 20);
+		txtNombres.setBounds(220, 34, 319, 20);
 		txtNombres.setEnabled(false);
 		txtNombres.setColumns(10);
 
 		btnFuncionario = new JButton("");
-		btnFuncionario.setBounds(144, 37, 25, 21);
+		btnFuncionario.setBounds(185, 34, 25, 21);
 		btnFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -159,55 +172,55 @@ public class ReporteVista extends JInternalFrame {
 		panelParametros.add(txtNombres);
 
 		dcFechaDesde = new JDateChooser();
-		dcFechaDesde.setBounds(64, 27, 109, 27);
+		dcFechaDesde.setBounds(58, 24, 109, 27);
 		dcFechaDesde.setPreferredSize(new Dimension(140, 27));
 		dcFechaDesde.setMinimumSize(new Dimension(125, 27));
 		dcFechaDesde.setDateFormatString("dd/MM/yyyy");
 		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
 
 		dcFechaHasta = new JDateChooser();
-		dcFechaHasta.setBounds(235, 27, 109, 27);
+		dcFechaHasta.setBounds(229, 24, 109, 27);
 		dcFechaHasta.setPreferredSize(new Dimension(140, 27));
 		dcFechaHasta.setDateFormatString("dd/MM/yyyy");
 		dcFechaHasta.setDate(FechaUtil.getFechaActualDate());
 
 		JLabel label_2 = new JLabel("Desde:");
-		label_2.setBounds(16, 27, 44, 27);
+		label_2.setBounds(10, 24, 44, 27);
 		label_2.setPreferredSize(new Dimension(50, 27));
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_2.setForeground(Color.BLACK);
 		label_2.setFont(new Font("SansSerif", Font.BOLD, 12));
 
 		JLabel label_3 = new JLabel("Hasta:");
-		label_3.setBounds(183, 27, 44, 27);
+		label_3.setBounds(177, 24, 44, 27);
 		label_3.setPreferredSize(new Dimension(70, 27));
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_3.setForeground(Color.BLACK);
 		label_3.setFont(new Font("SansSerif", Font.BOLD, 12));
 
 		cbMeses = new JComboBox();
-		cbMeses.setBounds(56, 31, 123, 20);
+		cbMeses.setBounds(50, 15, 123, 20);
 		cbMeses.setModel(new DefaultComboBoxModel(new String[] { "-- Seleccione --", "Enero", "Febrero", "Marzo",
 				"Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 		cbMeses.setPreferredSize(new Dimension(150, 27));
 		cbMeses.setMinimumSize(new Dimension(150, 27));
 
 		JLabel label = new JLabel("Mes:");
-		label.setBounds(16, 27, 30, 27);
+		label.setBounds(10, 11, 30, 27);
 		label.setPreferredSize(new Dimension(50, 27));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setForeground(Color.BLACK);
 		label.setFont(new Font("SansSerif", Font.BOLD, 12));
 
 		JLabel label_1 = new JLabel("A\u00F1o:");
-		label_1.setBounds(183, 27, 44, 27);
+		label_1.setBounds(177, 11, 44, 27);
 		label_1.setPreferredSize(new Dimension(70, 27));
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_1.setForeground(Color.BLACK);
 		label_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 
 		spAnhos = new JSpinner();
-		spAnhos.setBounds(231, 31, 74, 20);
+		spAnhos.setBounds(225, 15, 74, 20);
 		spAnhos.setModel(new SpinnerNumberModel(2017, null, 2100, 1));
 		spAnhos.setPreferredSize(new Dimension(100, 27));
 		spAnhos.setMinimumSize(new Dimension(150, 27));
@@ -238,6 +251,16 @@ public class ReporteVista extends JInternalFrame {
 					busquedaOpcion6();
 				} else if (listConfiguracion.getSelectedIndex() == 6) {
 					busquedaOpcion7();
+				} else if (listConfiguracion.getSelectedIndex() == 7) {
+					busquedaOpcion8();
+				}else if (listConfiguracion.getSelectedIndex() == 8){
+					busquedaOpcion9();
+				}else if(listConfiguracion.getSelectedIndex() == 9){
+					busquedaOpcion10();
+				}else if(listConfiguracion.getSelectedIndex() == 10){
+					busquedaOpcion11();
+				}else if(listConfiguracion.getSelectedIndex() == 11){
+					busquedaOpcion12();
 				}
 			}
 		});
@@ -249,11 +272,11 @@ public class ReporteVista extends JInternalFrame {
 		listConfiguracion.setBorder(null);
 		listConfiguracion.setModel(new AbstractListModel() {
 			String[] values = new String[] { "1- Asistencias particular", "2- Asistencias por oficina",
-					"3- Inasistencias sin justificar particular",
-					"4- Inasistencias sin justificar por oficina (d\u00EDas h\u00E1biles)",
-					"5- Justificaciones particular", "6- Justificaciones por oficina", "7- Personales por abecedario*",
-					"8- Personales por categor\u00EDa*", "9- Personales por condici\u00F3n*",
-					"10- Personales por dependencia*", "11- Personales por oficina*", "12- Personales por sexo*" };
+					"3- Ausencias sin justificar particular",
+					"4- Ausencias sin justificar por oficina (d\u00EDas h\u00E1biles)",
+					"5- Justificaciones particular", "6- Justificaciones por oficina", "7- Personales por abecedario",
+					"8- Personales por categor\u00EDa", "9- Personales por condici\u00F3n",
+					"10- Personales por dependencia", "11- Personales por oficina", "12- Personales por sexo" };
 
 			public int getSize() {
 				return values.length;
@@ -269,7 +292,7 @@ public class ReporteVista extends JInternalFrame {
 
 		txtCodOficina = new JTextField();
 		txtCodOficina.setEnabled(false);
-		txtCodOficina.setBounds(67, 94, 74, 20);
+		txtCodOficina.setBounds(108, 67, 74, 20);
 		panelParametros.add(txtCodOficina);
 		txtCodOficina.setColumns(10);
 
@@ -286,14 +309,127 @@ public class ReporteVista extends JInternalFrame {
 		});
 		btnOficina.setEnabled(false);
 		btnOficina.setIcon(new ImageIcon(ReporteVista.class.getResource(GlobalUtil.RUTA_IMAGEN_BIENES_CONSULTAS)));
-		btnOficina.setBounds(144, 93, 25, 21);
+		btnOficina.setBounds(185, 66, 25, 21);
 		panelParametros.add(btnOficina);
 
 		txtOficina = new JTextField();
 		txtOficina.setEnabled(false);
-		txtOficina.setBounds(67, 122, 472, 20);
+		txtOficina.setBounds(220, 67, 319, 20);
 		panelParametros.add(txtOficina);
 		txtOficina.setColumns(10);
+		
+		JLabel lblCategoria = new JLabel("Categoria:");
+		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCategoria.setBounds(16, 105, 59, 14);
+		panelParametros.add(lblCategoria);
+		
+		txtCategoria = new JTextField();
+		txtCategoria.setText("");
+		txtCategoria.setEnabled(false);
+		txtCategoria.setColumns(10);
+		txtCategoria.setBounds(108, 99, 74, 20);
+		panelParametros.add(txtCategoria);
+		
+		txtDescripcionCat = new JTextField();
+		txtDescripcionCat.setText("");
+		txtDescripcionCat.setEnabled(false);
+		txtDescripcionCat.setColumns(10);
+		txtDescripcionCat.setBounds(220, 96, 319, 20);
+		panelParametros.add(txtDescripcionCat);
+		
+		btnCategoria = new JButton("");
+		btnCategoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					btnCategoriaActionPerformed(arg0);
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+		});
+		btnCategoria.setEnabled(false);
+		btnCategoria.setIcon(new ImageIcon(ReporteVista.class.getResource(GlobalUtil.RUTA_IMAGEN_BIENES_CONSULTAS)));
+		btnCategoria.setBounds(185, 98, 25, 21);
+		panelParametros.add(btnCategoria);
+		
+		JLabel label_5 = new JLabel("Condici\u00F3n:");
+		label_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_5.setBounds(16, 137, 59, 14);
+		panelParametros.add(label_5);
+		
+		txtCondicion = new JTextField();
+		txtCondicion.setText("");
+		txtCondicion.setEnabled(false);
+		txtCondicion.setColumns(10);
+		txtCondicion.setBounds(108, 131, 74, 20);
+		panelParametros.add(txtCondicion);
+		
+		btnCondicion = new JButton("");
+		btnCondicion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					btnCondicionActionPerformed(arg0);
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+		});
+		btnCondicion.setEnabled(false);
+		btnCondicion.setIcon(new ImageIcon(ReporteVista.class.getResource(GlobalUtil.RUTA_IMAGEN_BIENES_CONSULTAS)));
+		btnCondicion.setBounds(185, 130, 25, 21);
+		panelParametros.add(btnCondicion);
+		
+		txtDescripcionCond = new JTextField();
+		txtDescripcionCond.setText("");
+		txtDescripcionCond.setEnabled(false);
+		txtDescripcionCond.setColumns(10);
+		txtDescripcionCond.setBounds(220, 128, 319, 20);
+		panelParametros.add(txtDescripcionCond);
+		
+		label_6 = new JLabel("Dependencia:");
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_6.setBounds(16, 169, 82, 14);
+		panelParametros.add(label_6);
+		
+		txtDependencia = new JTextField();
+		txtDependencia.setText("");
+		txtDependencia.setEnabled(false);
+		txtDependencia.setColumns(10);
+		txtDependencia.setBounds(108, 163, 74, 20);
+		panelParametros.add(txtDependencia);
+		
+		btnDependencia = new JButton("");
+		btnDependencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					btnDependenciaActionPerformed(arg0);
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+		});
+		btnDependencia.setEnabled(false);
+		btnDependencia.setIcon(new ImageIcon(ReporteVista.class.getResource(GlobalUtil.RUTA_IMAGEN_BIENES_CONSULTAS)));
+		btnDependencia.setBounds(185, 162, 25, 21);
+		panelParametros.add(btnDependencia);
+		
+		txtDescripcionDep = new JTextField();
+		txtDescripcionDep.setText("");
+		txtDescripcionDep.setEnabled(false);
+		txtDescripcionDep.setColumns(10);
+		txtDescripcionDep.setBounds(220, 160, 319, 20);
+		panelParametros.add(txtDescripcionDep);
+		
+		JLabel lblSexo = new JLabel("Sexo:");
+		lblSexo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSexo.setBounds(16, 194, 82, 14);
+		panelParametros.add(lblSexo);
+		
+		cbSexo = new JComboBox();
+		cbSexo.setEnabled(false);
+		cbSexo.setBounds(108, 194, 102, 20);
+		cbSexo.setModel(new DefaultComboBoxModel(new String[] { "-- TODOS --", "F", "M" }));
+		panelParametros.add(cbSexo);
 		getContentPane().add(panelDatos);
 		getContentPane().add(panelBotones);
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -317,7 +453,7 @@ public class ReporteVista extends JInternalFrame {
 				}
 			}
 		});
-		btnPeriodo.setBounds(371, 30, 127, 23);
+		btnPeriodo.setBounds(365, 27, 127, 23);
 		panelRegPeriodo.add(btnPeriodo);
 		getContentPane().add(panelRegMensual);
 		panelRegMensual.setLayout(null);
@@ -337,14 +473,14 @@ public class ReporteVista extends JInternalFrame {
 				}
 			}
 		});
-		btnMensual.setBounds(371, 30, 127, 23);
+		btnMensual.setBounds(365, 14, 127, 23);
 		panelRegMensual.add(btnMensual);
 
 		JPanel panelGenerarReporte = new JPanel();
 		panelGenerarReporte.setBackground(new Color(192, 192, 192));
 		panelGenerarReporte.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Generar reporte",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelGenerarReporte.setBounds(295, 360, 253, 71);
+		panelGenerarReporte.setBounds(295, 402, 253, 55);
 		getContentPane().add(panelGenerarReporte);
 		panelGenerarReporte.setLayout(null);
 
@@ -382,6 +518,16 @@ public class ReporteVista extends JInternalFrame {
 				busquedaOpcion6();
 			} else if (listConfiguracion.getSelectedIndex() == 6) {
 				busquedaOpcion7();
+			} else if (listConfiguracion.getSelectedIndex() == 7) {
+				busquedaOpcion8();
+			}else if (listConfiguracion.getSelectedIndex() == 8){
+				busquedaOpcion9();
+			}else if (listConfiguracion.getSelectedIndex() == 9){
+				busquedaOpcion10();
+			}else if (listConfiguracion.getSelectedIndex() == 10){
+				busquedaOpcion11();
+			}else if (listConfiguracion.getSelectedIndex() == 11){
+				busquedaOpcion12();
 			}
 		}
 
@@ -621,17 +767,51 @@ public class ReporteVista extends JInternalFrame {
 			}
 		} else if (this.opcionBusqueda == 7) {
 			if (cbMeses.getSelectedIndex() != 0 && !spAnhos.getValue().toString().equals("")) {
-				// if (sistema.imprimirPersonales() == false) {
-				// JOptionPane.showMessageDialog(null,
-				// GlobalUtil.MSG_REGISTRO_NOT_FOUND, "ATENCION",
-				// JOptionPane.ERROR_MESSAGE);
-				// }
+				sistema.imprimirPersonalABC();	
 			} else {
 				JOptionPane.showMessageDialog(null, GlobalUtil.MSG_CAMPOS_NO_LLENOS, "ATENCION",
 						JOptionPane.ERROR_MESSAGE);
 			}
+		}else if (this.opcionBusqueda == 8){
+			if(!txtCategoria.getText().equals("TODOS")&& (!txtDescripcionCat.getText().equals("TODOS"))){
+				sistema.imprimirPersonalCategorias(txtCategoria.getText());
+			}else{
+				//Debe imprimir todas las CATEGORIAS
+				sistema.imprimirPersonalCategorias("TODOS");
+			}
+		}else if (this.opcionBusqueda == 9){
+			if(!txtCondicion.getText().equals("TODOS")&& (!txtDescripcionCond.getText().equals("TODOS"))){
+				sistema.imprimirPersonalCondicion(txtCondicion.getText());
+			}else{
+				//Debe imprimir todas las CONDICIONES
+				sistema.imprimirPersonalCondicion("TODOS");
+			}
+		}else if (this.opcionBusqueda == 10){
+			if(!txtDependencia.getText().equals("TODOS")&& (!txtDescripcionDep.getText().equals("TODOS"))){
+				sistema.imprimirPersonalDependencia(txtDependencia.getText());
+			}else{
+				//Debe imprimir todas las DEPENDENCIAS
+				sistema.imprimirPersonalDependencia("TODOS");
+			}
+		}else if (this.opcionBusqueda == 11){
+			if(!txtCodOficina.getText().equals("TODOS")&& (!txtOficina.getText().equals("TODOS"))){
+				//Debe imprimir OFICINA
+				sistema.imprimirPersonalOficina(txtCodOficina.getText());
+			}else{
+				
+				//Imprimir todas las oficinas
+				sistema.imprimirPersonalOficina("TODOS");
+			}
+		}else if (this.opcionBusqueda == 12){
+			if(!cbSexo.getSelectedItem().equals("-- TODOS --")){
+				//Debe imprimir la opcion seleccionada
+				//Imprimir todos los sexos
+				sistema.imprimirPersonalSexo(cbSexo.getSelectedItem().toString());
+			}else{
+				
+				sistema.imprimirPersonalSexo("TODOS");
+			}
 		}
-
 	}
 
 	protected void btnFuncionarioActionPerformed(ActionEvent arg0) throws ClassNotFoundException {
@@ -639,11 +819,29 @@ public class ReporteVista extends JInternalFrame {
 		vista.setVisible(true);
 		cargarCamposFuncionario(vista);
 	}
+	
+	////--------------------------------------------------
+	protected void btnCategoriaActionPerformed(ActionEvent arg0) throws ClassNotFoundException {
+		CategoriaModal vista = new CategoriaModal();
+		vista.setVisible(true);
+		cargarCamposCategoria(vista);
+	}
 
 	protected void btnOficinaActionPerformed(ActionEvent arg0) throws ClassNotFoundException {
 		OficinaModal vista = new OficinaModal();
 		vista.setVisible(true);
 		cargarCamposOficina(vista);
+	}
+	protected void btnCondicionActionPerformed(ActionEvent arg0) throws ClassNotFoundException {
+		CondicionModal vista = new CondicionModal();
+		vista.setVisible(true);
+		cargarCamposCondicion(vista);
+	}
+	
+	protected void btnDependenciaActionPerformed(ActionEvent arg0) throws ClassNotFoundException{
+		DependenciaModal vista = new DependenciaModal();
+		vista.setVisible(true);
+		cargarCamposDependencia(vista);
 	}
 
 	// //////////////////// METODOS DEL FORMULARIO //////////////
@@ -671,6 +869,20 @@ public class ReporteVista extends JInternalFrame {
 		txtCodOficina.setText(vista.getCodigo());
 		txtOficina.setText(vista.getOficina());
 	}
+	//-----------------------------------------------------------
+	private void cargarCamposCategoria(CategoriaModal vista){
+		txtCategoria.setText(vista.getCodigo());
+		txtDescripcionCat.setText(vista.getCategoria());
+	}
+	
+	private void cargarCamposCondicion(CondicionModal vista){
+		txtCondicion.setText(vista.getCodigo());
+		txtDescripcionCond.setText(vista.getCondicion());
+	}
+	private void cargarCamposDependencia(DependenciaModal vista){
+		txtDependencia.setText(vista.getCodigo());
+		txtDescripcionDep.setText(vista.getDependencia());
+	}
 
 	private boolean verificarPeriodo() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -678,7 +890,36 @@ public class ReporteVista extends JInternalFrame {
 		this.fechaHasta = sdf.parse(String.valueOf(sdf.format(dcFechaHasta.getDate())));
 		return this.fechaDesde.after(this.fechaHasta);
 	}
-
+	//---------------------Inhabilitar panel
+	private void inhabilitarPanelRegMensual(){
+		panelRegMensual.setEnabled(false);
+		cbMeses.setEnabled(false);
+		spAnhos.setEnabled(false);
+		btnMensual.setEnabled(false);
+	}
+	//---------------------Inhabilitar panel
+	private void inhabilitarPanelPeriodo(){
+		panelRegPeriodo.setEnabled(false);
+		dcFechaDesde.setEnabled(false);
+		dcFechaHasta.setEnabled(false);
+		btnPeriodo.setEnabled(false);
+	}
+		
+	//---------------------Habilitar panel
+	private void habilitarPanelRegMensual(){
+		panelRegMensual.setEnabled(true);
+		cbMeses.setEnabled(true);
+		spAnhos.setEnabled(true);
+		btnMensual.setEnabled(true);
+	}
+	//---------------------Habilitar panel
+	private void habilitarPanelPeriodo(){
+		panelRegPeriodo.setEnabled(true);
+		dcFechaDesde.setEnabled(true);
+		dcFechaHasta.setEnabled(true);
+		btnPeriodo.setEnabled(true);
+	}
+		
 	private void busquedaOpcion1() {
 		this.opcionBusqueda = 1;
 		btnFuncionario.setEnabled(true);
@@ -687,6 +928,19 @@ public class ReporteVista extends JInternalFrame {
 		btnOficina.setEnabled(false);
 		txtCodOficina.setText("");
 		txtOficina.setText("");
+		txtDescripcionCat.setText("");
+		txtCategoria.setText("");
+		btnCategoria.setEnabled(false);
+		txtCondicion.setText("");
+		txtDescripcionCond.setText("");
+		btnCondicion.setEnabled(false);
+		txtDependencia.setText("");
+		txtDescripcionDep.setText("");
+		btnDependencia.setEnabled(false);
+		//-----------Habilita el panel de registro mensual
+		habilitarPanelRegMensual();
+		//-----------Habilita el panel de registro por periodo
+		habilitarPanelPeriodo();
 		cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
 		spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
 		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
@@ -699,6 +953,21 @@ public class ReporteVista extends JInternalFrame {
 		txtCedula.setText("");
 		txtNombres.setText("");
 		btnOficina.setEnabled(true);
+		txtDescripcionCat.setText("");
+		txtCategoria.setText("");
+		btnCategoria.setEnabled(false);
+		txtCondicion.setText("");
+		txtDescripcionCond.setText("");
+		btnCondicion.setEnabled(false);
+		txtDependencia.setText("");
+		txtDescripcionDep.setText("");
+		btnDependencia.setEnabled(false);
+		cbSexo.setEnabled(false);
+		cbSexo.setSelectedIndex(0);
+		//-----------Habilita el panel de registro mensual
+		habilitarPanelRegMensual();
+		//-----------Habilita el panel de registro por periodo
+		habilitarPanelPeriodo();
 		cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
 		spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
 		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
@@ -713,6 +982,21 @@ public class ReporteVista extends JInternalFrame {
 		btnOficina.setEnabled(false);
 		txtCodOficina.setText("");
 		txtOficina.setText("");
+		txtDescripcionCat.setText("");
+		txtCategoria.setText("");
+		btnCategoria.setEnabled(false);
+		txtCondicion.setText("");
+		txtDescripcionCond.setText("");
+		btnCondicion.setEnabled(false);
+		txtDependencia.setText("");
+		txtDescripcionDep.setText("");
+		btnDependencia.setEnabled(false);
+		cbSexo.setEnabled(false);
+		cbSexo.setSelectedIndex(0);
+		//-----------Habilita el panel de registro mensual
+		habilitarPanelRegMensual();
+		//-----------Habilita el panel de registro por periodo
+		habilitarPanelPeriodo();
 		cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
 		spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
 		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
@@ -724,9 +1008,24 @@ public class ReporteVista extends JInternalFrame {
 		btnFuncionario.setEnabled(false);
 		txtCedula.setText("");
 		txtNombres.setText("");
-		btnOficina.setEnabled(false);
+		btnOficina.setEnabled(true);
 		txtCodOficina.setText("");
 		txtOficina.setText("");
+		txtDescripcionCat.setText("");
+		txtCategoria.setText("");
+		txtCondicion.setText("");
+		txtDescripcionCond.setText("");
+		btnCondicion.setEnabled(false);
+		btnCategoria.setEnabled(false);
+		txtDependencia.setText("");
+		txtDescripcionDep.setText("");
+		btnDependencia.setEnabled(false);
+		cbSexo.setEnabled(false);
+		cbSexo.setSelectedIndex(0);
+		//-----------Habilita el panel de registro mensual
+		habilitarPanelRegMensual();
+		//-----------Habilita el panel de registro por periodo
+		habilitarPanelPeriodo();
 		cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
 		spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
 		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
@@ -741,6 +1040,21 @@ public class ReporteVista extends JInternalFrame {
 		btnOficina.setEnabled(false);
 		txtCodOficina.setText("");
 		txtOficina.setText("");
+		txtDescripcionCat.setText("");
+		txtCategoria.setText("");
+		btnCategoria.setEnabled(false);
+		txtCondicion.setText("");
+		txtDescripcionCond.setText("");
+		btnCondicion.setEnabled(false);
+		txtDependencia.setText("");
+		txtDescripcionDep.setText("");
+		btnDependencia.setEnabled(false);
+		cbSexo.setEnabled(false);
+		cbSexo.setSelectedIndex(0);
+		//-----------Habilita el panel de registro mensual
+		habilitarPanelRegMensual();
+		//-----------Habilita el panel de registro por periodo
+		habilitarPanelPeriodo();
 		cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
 		spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
 		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
@@ -753,6 +1067,21 @@ public class ReporteVista extends JInternalFrame {
 		txtCedula.setText("");
 		txtNombres.setText("");
 		btnOficina.setEnabled(true);
+		txtDescripcionCat.setText("");
+		txtCategoria.setText("");
+		btnCategoria.setEnabled(false);
+		txtCondicion.setText("");
+		txtDescripcionCond.setText("");
+		btnCondicion.setEnabled(false);
+		txtDependencia.setText("");
+		txtDescripcionDep.setText("");
+		btnDependencia.setEnabled(false);
+		cbSexo.setEnabled(false);
+		cbSexo.setSelectedIndex(0);
+		//-----------Habilita el panel de registro mensual
+		habilitarPanelRegMensual();
+		//-----------Habilita el panel de registro por periodo
+		habilitarPanelPeriodo();
 		cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
 		spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
 		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
@@ -767,9 +1096,175 @@ public class ReporteVista extends JInternalFrame {
 		btnOficina.setEnabled(false);
 		txtCodOficina.setText("");
 		txtOficina.setText("");
+		txtDescripcionCat.setText("");
+		txtCategoria.setText("");
+		btnCategoria.setEnabled(false);
+		txtCondicion.setText("");
+		txtDescripcionCond.setText("");
+		btnCondicion.setEnabled(false);
+		txtDependencia.setText("");
+		txtDescripcionDep.setText("");
+		btnDependencia.setEnabled(false);
+		cbSexo.setEnabled(false);
+		cbSexo.setSelectedIndex(0);
+		//-----------Habilita el panel de registro mensual
+		inhabilitarPanelRegMensual();
+		//-----------Habilita el panel de registro por periodo
+		inhabilitarPanelPeriodo();
 		cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
 		spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
 		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
 		dcFechaHasta.setDate(FechaUtil.getFechaActualDate());
 	}
+	
+//-------------------------------------------------------	
+	private void busquedaOpcion8() {
+		//Opcion de busqueda por categoria
+		this.opcionBusqueda = 8;
+		btnFuncionario.setEnabled(false);
+		txtCedula.setText("");
+		txtNombres.setText("");
+		btnOficina.setEnabled(false);
+		txtCodOficina.setText("");
+		txtOficina.setText("");
+		txtDescripcionCat.setText("TODOS");
+		txtCategoria.setText("TODOS");
+		btnCategoria.setEnabled(true);
+		txtCondicion.setText("");
+		txtDescripcionCond.setText("");
+		btnCondicion.setEnabled(false);
+		txtDependencia.setText("");
+		txtDescripcionDep.setText("");
+		btnDependencia.setEnabled(false);
+		cbSexo.setEnabled(false);
+		cbSexo.setSelectedIndex(0);
+		//-----------Inhabilita el panel de registro mensual
+		inhabilitarPanelRegMensual();
+		//-----------Inhabilita el panel de registro por periodo
+		inhabilitarPanelPeriodo();
+		cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
+		spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
+		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
+		dcFechaHasta.setDate(FechaUtil.getFechaActualDate());
+	}
+//--------------------------------------------------------------
+	private void busquedaOpcion9() {
+	//Opcion de busqueda por Condicion
+	this.opcionBusqueda = 9;
+	btnFuncionario.setEnabled(false);
+	txtCedula.setText("");
+	txtNombres.setText("");
+	btnOficina.setEnabled(false);
+	txtCodOficina.setText("");
+	txtOficina.setText("");
+	txtDescripcionCat.setText("");
+	txtCategoria.setText("");
+	btnCategoria.setEnabled(false);
+	txtCondicion.setText("TODOS");
+	txtDescripcionCond.setText("TODOS");
+	btnCondicion.setEnabled(true);
+	txtDependencia.setText("");
+	txtDescripcionDep.setText("");
+	btnDependencia.setEnabled(false);
+	cbSexo.setEnabled(false);
+	cbSexo.setSelectedIndex(0);
+	//-----------Inhabilita el panel de registro mensual
+	inhabilitarPanelRegMensual();
+	//-----------Inhabilita el panel de registro por periodo
+	inhabilitarPanelPeriodo();
+	cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
+	spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
+	dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
+	dcFechaHasta.setDate(FechaUtil.getFechaActualDate());
+	}
+		//--------------------------------------------------------------
+	private void busquedaOpcion10() {
+	//Opcion de busqueda por Dependencia
+	this.opcionBusqueda = 10;
+	btnFuncionario.setEnabled(false);
+	txtCedula.setText("");
+	txtNombres.setText("");
+	btnOficina.setEnabled(false);
+	txtCodOficina.setText("");
+	txtOficina.setText("");
+	txtDescripcionCat.setText("");
+	txtCategoria.setText("");
+	btnCategoria.setEnabled(false);
+	txtCondicion.setText("");
+	txtDescripcionCond.setText("");
+	btnCondicion.setEnabled(false);
+	txtDependencia.setText("TODOS");
+	txtDescripcionDep.setText("TODOS");
+	btnDependencia.setEnabled(true);
+	cbSexo.setEnabled(false);
+	cbSexo.setSelectedIndex(0);
+	//-----------Inhabilita el panel de registro mensual
+	inhabilitarPanelRegMensual();
+	//-----------Inhabilita el panel de registro por periodo
+	inhabilitarPanelPeriodo();
+	cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
+	spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
+	dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
+	dcFechaHasta.setDate(FechaUtil.getFechaActualDate());
+	}
+	//--------------------------------------------------------------
+	private void busquedaOpcion11() {
+	//Opcion de busqueda por Oficina
+	this.opcionBusqueda = 11;
+	btnFuncionario.setEnabled(false);
+	txtCedula.setText("");
+	txtNombres.setText("");
+	btnOficina.setEnabled(true);
+	txtCodOficina.setText("TODOS");
+	txtOficina.setText("TODOS");
+	txtDescripcionCat.setText("");
+	txtCategoria.setText("");
+	btnCategoria.setEnabled(false);
+	txtCondicion.setText("");
+	txtDescripcionCond.setText("");
+	btnCondicion.setEnabled(false);
+	txtDependencia.setText("");
+	txtDescripcionDep.setText("");
+	btnDependencia.setEnabled(false);
+	cbSexo.setEnabled(false);
+	cbSexo.setSelectedIndex(0);
+	//-----------Inhabilita el panel de registro mensual
+	inhabilitarPanelRegMensual();
+	//-----------Inhabilita el panel de registro por periodo
+	inhabilitarPanelPeriodo();
+	cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
+	spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
+	dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
+	dcFechaHasta.setDate(FechaUtil.getFechaActualDate());
+	}
+	//--------------------------------------------------------------
+	private void busquedaOpcion12() {
+		//Opcion de busqueda por Sexo
+		this.opcionBusqueda = 12;
+		btnFuncionario.setEnabled(false);
+		txtCedula.setText("");
+		txtNombres.setText("");
+		btnOficina.setEnabled(false);
+		txtCodOficina.setText("");
+		txtOficina.setText("");
+		txtDescripcionCat.setText("");
+		txtCategoria.setText("");
+		btnCategoria.setEnabled(false);
+		txtCondicion.setText("");
+		txtDescripcionCond.setText("");
+		btnCondicion.setEnabled(false);
+		txtDependencia.setText("");
+		txtDescripcionDep.setText("");
+		btnDependencia.setEnabled(false);
+		cbSexo.setEnabled(true);
+		cbSexo.setSelectedIndex(0);
+		//-----------Inhabilita el panel de registro mensual
+		inhabilitarPanelRegMensual();
+		//-----------Inhabilita el panel de registro por periodo
+		inhabilitarPanelPeriodo();
+		cbMeses.setSelectedIndex(this.util.getDateToMes(FechaUtil.getFechaActualDate()));
+		spAnhos.setValue(this.util.getDateToAnho(FechaUtil.getFechaActualDate()));
+		dcFechaDesde.setDate(FechaUtil.getFechaActualDate());
+		dcFechaHasta.setDate(FechaUtil.getFechaActualDate());
+		}
 }

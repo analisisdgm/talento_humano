@@ -6,7 +6,6 @@ import java.util.Date;
 import com.migraciones.talentoHumano.utilities.GlobalUtil;
 
 public class Personal {
-	// DATOS PERSONALES DEL FUNCIONARIO
 	private String cedula;
 	private String nombres;
 	private String apellidos;
@@ -18,40 +17,35 @@ public class Personal {
 	private String domicilio;
 	private String observacion;
 	private String estado;
-	private String administradorAlta;
-	// CONDICION DEL FUNCIONARIO
 	private int codCondicion;
 	private String condicion;
 	private String condObservacion;
 	private Date condFechaIni;
-	// DEPENDENCIA DEL FUNCIONARIO
 	private String codDependencia;
 	private String dependencia;
 	private String depObservacion;
 	private Date depFechaIni;
-	// OFICINA DEL FUNCIONARIO
 	private String codOficina;
 	private String oficina;
 	private String ofiObservacion;
 	private Date ofiFechaIni;
-	// HORARIO DEL FUNCIONARIO
 	private int codHorario;
 	private Time horEntrada;
 	private Time horSalida;
 	private String horObservacion;
 	private Date horFechaIni;
-	// CARGO DEL FUNCIONARIO
 	private int codCargo;
 	private String Cargo;
 	private String carObservacion;
 	private Date carFechaIni;
 	private Date carFechaFin;
-	// CATEGORIA DEL FUNCIONARIO
-	private String codCategoria;
+	private String administradorAlta;
+	private String categoriaCodigo;
 	private String categoria;
 	private String catObservacion;
-	private Date catFechaIni;
-	private Date catFechaFin;
+	private Date catFechaInicio;
+	
+
 
 	public String getCedula() {
 		return cedula;
@@ -324,26 +318,26 @@ public class Personal {
 	public void setAdministradorAlta(String administradorAlta) {
 		this.administradorAlta = administradorAlta;
 	}
+	
+	public String getCategoria(){
+		return categoria;
+	}
+	
+	public void setCategoria(String categoria){
+		this.categoria = categoria;
+	}
+	
+	public String getCategoriaCodigo() {
+		return categoriaCodigo;
+	}
 
+	public void setCategoriaCodigo(String categoria) {
+		this.categoriaCodigo = categoria;
+	}
+	
 	public String getRutaImagen() {
 		String rutaImagen = GlobalUtil.PATH_CARNET + String.format("%010d", Integer.parseInt(this.cedula)) + ".jpg";
 		return rutaImagen;
-	}
-
-	public String getCodCategoria() {
-		return codCategoria;
-	}
-
-	public void setCodCategoria(String codCategoria) {
-		this.codCategoria = codCategoria;
-	}
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
 	}
 
 	public String getCatObservacion() {
@@ -354,20 +348,12 @@ public class Personal {
 		this.catObservacion = catObservacion;
 	}
 
-	public Date getCatFechaIni() {
-		return catFechaIni;
+	public Date getCatFechaInicio() {
+		return catFechaInicio;
 	}
 
-	public void setCatFechaIni(Date catFechaIni) {
-		this.catFechaIni = catFechaIni;
-	}
-
-	public Date getCatFechaFin() {
-		return catFechaFin;
-	}
-
-	public void setCatFechaFin(Date catFechaFin) {
-		this.catFechaFin = catFechaFin;
+	public void setCatFechaInicio(Date catFechaInicio) {
+		this.catFechaInicio = catFechaInicio;
 	}
 
 }

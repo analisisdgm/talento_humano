@@ -47,8 +47,8 @@ public class PerConCont extends AncestroCont {
 		conn.conexion.setAutoCommit(false);
 
 		PreparedStatement pstmtUpdateTemporal = null, pstmtUpdate = null, pstmtInsert = null;
-		String updateTempSQL = "UPDATE ficha_personal.personales SET tipo_personal_id="
-				+ nuevaCondicion.getCondicionId() + " WHERE pers_cedula_nro='" + nuevaCondicion.getCedula()+"'";
+//		String updateTempSQL = "UPDATE ficha_personal.personales SET tipo_personal_id="
+//				+ nuevaCondicion.getCondicionId() + " WHERE pers_cedula_nro='" + nuevaCondicion.getCedula()+"'";
 		
 		String updateTableSQL = "UPDATE ficha_personal.personales_tipos SET pertip_estado='H', pertip_fecha_fin=? WHERE personal_cedula='"
 				+ nuevaCondicion.getCedula() + "' AND pertip_estado='A'";
@@ -57,8 +57,8 @@ public class PerConCont extends AncestroCont {
 		try {
 			// actualizacion temporal de la tabla personales hasta actualizar
 			// reportes
-			pstmtUpdateTemporal = conn.conexion.prepareStatement(updateTempSQL);
-			pstmtUpdateTemporal.executeUpdate();
+//			pstmtUpdateTemporal = conn.conexion.prepareStatement(updateTempSQL);
+//			pstmtUpdateTemporal.executeUpdate();
 
 			// actualizacion del ultima oficina del personal que pasa de activo
 			// a historico o a baja

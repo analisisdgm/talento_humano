@@ -43,7 +43,7 @@ public class DependenciaModal extends AncestroModal {
 	private TalentoHumano sistema = new TalentoHumano();
 
 	public DependenciaModal() throws ClassNotFoundException {
-		setTitle("SELECCIONE OFICINA");
+		setTitle("SELECCIONE DEPENDENCIA");
 		panelBusqueda = new JPanel();
 		panelBusqueda.setPreferredSize(new Dimension(15, 50));
 		panelBusqueda.setBackground(new Color(43, 70, 97));
@@ -186,9 +186,9 @@ public class DependenciaModal extends AncestroModal {
 	}
 
 	private void cargarPersonal() throws ClassNotFoundException {
-		String codigo = (String) tbConsultas.getValueAt(tbConsultas.getSelectedRow(), COLUMNA_CODIGO);
+		String codigo = (String) tbConsultas.getValueAt(tbConsultas.getSelectedRow(), COLUMNA_CODIGO).toString();
 		String dependencia = (String) tbConsultas.getValueAt(tbConsultas.getSelectedRow(), COLUMNA_DEPENDENCIA);
-		this.codigo = codigo;
+		this.codigo = (codigo);
 		this.dependencia = dependencia;
 	}
 
@@ -202,7 +202,7 @@ public class DependenciaModal extends AncestroModal {
 		sorter.setRowFilter(rf);
 	}
 
-	public String getOficina() {
+	public String getDependencia() {
 		return this.dependencia;
 	}
 

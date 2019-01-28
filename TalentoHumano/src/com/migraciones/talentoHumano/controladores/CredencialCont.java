@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import com.migraciones.talentoHumano.dataBases.ConexionPostgresql;
 import com.migraciones.talentoHumano.modelos.Credencial;
-import com.migraciones.talentoHumano.test.Temporal;
 
 public class CredencialCont extends AncestroCont {
 

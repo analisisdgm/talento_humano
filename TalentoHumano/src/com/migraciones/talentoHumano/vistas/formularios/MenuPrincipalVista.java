@@ -191,19 +191,35 @@ public class MenuPrincipalVista extends JFrame {
 				MenuPrincipalVista.class.getResource("/com/migraciones/talentoHumano/graphics/asignar.png")));
 		mnJustificaciones.add(mntmAsignarJustificativo);
 		mnJustificaciones.add(mntmCorrecEntradasalida);
-
-		JMenuItem mntmFeriadosYPermisos = new JMenuItem("Feriados y permisos colectivos");
-		mntmFeriadosYPermisos.addActionListener(new ActionListener() {
+		JMenu mntmPermisosFeriados = new JMenu("Feriados y permisos");
+		mnJustificaciones.add(mntmPermisosFeriados);
+		
+		
+		JMenuItem mntmPermisosColectivos = new JMenuItem("Feriados y permisos colectivo");
+		mntmPermisosColectivos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					mntmFeriadosYPermisosActionPerformed(arg0);
+					mntmPermisosColectivosActionPerformed(arg0);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-		mnJustificaciones.add(mntmFeriadosYPermisos);
+		mntmPermisosFeriados.add(mntmPermisosColectivos);
+		
+				JMenuItem mntmFeriadosYPermisos = new JMenuItem("Feriados y permisos individual");
+				mntmPermisosFeriados.add(mntmFeriadosYPermisos);
+				mntmFeriadosYPermisos.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						try {
+							mntmFeriadosYPermisosActionPerformed(arg0);
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				});
 
 		JMenu mnMantenimientoDatos = new JMenu("Mantenimiento de datos");
 		mbBarraHerramientas.add(mnMantenimientoDatos);
@@ -286,7 +302,7 @@ public class MenuPrincipalVista extends JFrame {
 	// ######################## DEPARTAMENTOS Y LEGAJOS ######################
 
 	protected void mntmPersonalesActionPerformed(ActionEvent e) throws ClassNotFoundException, ParseException {
-		PersonalVista2 vista = new PersonalVista2();
+		PersonalVista vista = new PersonalVista();
 		mostrarVista(vista);
 	}
 
@@ -311,10 +327,14 @@ public class MenuPrincipalVista extends JFrame {
 	}
 
 	protected void mntmFeriadosYPermisosActionPerformed(ActionEvent arg0) throws ClassNotFoundException {
-		FeriadoVista vista = new FeriadoVista();
+		PermisoIndividualVista vista = new PermisoIndividualVista();
 		mostrarVista(vista);
 	}
-
+	
+	protected void mntmPermisosColectivosActionPerformed(ActionEvent arg0) throws ClassNotFoundException {
+		PermisoColectivoVista vista = new PermisoColectivoVista();
+		mostrarVista(vista);
+	}
 	// ##################### MANTENIMIENTO DE DATOS #########################
 
 	protected void mntmActualizacionBDActionPerformed(ActionEvent e) {

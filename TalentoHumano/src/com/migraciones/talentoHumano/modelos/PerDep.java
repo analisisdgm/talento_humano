@@ -8,6 +8,7 @@ public class PerDep {
 	private String cedula;
 	private String dependenciaCodigo;
 	private int dependenciaId;
+	private String dependenciaDescripcion;
 	private String observacion;
 	private String estado;
 	private Date fechaInicio;
@@ -39,6 +40,14 @@ public class PerDep {
 		this.dependenciaCodigo = dependenciaCodigo;
 	}
 
+	public String getDependenciaDescripcion(){
+		return dependenciaDescripcion;
+	}
+	
+	public void setDependenciaDescripcion(String dependenciaDescripcion){
+		this.dependenciaDescripcion = dependenciaDescripcion;
+	}
+	
 	public int getDependenciaId() {
 		return dependenciaId;
 	}

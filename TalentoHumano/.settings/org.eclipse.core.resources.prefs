@@ -6,3 +6,6 @@ encoding//src/com/migraciones/talentoHumano/reportes/FichaAsistencia.jrxml=UTF-8
 encoding//src/com/migraciones/talentoHumano/reportes/JustificacionLista.jrxml=UTF-8
 encoding//src/com/migraciones/talentoHumano/reportes/JustificacionPersonal.jrxml=UTF-8
 encoding//src/com/migraciones/talentoHumano/reportes/ListadoPersonal.jrxml=UTF-8
+encoding//src/com/migraciones/talentoHumano/reportes/ListadoPersonalCategoria.jrxml=UTF-8
+encoding//src/com/migraciones/talentoHumano/reportes/ListadoPersonalOficina.jrxml=UTF-8
+encoding//src/com/migraciones/talentoHumano/reportes/ListadoPersonalSexo.jrxml=UTF-8

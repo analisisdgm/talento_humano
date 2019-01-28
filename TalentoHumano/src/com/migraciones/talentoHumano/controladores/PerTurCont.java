@@ -154,4 +154,27 @@ public class PerTurCont extends AncestroCont {
 	public String deleteSQL() {
 		return "DELETE FROM control_asistencia.personales_turnos WHERE personal_id=" + horario.getPersonalId();
 	}
+
+	public ArrayList<PerTur> getHistorialTurno(String cedula) throws ClassNotFoundException {
+		ArrayList<PerTur> horarioHistorial = new ArrayList<PerTur>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM control_asistencia.obtener_historial_turnos('"+cedula+"') ORDER BY fecha_inicio");
+			while (conn.resultado.next()) {
+				PerTur turno = new PerTur();
+				turno.setTurnoId(conn.resultado.getInt("turno_id"));
+				turno.setDescripcionTurno(conn.resultado.getString("turno"));
+				turno.setObservacion(conn.resultado.getString("observaciones"));
+				turno.setFechaInicio(conn.resultado.getDate("fecha_inicio"));
+				turno.setFechaFin(conn.resultado.getDate("fecha_fin"));
+				horarioHistorial.add(turno);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return horarioHistorial;
+	}
 }

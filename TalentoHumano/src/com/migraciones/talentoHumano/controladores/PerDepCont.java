@@ -65,9 +65,9 @@ public class PerDepCont extends AncestroCont {
 		conn.conexion.setAutoCommit(false);
 
 		PreparedStatement pstmtUpdateTemporal = null, pstmtUpdate = null, pstmtInsert = null;
-		String updateTempSQL = "UPDATE ficha_personal.personales SET dependencia_id="
-				+ this.getIdDependencia(nuevaDependencia.getDependenciaCodigo()) + " WHERE pers_cedula_nro='"
-				+ nuevaDependencia.getCedula() + "'";
+//		String updateTempSQL = "UPDATE ficha_personal.personales SET dependencia_id="
+//				+ this.getIdDependencia(nuevaDependencia.getDependenciaCodigo()) + " WHERE pers_cedula_nro='"
+//				+ nuevaDependencia.getCedula() + "'";
 		String updateTableSQL = "UPDATE ficha_personal.personales_dependencias SET perdep_estado='H', perdep_fecha_fin=? WHERE personal_cedula='"
 				+ nuevaDependencia.getCedula() + "' AND perdep_estado='A'";
 		String insertTableSQL = "INSERT INTO ficha_personal.personales_dependencias(personal_cedula,dependencia_id,perdep_fecha_inicio,perdep_observacion,admin_login) VALUES(?,?,?,?,?)";
@@ -75,8 +75,8 @@ public class PerDepCont extends AncestroCont {
 		try {
 			// actualizacion temporal de la tabla personales hasta actualizar
 			// reportes
-			pstmtUpdateTemporal = conn.conexion.prepareStatement(updateTempSQL);
-			pstmtUpdateTemporal.executeUpdate();
+//			pstmtUpdateTemporal = conn.conexion.prepareStatement(updateTempSQL);
+//			pstmtUpdateTemporal.executeUpdate();
 
 			// actualizacion del ultima oficina del personal que pasa de activo
 			// a historico o a baja
@@ -164,5 +164,31 @@ public class PerDepCont extends AncestroCont {
 	@Override
 	public String deleteSQL() {
 		return "DELETE FROM ficha_personal.personales_oficinas WHERE perdep_id=" + personalDependencia.getId();
+	}
+	
+	public ArrayList<PerDep> getHistorialDep(String cedula) throws ClassNotFoundException {
+		ArrayList<PerDep> dependenciaHistorial = new ArrayList<PerDep>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM ficha_personal.obtener_historial_dependencias('"+cedula+"') ORDER BY fecha_inicio");
+			while (conn.resultado.next()) {
+				PerDep perdep = new PerDep();
+				//perdep.setCedula(conn.resultado.getString("personal_cedula"));
+				perdep.setDependenciaCodigo(conn.resultado.getString("dependencia_codigo"));
+				perdep.setDependenciaDescripcion(conn.resultado.getString("dependencia"));
+				perdep.setFechaInicio(conn.resultado.getDate("fecha_inicio"));
+				perdep.setFechaFin(conn.resultado.getDate("fecha_fin"));
+//				perdep.setFechaAlta(conn.resultado.getTimestamp("perdep_fecha_alta"));
+				perdep.setObservacion(conn.resultado.getString("observaciones"));
+//				perdep.setAdministrador(conn.resultado.getString("admin_login"));
+				dependenciaHistorial.add(perdep);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dependenciaHistorial;
 	}
 }

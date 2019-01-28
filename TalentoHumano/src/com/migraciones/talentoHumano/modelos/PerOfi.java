@@ -8,6 +8,7 @@ public class PerOfi {
 	private String cedula;
 	private int oficinaId;
 	private String oficinaCodigo;
+	private String oficinaDescripcion;
 	private String observacion;
 	private String estado;
 	private Date fechaInicio;
@@ -34,9 +35,17 @@ public class PerOfi {
 	public int getOficinaId() {
 		return oficinaId;
 	}
-
+	
 	public void setOficinaId(int oficinaId) {
 		this.oficinaId = oficinaId;
+	}
+	
+	public String getOficinaDescripcion(){
+		return oficinaDescripcion;
+	}
+	
+	public void setOficinaDescripcion( String oficinaDescripcion){
+		this.oficinaDescripcion = oficinaDescripcion;
 	}
 
 	public String getOficinaCodigo() {

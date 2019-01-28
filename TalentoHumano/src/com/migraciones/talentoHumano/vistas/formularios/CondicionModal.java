@@ -28,7 +28,7 @@ import com.migraciones.talentoHumano.views.componentesGUI.ModeloTablaUtil;
 
 public class CondicionModal extends AncestroModal {
 	private int COLUMNA_CODIGO = 0;
-	private int COLUMNA_DEPENDENCIA = 1;
+	private int COLUMNA_CONDICION = 1;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panelBusqueda;
@@ -43,7 +43,7 @@ public class CondicionModal extends AncestroModal {
 	private TalentoHumano sistema = new TalentoHumano();
 
 	public CondicionModal() throws ClassNotFoundException {
-		setTitle("SELECCIONE OFICINA");
+		setTitle("SELECCIONE CONDICION");
 		panelBusqueda = new JPanel();
 		panelBusqueda.setPreferredSize(new Dimension(15, 50));
 		panelBusqueda.setBackground(new Color(43, 70, 97));
@@ -183,14 +183,14 @@ public class CondicionModal extends AncestroModal {
 
 	private void cargarCondicion() throws ClassNotFoundException {
 		String codigo = (String) tbConsultas.getValueAt(tbConsultas.getSelectedRow(), COLUMNA_CODIGO);
-		String dependencia = (String) tbConsultas.getValueAt(tbConsultas.getSelectedRow(), COLUMNA_DEPENDENCIA);
+		String condicion = (String) tbConsultas.getValueAt(tbConsultas.getSelectedRow(), COLUMNA_CONDICION);
 		this.codigo = codigo;
-		this.condicion = dependencia;
+		this.condicion = condicion;
 	}
 
 	private void filtrar() {
 		RowFilter<TableModel, Object> rf = null;
-		int indiceColumnaTabla = COLUMNA_DEPENDENCIA;
+		int indiceColumnaTabla = COLUMNA_CONDICION;
 		try {
 			rf = RowFilter.regexFilter(txtBuscador.getText().toUpperCase(), indiceColumnaTabla);
 		} catch (java.util.regex.PatternSyntaxException e) {

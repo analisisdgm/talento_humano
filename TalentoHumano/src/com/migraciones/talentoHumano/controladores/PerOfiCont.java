@@ -63,17 +63,17 @@ public class PerOfiCont extends AncestroCont {
 		conn.conexion.setAutoCommit(false);
 
 		PreparedStatement pstmUpdateTemporal = null, pstmtUpdate = null, pstmtInsert = null;
-		String updateTempSQL = "UPDATE ficha_personal.personales SET oficina_id="
-				+ this.getIdOficina(nuevaOficina.getOficinaCodigo()) + " WHERE pers_cedula_nro='"
-				+ nuevaOficina.getCedula()+"'";
+//		String updateTempSQL = "UPDATE ficha_personal.personales SET oficina_id="
+//				+ this.getIdOficina(nuevaOficina.getOficinaCodigo()) + " WHERE pers_cedula_nro='"
+//				+ nuevaOficina.getCedula()+"'";
 		String updateTableSQL = "UPDATE ficha_personal.personales_oficinas SET perofi_estado='H', perofi_fecha_fin=? WHERE personal_cedula='"
 				+ nuevaOficina.getCedula() + "' AND perofi_estado='A'";
 		String insertTableSQL = "INSERT INTO ficha_personal.personales_oficinas(personal_cedula,oficina_id,perofi_fecha_inicio,perofi_observacion,admin_login) VALUES(?,?,?,?,?)";
 
 		try {
 			// temporal hasta actualizacion de reportes
-			pstmUpdateTemporal = conn.conexion.prepareStatement(updateTempSQL);
-			pstmUpdateTemporal.executeUpdate();
+//			pstmUpdateTemporal = conn.conexion.prepareStatement(updateTempSQL);
+//			pstmUpdateTemporal.executeUpdate();
 
 			// actualizacion del ultima oficina del personal que pasa de activo
 			// a historico o a baja
@@ -163,5 +163,28 @@ public class PerOfiCont extends AncestroCont {
 	@Override
 	public String deleteSQL() {
 		return "DELETE FROM ficha_personal.personales_oficinas WHERE perofi_id=" + personalOficina.getId();
+	}
+	
+	public ArrayList<PerOfi> getHistorialOfi(String cedula) throws ClassNotFoundException {
+		ArrayList<PerOfi> oficinasHistorial = new ArrayList<PerOfi>();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia.executeQuery(
+					"SELECT * FROM ficha_personal.obtener_historial_oficinas('"+cedula+"') ORDER BY fecha_inicio");
+			while (conn.resultado.next()) {
+				PerOfi perofi = new PerOfi();
+				perofi.setOficinaCodigo(conn.resultado.getString("oficina_codigo"));
+				perofi.setOficinaDescripcion(conn.resultado.getString("oficina"));
+				perofi.setFechaInicio(conn.resultado.getDate("fecha_inicio"));
+				perofi.setFechaFin(conn.resultado.getDate("fecha_fin"));
+				perofi.setObservacion(conn.resultado.getString("observaciones"));
+				oficinasHistorial.add(perofi);
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return oficinasHistorial;
 	}
 }

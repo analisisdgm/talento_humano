@@ -18,33 +18,52 @@ import javax.script.ScriptException;
 import com.migraciones.talentoHumano.app.TalentoHumano;
 import com.migraciones.talentoHumano.controladores.CredencialCont;
 import com.migraciones.talentoHumano.controladores.PersonalCont;
+import com.migraciones.talentoHumano.controladores.Temporal;
 import com.migraciones.talentoHumano.dataBases.ConexionMsAccess;
 import com.migraciones.talentoHumano.dataBases.ConexionMssql;
 import com.migraciones.talentoHumano.dataBases.ConexionPostgresql;
 import com.migraciones.talentoHumano.modelos.PerHistoDisip;
 import com.migraciones.talentoHumano.modelos.Personal;
 import com.migraciones.talentoHumano.utilities.FechaUtil;
+import com.migraciones.talentoHumano.utilities.ImprimirReporte;
 
 public class Test {
 	static ArrayList<String> listaFuncionariosPg = new ArrayList<String>();
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException, ParseException, IOException {
-		pruebaFichaAsistencia();
 	}
 
-	public static void llenarTablaCategorías() throws ClassNotFoundException, SQLException {
+	public static void imprimirReporte() throws ClassNotFoundException {
+		PersonalCont per = new PersonalCont();
+
+		ImprimirReporte ir = new ImprimirReporte();
+		// Imprimir personales por abcdario
+		// ir.imprimirPersonalesABC(per.getABC());
+		// Imprimir personales por categoria
+		// ir.imprimirPersonalesCat(per.getPeronalCategoria(""));
+		// Imprimir personales por condicion
+		// ir.imprimirPersonalesCondicion(per.getPeronalCondicion("NOMBRADO"));
+		// Imprimir personales por dependencia
+		// ir.imprimirPersonalesDependencia(per.getPersonalDependencia("3"));
+		// Imprimir personales por oficina
+		// ir.imprimirPersonalesOficina(per.getPersonalOficina("PIA"));
+		// Imprimir personales por sexo
+		ir.imprimirPersonalesSexo(per.getPeronalporSexo("F"));
+
+	}
+
+	public static void llenarTablaCategorias() throws ClassNotFoundException, SQLException {
 		PersonalCont personalCont = new PersonalCont();
 		ArrayList<Personal> personales = personalCont.getAll();
 		ConexionPostgresql connpg = new ConexionPostgresql();
 		try {
 			for (Personal p : personales) {
 				String sql = "INSERT INTO ficha_personal.personales_categorias(personal_cedula,categoria_id,percat_fecha_inicio,percat_fecha_fin,admin_login) VALUES ('"
-						+ p.getCedula() + "','2','2019-01-01','2019-01-01','administrador')";
-				System.out.println(sql);
+						+ p.getCedula() + "',999,'2016-01-01','2019-01-01','administrador')";
 				// connpg.pstmt = connpg.conexion.prepareStatement(sql);
 				// connpg.pstmt.executeUpdate();
 			}
-			// System.out.println(personales.size());
+			System.out.println(personales.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -63,8 +82,8 @@ public class Test {
 						+ c.getFecha_inicio() + "','" + c.getFecha_fin() + "','" + c.getObservacion() + "','"
 						+ c.getAdmin() + "')";
 				System.out.println(sql);
-				// connpg.pstmt = connpg.conexion.prepareStatement(sql);
-				// connpg.pstmt.executeUpdate();
+				connpg.pstmt = connpg.conexion.prepareStatement(sql);
+				connpg.pstmt.executeUpdate();
 			}
 			System.out.println(credenciales.size());
 		} catch (Exception e) {
@@ -137,7 +156,7 @@ public class Test {
 		// sis.imprimirFichaAsistencia("5099813", 8, 2017);
 		// sis.imprimirFichaAsistencia("3827955", 8,2017);
 		// sis.imprimirFichaAsistencia("426581", 2,2018);
-		sis.imprimirFichaAsistencia("3827955", 2, 2018);
+		sis.imprimirFichaAsistencia("4347382", 2, 2018);
 	}
 
 	public static void consultaSqlServer() throws ClassNotFoundException, SQLException {

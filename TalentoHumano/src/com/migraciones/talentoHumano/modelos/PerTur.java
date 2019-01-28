@@ -5,6 +5,7 @@ import java.util.Date;
 public class PerTur {
 	private int id;
 	private int turnoId;
+	private String descripcionTurno;
 	private String cedula;
 	private int personalId;
 	private String estado;
@@ -92,6 +93,14 @@ public class PerTur {
 
 	public void setAdministrador(String administrador) {
 		this.administrador = administrador;
+	}
+
+	public String getDescripcionTurno() {
+		return descripcionTurno;
+	}
+
+	public void setDescripcionTurno(String descripcionTurno) {
+		this.descripcionTurno = descripcionTurno;
 	}
 
 }
