@@ -21,6 +21,8 @@ public class Personal {
 	private String condicion;
 	private String condObservacion;
 	private Date condFechaIni;
+	private Date condFechaFin;
+	private String tipoPersonal; //P (PERMANENTE) O C (CONTRATADO)
 	private String codDependencia;
 	private String dependencia;
 	private String depObservacion;
@@ -44,9 +46,17 @@ public class Personal {
 	private String categoria;
 	private String catObservacion;
 	private Date catFechaInicio;
+	private Date perFechaIngreso;
+	private String perFechaIngObs;
+	private String perFechaIngCondicion;
 	
-
-
+	private Date perFechaDesvinculacion;
+	private String perFechaDesvObs;
+	private int idDia;
+	private Date diaFechaInicio;
+	private String diaObservacion;
+	private String dias;
+	
 	public String getCedula() {
 		return cedula;
 	}
@@ -318,15 +328,15 @@ public class Personal {
 	public void setAdministradorAlta(String administradorAlta) {
 		this.administradorAlta = administradorAlta;
 	}
-	
-	public String getCategoria(){
+
+	public String getCategoria() {
 		return categoria;
 	}
-	
-	public void setCategoria(String categoria){
+
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	
+
 	public String getCategoriaCodigo() {
 		return categoriaCodigo;
 	}
@@ -334,7 +344,7 @@ public class Personal {
 	public void setCategoriaCodigo(String categoria) {
 		this.categoriaCodigo = categoria;
 	}
-	
+
 	public String getRutaImagen() {
 		String rutaImagen = GlobalUtil.PATH_CARNET + String.format("%010d", Integer.parseInt(this.cedula)) + ".jpg";
 		return rutaImagen;
@@ -354,6 +364,94 @@ public class Personal {
 
 	public void setCatFechaInicio(Date catFechaInicio) {
 		this.catFechaInicio = catFechaInicio;
+	}
+
+	public Date getCondFechaFin() {
+		return condFechaFin;
+	}
+
+	public void setCondFechaFin(Date condFechaFin) {
+		this.condFechaFin = condFechaFin;
+	}
+
+	public Date getPerFechaIngreso() {
+		return perFechaIngreso;
+	}
+
+	public void setPerFechaIngreso(Date perFechaIngreso) {
+		this.perFechaIngreso = perFechaIngreso;
+	}
+
+	public String getPerFechaIngObs() {
+		return perFechaIngObs;
+	}
+
+	public void setPerFechaIngObs(String perFechaIngObs) {
+		this.perFechaIngObs = perFechaIngObs;
+	}
+
+	public String getPerFechaIngCondicion() {
+		return perFechaIngCondicion;
+	}
+
+	public void setPerFechaIngCondicion(String perFechaIngCondicion) {
+		this.perFechaIngCondicion = perFechaIngCondicion;
+	}
+	
+	public String getTipoPersonal() {
+		return tipoPersonal;
+	}
+
+	public void setTipoPersonal(String tipoPersonal) {
+		this.tipoPersonal = tipoPersonal;
+	}
+
+	public Date getPerFechaDesvinculacion() {
+		return perFechaDesvinculacion;
+	}
+
+	public void setPerFechaDesvinculacion(Date perFechaDesvinculacion) {
+		this.perFechaDesvinculacion = perFechaDesvinculacion;
+	}
+
+	public String getPerFechaDesvObs() {
+		return perFechaDesvObs;
+	}
+
+	public void setPerFechaDesvObs(String perFechaDesvObs) {
+		this.perFechaDesvObs = perFechaDesvObs;
+	}
+
+	public Date getDiaFechaInicio() {
+		return diaFechaInicio;
+	}
+
+	public void setDiaFechaInicio(Date diaFechaInicio) {
+		this.diaFechaInicio = diaFechaInicio;
+	}
+
+	public String getDiaObservacion() {
+		return diaObservacion;
+	}
+
+	public void setDiaObservacion(String diaObservacion) {
+		this.diaObservacion = diaObservacion;
+	}
+
+	public String getDias() {
+		return dias;
+	}
+
+	public void setDias(String dias) {
+		this.dias = dias;
+	}
+
+	public int getIdDia() {
+		return idDia;
+	}
+
+	public void setIdDia(int idDia) {
+		this.idDia = idDia;
 	}
 
 }

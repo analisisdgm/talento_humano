@@ -147,11 +147,14 @@ public class DependenciaModal extends AncestroModal {
 	private void cargarTabla() throws ClassNotFoundException {
 		modelo.addColumn("CODIGO");
 		modelo.addColumn("DEPENDENCIA");
+		modelo.addColumn("OFICINA");
 		tbConsultas.setModel(modelo);
 		TableColumn columna0 = tbConsultas.getColumn("CODIGO");
 		TableColumn columna1 = tbConsultas.getColumn("DEPENDENCIA");
+		TableColumn columna2 = tbConsultas.getColumn("OFICINA");
 		columna0.setPreferredWidth(50);
 		columna1.setPreferredWidth(400);
+		columna2.setPreferredWidth(100);
 
 		txtBuscador.getDocument().addDocumentListener(new DocumentListener() {
 
@@ -174,7 +177,7 @@ public class DependenciaModal extends AncestroModal {
 		for (Dependencia dep : sistema.obtenerDependencias()) {
 			fila[0] = dep.getCodigo();
 			fila[1] = dep.getDescripcion();
-
+			fila[2] = dep.getOficina();
 			modelo.addRow(fila);
 			tbConsultas.setModel(modelo);
 			sorter = new TableRowSorter<TableModel>(modelo);

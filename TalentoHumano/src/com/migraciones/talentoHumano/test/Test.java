@@ -31,45 +31,27 @@ public class Test {
 	static ArrayList<String> listaFuncionariosPg = new ArrayList<String>();
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException, ParseException, IOException {
+		imprimirReporte();
 	}
 
-	public static void imprimirReporte() throws ClassNotFoundException {
+	public static void imprimirReporte() throws ClassNotFoundException{
 		PersonalCont per = new PersonalCont();
-
+//		
 		ImprimirReporte ir = new ImprimirReporte();
-		// Imprimir personales por abcdario
-		// ir.imprimirPersonalesABC(per.getABC());
-		// Imprimir personales por categoria
-		// ir.imprimirPersonalesCat(per.getPeronalCategoria(""));
-		// Imprimir personales por condicion
-		// ir.imprimirPersonalesCondicion(per.getPeronalCondicion("NOMBRADO"));
-		// Imprimir personales por dependencia
-		// ir.imprimirPersonalesDependencia(per.getPersonalDependencia("3"));
-		// Imprimir personales por oficina
-		// ir.imprimirPersonalesOficina(per.getPersonalOficina("PIA"));
-		// Imprimir personales por sexo
-		ir.imprimirPersonalesSexo(per.getPeronalporSexo("F"));
-
+		//Imprimir personales por abcdario
+//		ir.imprimirPersonalesABC(per.getABC());
+//		Imprimir personales por categoria
+//		ir.imprimirPersonalesCat(per.getPeronalCategoria(""));
+		//Imprimir personales por condicion
+//		ir.imprimirPersonalesCondicion(per.getPeronalCondicion("NOMBRADO"));
+		//Imprimir personales por dependencia
+//		ir.imprimirPersonalesDependencia(per.getPersonalDependencia("3"));
+		//Imprimir personales por oficina
+//		ir.imprimirPersonalesOficina(per.getPersonalOficina("PIA"));
+		//Imprimir personales por sexo
+		ir.imprimirPersonalesSexo(per.getAllPeronalporSexo("TODOS"));
 	}
-
-	public static void llenarTablaCategorias() throws ClassNotFoundException, SQLException {
-		PersonalCont personalCont = new PersonalCont();
-		ArrayList<Personal> personales = personalCont.getAll();
-		ConexionPostgresql connpg = new ConexionPostgresql();
-		try {
-			for (Personal p : personales) {
-				String sql = "INSERT INTO ficha_personal.personales_categorias(personal_cedula,categoria_id,percat_fecha_inicio,percat_fecha_fin,admin_login) VALUES ('"
-						+ p.getCedula() + "',999,'2016-01-01','2019-01-01','administrador')";
-				connpg.pstmt = connpg.conexion.prepareStatement(sql);
-				connpg.pstmt.executeUpdate();
-			}
-			System.out.println(personales.size());
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-	}
-
+	
 	public static void llenarTablaCredenciales() throws ClassNotFoundException, SQLException {
 		CredencialCont credCont = new CredencialCont();
 		ArrayList<Temporal> credenciales = credCont.getAll();
@@ -82,8 +64,8 @@ public class Test {
 						+ c.getFecha_inicio() + "','" + c.getFecha_fin() + "','" + c.getObservacion() + "','"
 						+ c.getAdmin() + "')";
 				System.out.println(sql);
-				connpg.pstmt = connpg.conexion.prepareStatement(sql);
-				connpg.pstmt.executeUpdate();
+				// connpg.pstmt = connpg.conexion.prepareStatement(sql);
+				// connpg.pstmt.executeUpdate();
 			}
 			System.out.println(credenciales.size());
 		} catch (Exception e) {

@@ -4,11 +4,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import com.migraciones.talentoHumano.dataBases.ConexionPostgresql;
 import com.migraciones.talentoHumano.modelos.PerCon;
-import com.migraciones.talentoHumano.utilities.FechaUtil;
 
 public class PerConCont extends AncestroCont {
 
@@ -41,32 +41,41 @@ public class PerConCont extends AncestroCont {
 		}
 		return condicionHistorial;
 	}
+	
+	
+public boolean verificarPeriodo(String cedula, java.util.Date fechaI) throws ClassNotFoundException, SQLException{
+	boolean control = true;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	try {
+		ConexionPostgresql conn = new ConexionPostgresql();
+		conn.sentencia = (Statement) conn.conexion.createStatement();
+		conn.resultado = conn.sentencia.executeQuery("SELECT * FROM ficha_personal.verificar_fecha_condicion('"+cedula+"','"+sdf.format(fechaI)+"')");
+		while (conn.resultado.next()) {
+			control = conn.resultado.getBoolean(1);
+		}
+		conn.conexion.close();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return control;
+}
 
 	public boolean actualizarCondicionTransaccion(PerCon nuevaCondicion) throws ClassNotFoundException, SQLException {
 		ConexionPostgresql conn = new ConexionPostgresql();
 		conn.conexion.setAutoCommit(false);
 
 		PreparedStatement pstmtUpdateTemporal = null, pstmtUpdate = null, pstmtInsert = null;
-//		String updateTempSQL = "UPDATE ficha_personal.personales SET tipo_personal_id="
-//				+ nuevaCondicion.getCondicionId() + " WHERE pers_cedula_nro='" + nuevaCondicion.getCedula()+"'";
 		
-		String updateTableSQL = "UPDATE ficha_personal.personales_tipos SET pertip_estado='H', pertip_fecha_fin=? WHERE personal_cedula='"
+		String updateTableSQL = "UPDATE ficha_personal.personales_tipos SET pertip_estado='H', pertip_fecha_fin='"+nuevaCondicion.getFechaFin()+"' WHERE personal_cedula='"
 				+ nuevaCondicion.getCedula() + "' AND pertip_estado='A'";
-		String insertTableSQL = "INSERT INTO ficha_personal.personales_tipos(personal_cedula,tipo_personal_id,pertip_fecha_inicio,pertip_observacion,admin_login) VALUES(?,?,?,?,?)";
-
+		String insertTableSQL = "INSERT INTO ficha_personal.personales_tipos(personal_cedula,tipo_personal_id,pertip_fecha_inicio,pertip_fecha_fin,pertip_observacion,admin_login) VALUES(?,?,?,?,?,?)";
 		try {
-			// actualizacion temporal de la tabla personales hasta actualizar
-			// reportes
-//			pstmtUpdateTemporal = conn.conexion.prepareStatement(updateTempSQL);
-//			pstmtUpdateTemporal.executeUpdate();
-
+			if (verificarPeriodo(nuevaCondicion.getCedula(), nuevaCondicion.getFechaInicio()) == false){
+							
 			// actualizacion del ultima oficina del personal que pasa de activo
 			// a historico o a baja
 			pstmtUpdate = conn.conexion.prepareStatement(updateTableSQL);
-			FechaUtil util = new FechaUtil();
-			nuevaCondicion.setFechaFin(util.sumarRestarDiasFecha(nuevaCondicion.getFechaInicio(), -1));
-			java.sql.Date sqlDate0 = new java.sql.Date(nuevaCondicion.getFechaFin().getTime());
-			pstmtUpdate.setDate(1, sqlDate0);
 			pstmtUpdate.executeUpdate();
 
 			// insertcion de la nueva oficina del personal
@@ -75,16 +84,21 @@ public class PerConCont extends AncestroCont {
 			pstmtInsert.setInt(2, nuevaCondicion.getCondicionId());
 			java.sql.Date sqlDate1 = new java.sql.Date(nuevaCondicion.getFechaInicio().getTime());
 			pstmtInsert.setDate(3, sqlDate1);
-			pstmtInsert.setString(4, nuevaCondicion.getObservacion());
-			pstmtInsert.setString(5, nuevaCondicion.getAdministrador());
+			java.sql.Date sqlDate2 = new java.sql.Date(nuevaCondicion.getFechaFin().getTime());
+			pstmtInsert.setDate(4, sqlDate2);	
+			pstmtInsert.setString(5, nuevaCondicion.getObservacion());
+			pstmtInsert.setString(6, nuevaCondicion.getAdministrador());
 
 			pstmtInsert.executeUpdate();
 			conn.conexion.commit();
 			return true;
+			}else{
+				
+			}
 		} catch (SQLException e) {
 			// e.printStackTrace();
 			conn.conexion.rollback();
-			return false;
+//			return false;
 		} finally {
 			if (pstmtUpdateTemporal != null) {
 				pstmtUpdateTemporal.close();
@@ -99,6 +113,7 @@ public class PerConCont extends AncestroCont {
 				conn.conexion.close();
 			}
 		}
+		return false;
 	}
 
 	@Override

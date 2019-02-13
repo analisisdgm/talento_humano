@@ -39,7 +39,7 @@ public class CredencialDS implements JRDataSource {
 		} else if ("txtApellidos".equals(jrf.getName())) {
 			valor = this.credencial.getApellidos();
 		} else if ("txtDireccionImagen".equals(jrf.getName())) {
-			valor = GlobalUtil.RUTA_REPORTE_IMG_CARNET;
+			valor = GlobalUtil.PUBLIC_REPORTE_CARNET;
 		} else if ("txtPersonalImagen".equals(jrf.getName())) {
 			valor = this.credencial.getImagen();
 		} else if ("txtCargo".equals(jrf.getName())) {

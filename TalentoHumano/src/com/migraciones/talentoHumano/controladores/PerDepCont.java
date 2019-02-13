@@ -73,11 +73,6 @@ public class PerDepCont extends AncestroCont {
 		String insertTableSQL = "INSERT INTO ficha_personal.personales_dependencias(personal_cedula,dependencia_id,perdep_fecha_inicio,perdep_observacion,admin_login) VALUES(?,?,?,?,?)";
 
 		try {
-			// actualizacion temporal de la tabla personales hasta actualizar
-			// reportes
-//			pstmtUpdateTemporal = conn.conexion.prepareStatement(updateTempSQL);
-//			pstmtUpdateTemporal.executeUpdate();
-
 			// actualizacion del ultima oficina del personal que pasa de activo
 			// a historico o a baja
 			pstmtUpdate = conn.conexion.prepareStatement(updateTableSQL);
@@ -87,7 +82,7 @@ public class PerDepCont extends AncestroCont {
 			pstmtUpdate.setDate(1, sqlDate0);
 			pstmtUpdate.executeUpdate();
 
-			// insertcion de la nueva oficina del personal
+			// insercion de la nueva oficina del personal
 			pstmtInsert = conn.conexion.prepareStatement(insertTableSQL);
 			pstmtInsert.setString(1, nuevaDependencia.getCedula());
 			pstmtInsert.setInt(2, this.getIdDependencia(nuevaDependencia.getDependenciaCodigo()));

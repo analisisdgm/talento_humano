@@ -46,7 +46,30 @@ public class FechaUtil {
 		}
 		return diffYear;
 	}
+	public String getMeses(Date fechaInicio, Date fechaFin) {
+		if (fechaInicio != null) {
+			StringBuilder result = new StringBuilder();
+			if (fechaInicio != null) {
+				Calendar c = new GregorianCalendar();
+				c.setTime(fechaFin);
+				
+				Calendar f = new GregorianCalendar();
+				f.setTime(fechaInicio);
+				
+				result.append(calculaMeses(f,c));
+			}
+			return result.toString();
+		}
+		return "";
+	}
 
+	public static int calculaMeses(Calendar fechaI, Calendar fechaF){
+		int difA = fechaF.get(Calendar.YEAR) - fechaI.get(Calendar.YEAR);
+        int difM = difA * 12 + fechaF.get(Calendar.MONTH) - fechaI.get(Calendar.MONTH);
+       
+		return difM;
+	}
+	
 	public static String getFechaActualString() {
 		return formateador0.format(fechaActual);
 	}

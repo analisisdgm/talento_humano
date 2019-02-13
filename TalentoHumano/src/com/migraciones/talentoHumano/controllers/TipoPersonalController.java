@@ -24,6 +24,7 @@ public class TipoPersonalController extends AncestroController {
 				TipoPersonal tipo = new TipoPersonal();
 				tipo.setId(conn.resultado.getInt("tipoper_id"));
 				tipo.setDescripcion(conn.resultado.getString("tipoper_descripcion"));
+
 				listaTipos.add(tipo);
 			}
 			conn.conexion.close();
@@ -43,6 +44,7 @@ public class TipoPersonalController extends AncestroController {
 			while (conn.resultado.next()) {
 				tipo.setId(conn.resultado.getInt("tipoper_id"));
 				tipo.setDescripcion(conn.resultado.getString("tipoper_descripcion"));
+				tipo.setCondicion(conn.resultado.getString("tipoper_condicion"));
 			}
 			conn.conexion.close();
 		} catch (SQLException e) {
@@ -51,6 +53,23 @@ public class TipoPersonalController extends AncestroController {
 		return tipo;
 	}
 
+	public TipoPersonal getByCedulaPersonal(String cedula) throws ClassNotFoundException {
+		TipoPersonal tipo = new TipoPersonal();
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT * FROM ficha_personal.personales_vista WHERE cedula = '" + cedula	+ "'");
+			while (conn.resultado.next()) {
+				tipo.setId(conn.resultado.getInt("cond_id"));
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tipo;
+	}
+	
 	@Override
 	public void validarObjeto(Object objeto) {
 		this.tipo = (TipoPersonal) objeto;

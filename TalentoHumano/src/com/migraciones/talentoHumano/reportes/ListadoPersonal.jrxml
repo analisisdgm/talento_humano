@@ -35,7 +35,7 @@
 	<columnHeader>
 		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="91" y="23" width="159" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="870bff9b-2104-4301-b76f-d5d63ee9a152">
+				<reportElement mode="Opaque" x="80" y="23" width="159" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="870bff9b-2104-4301-b76f-d5d63ee9a152">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -52,7 +52,7 @@
 				<text><![CDATA[NOMBRES Y APELLIDOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="21" y="23" width="70" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="73c4a664-6bfe-4746-a9af-a02d7bfc8250">
+				<reportElement mode="Opaque" x="21" y="23" width="59" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="73c4a664-6bfe-4746-a9af-a02d7bfc8250">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -91,7 +91,7 @@
 				<text><![CDATA[N°]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="470" y="23" width="332" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="1cc7a1fe-7774-44b6-8536-a6ae2aef244f"/>
+				<reportElement mode="Opaque" x="460" y="23" width="342" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="1cc7a1fe-7774-44b6-8536-a6ae2aef244f"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -106,7 +106,7 @@
 				<text><![CDATA[DEPENDENCIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="250" y="23" width="110" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="1204a3b6-727a-43b2-aec5-90c82d3e4c36">
+				<reportElement mode="Opaque" x="239" y="23" width="110" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="1204a3b6-727a-43b2-aec5-90c82d3e4c36">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -123,7 +123,7 @@
 				<text><![CDATA[CONDICIÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="360" y="23" width="110" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="2e27e07f-b3de-42bf-a8ea-9ad020c2fd29">
+				<reportElement mode="Opaque" x="349" y="23" width="111" height="20" forecolor="#FFFFFF" backcolor="#2B4661" uuid="2e27e07f-b3de-42bf-a8ea-9ad020c2fd29">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -149,14 +149,14 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="10" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<textField isBlankWhenNull="true">
-				<reportElement x="21" y="0" width="70" height="20" uuid="3d5ba179-cb89-4db4-9cb5-2eb3a749844b">
+				<reportElement x="21" y="0" width="59" height="10" uuid="3d5ba179-cb89-4db4-9cb5-2eb3a749844b">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
 					<pen lineWidth="0.25"/>
@@ -165,15 +165,15 @@
 					<bottomPen lineWidth="0.25"/>
 					<rightPen lineWidth="0.25"/>
 				</box>
-				<textElement>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{txtCI}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="91" y="0" width="159" height="20" uuid="fb810045-0d67-413e-8ea0-273ca7c2fe34">
+				<reportElement x="80" y="0" width="159" height="10" uuid="fb810045-0d67-413e-8ea0-273ca7c2fe34">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<box>
 					<pen lineWidth="0.25"/>
@@ -182,61 +182,14 @@
 					<bottomPen lineWidth="0.25"/>
 					<rightPen lineWidth="0.25"/>
 				</box>
-				<textElement>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{txtNombres}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="250" y="0" width="110" height="20" uuid="9b5c31e5-f3b7-465f-b97e-8c357d0ac879"/>
-				<box>
-					<pen lineWidth="0.25"/>
-					<topPen lineWidth="0.25"/>
-					<leftPen lineWidth="0.25"/>
-					<bottomPen lineWidth="0.25"/>
-					<rightPen lineWidth="0.25"/>
-				</box>
-				<textElement>
-					<paragraph leftIndent="2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{txtCondicion}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="470" y="0" width="332" height="20" uuid="03f6a672-9fdd-447e-aa7c-6746a999b92e">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<box>
-					<pen lineWidth="0.25"/>
-					<topPen lineWidth="0.25"/>
-					<leftPen lineWidth="0.25"/>
-					<bottomPen lineWidth="0.25"/>
-					<rightPen lineWidth="0.25"/>
-				</box>
-				<textElement>
-					<paragraph leftIndent="2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{txtDependencia}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="0" width="20" height="20" uuid="dbe14215-3bd6-4f6b-bfe8-654abb86d975">
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<box>
-					<pen lineWidth="0.25"/>
-					<topPen lineWidth="0.25"/>
-					<leftPen lineWidth="0.25"/>
-					<bottomPen lineWidth="0.25"/>
-					<rightPen lineWidth="0.25"/>
-				</box>
-				<textElement>
-					<paragraph leftIndent="2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="360" y="0" width="110" height="20" uuid="fadd3ff1-fb7f-49fb-bf0c-7a5f8e3fa83d">
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				<reportElement x="239" y="0" width="110" height="10" uuid="9b5c31e5-f3b7-465f-b97e-8c357d0ac879">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<box>
@@ -246,7 +199,62 @@
 					<bottomPen lineWidth="0.25"/>
 					<rightPen lineWidth="0.25"/>
 				</box>
-				<textElement>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtCondicion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="460" y="0" width="342" height="10" uuid="03f6a672-9fdd-447e-aa7c-6746a999b92e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{txtDependencia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="0" width="20" height="10" uuid="dbe14215-3bd6-4f6b-bfe8-654abb86d975">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="349" y="0" width="111" height="10" uuid="fadd3ff1-fb7f-49fb-bf0c-7a5f8e3fa83d">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{txtHorario}]]></textFieldExpression>
@@ -332,7 +340,7 @@ GESTIÓN DE TALENTO HUMANO]]></text>
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement>
-					<font size="11" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total Funcionarios:]]></text>
 			</staticText>

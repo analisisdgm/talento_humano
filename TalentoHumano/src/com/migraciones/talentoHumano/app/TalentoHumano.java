@@ -9,6 +9,7 @@ import com.migraciones.talentoHumano.controladores.AdministradorCont;
 import com.migraciones.talentoHumano.controladores.CargoCont;
 import com.migraciones.talentoHumano.controladores.CategoriaCont;
 import com.migraciones.talentoHumano.controladores.CredencialCont;
+import com.migraciones.talentoHumano.controladores.DependenciaCont;
 import com.migraciones.talentoHumano.controladores.FeriadoCont;
 import com.migraciones.talentoHumano.controladores.OficinaCont;
 import com.migraciones.talentoHumano.controladores.PerCarCont;
@@ -17,12 +18,13 @@ import com.migraciones.talentoHumano.controladores.PerConCont;
 import com.migraciones.talentoHumano.controladores.PerDepCont;
 import com.migraciones.talentoHumano.controladores.PerDiaCont;
 import com.migraciones.talentoHumano.controladores.PerEvaCont;
+import com.migraciones.talentoHumano.controladores.PerFechaDesvCont;
+import com.migraciones.talentoHumano.controladores.PerFechaIngresoCont;
 import com.migraciones.talentoHumano.controladores.PerHistoDisipCont;
 import com.migraciones.talentoHumano.controladores.PerOfiCont;
 import com.migraciones.talentoHumano.controladores.PerTipoCont;
 import com.migraciones.talentoHumano.controladores.PerTurCont;
 import com.migraciones.talentoHumano.controladores.PersonalCont;
-import com.migraciones.talentoHumano.controllers.DependenciaController;
 import com.migraciones.talentoHumano.controllers.PersonalController;
 import com.migraciones.talentoHumano.controllers.PersonalHorarioController;
 import com.migraciones.talentoHumano.controllers.TipoJustificativoController;
@@ -44,6 +46,8 @@ import com.migraciones.talentoHumano.modelos.PerCat;
 import com.migraciones.talentoHumano.modelos.PerCon;
 import com.migraciones.talentoHumano.modelos.PerDep;
 import com.migraciones.talentoHumano.modelos.PerDias;
+import com.migraciones.talentoHumano.modelos.PerFechaDesvinculacion;
+import com.migraciones.talentoHumano.modelos.PerFechaIngreso;
 import com.migraciones.talentoHumano.modelos.PerHistoDisip;
 import com.migraciones.talentoHumano.modelos.PerOfi;
 import com.migraciones.talentoHumano.modelos.PerTipos;
@@ -135,6 +139,11 @@ public class TalentoHumano {
 	public boolean actualizarDatosPersonal(Personal nuevosDatos) throws ClassNotFoundException, SQLException {
 		PersonalCont perCont = new PersonalCont();
 		return perCont.update(nuevosDatos);
+	}
+	
+	public boolean actualizarDatosDesvinculacion(PerFechaDesvinculacion nuevaFechaDesvinculacion) throws ClassNotFoundException, SQLException{
+		PerFechaDesvCont perDesvinculacion = new PerFechaDesvCont();
+		return perDesvinculacion.darBajaTransaccion(nuevaFechaDesvinculacion);
 	}
 
 	public boolean existePersonal(String cedula) throws ClassNotFoundException {
@@ -319,20 +328,20 @@ public class TalentoHumano {
 	// #############################################
 	// ############### OFICINAS ####################
 	// #############################################
-
-	public boolean actualizarOficinaPersonal(PerOfi nuevaOficina, String opcion)
-			throws ClassNotFoundException, SQLException {
-		PerOfiCont perCont = new PerOfiCont();
-		if (opcion.equals("I")) {
-			// insercion de nueva condicion
-			return perCont.actualizarOficinaTransaccion(nuevaOficina);
-		} else if (opcion.equals("A")) {
-			// actualizacion de una observacion
-			return perCont.update(nuevaOficina);
-		} else {
-			return false;
-		}
-	}
+//
+//	public boolean actualizarOficinaPersonal(PerOfi nuevaOficina, String opcion)
+//			throws ClassNotFoundException, SQLException {
+//		PerOfiCont perCont = new PerOfiCont();
+//		if (opcion.equals("I")) {
+//			// insercion de nueva condicion
+//			return perCont.actualizarOficinaTransaccion(nuevaOficina);
+//		} else if (opcion.equals("A")) {
+//			// actualizacion de una observacion
+//			return perCont.update(nuevaOficina);
+//		} else {
+//			return false;
+//		}
+//	}
 
 	public ArrayList<Oficina> obtenerOficinas() throws ClassNotFoundException {
 		OficinaCont oficinasCont = new OficinaCont();
@@ -401,14 +410,48 @@ public class TalentoHumano {
 		}
 	}
 
+	// #############################################
+	// ############# FECHA INGRESO #################
+	// #############################################
+public boolean actualizarIngresoPersonal(PerFechaIngreso nuevaFechaIngreso, String opcion)
+			throws ClassNotFoundException, SQLException {
+		PerFechaIngresoCont perIngreso = new PerFechaIngresoCont();
+		if (opcion.equals("I")) {
+			// insercion de nueva condicion
+			return perIngreso.actualizarIngresoTransaccion(nuevaFechaIngreso);
+		} else if (opcion.equals("A")) {
+			// actualizacion de una observacion
+			return perIngreso.update(nuevaFechaIngreso);
+		} else {
+			return false;
+		}
+}
+
+//#############################################
+// ############# DIAS TRABAJO #################
+// #############################################
+public boolean actualizarPersonalDias(PerDias nuevoDia, String opcion)
+			throws ClassNotFoundException, SQLException {
+		PerDiaCont perDiaCont = new PerDiaCont();
+		if (opcion.equals("I")) {
+		// insercion de nueva condicion
+		return perDiaCont.actualizarPersonalDiaTransaccion(nuevoDia);
+	} else if (opcion.equals("A")) {
+		// actualizacion de una observacion
+			return perDiaCont.update(nuevoDia);
+		} else {
+			return false;
+		}
+}
+
 	// METODOS OBSOLETOS - FALTA ACTUALIZAR
 	public ArrayList<Dependencia> obtenerDependencias() throws ClassNotFoundException {
-		DependenciaController dependenciaCont = new DependenciaController();
+		DependenciaCont dependenciaCont = new DependenciaCont();
 		return dependenciaCont.getAll();
 	}
 
 	public Dependencia obtenerDependencia(String codigo) throws ClassNotFoundException {
-		DependenciaController depCont = new DependenciaController();
+		DependenciaCont depCont = new DependenciaCont();
 		return depCont.getByCodigo(codigo);
 	}
 	
@@ -465,6 +508,11 @@ public class TalentoHumano {
 	public TipoPersonal obtenerCondicionById(String id) throws ClassNotFoundException {
 		TipoPersonalController tipoCont = new TipoPersonalController();
 		return tipoCont.getById(Integer.parseInt(id));
+	}
+	
+	public TipoPersonal obtenerCondicionByCedula(String cedula) throws ClassNotFoundException{
+		TipoPersonalController tipoCont = new TipoPersonalController();
+		return tipoCont.getByCedulaPersonal(cedula);
 	}
 
 	// ################################################

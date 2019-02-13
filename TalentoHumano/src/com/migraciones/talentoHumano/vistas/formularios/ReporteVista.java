@@ -773,27 +773,44 @@ public class ReporteVista extends JInternalFrame {
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}else if (this.opcionBusqueda == 8){
+		//Si el campo categoria esta vacio que imprima un mensaje
+		if (!txtCategoria.getText().equals("")){
 			if(!txtCategoria.getText().equals("TODOS")&& (!txtDescripcionCat.getText().equals("TODOS"))){
 				sistema.imprimirPersonalCategorias(txtCategoria.getText());
 			}else{
 				//Debe imprimir todas las CATEGORIAS
 				sistema.imprimirPersonalCategorias("TODOS");
 			}
+		}else{
+			JOptionPane.showMessageDialog(null, GlobalUtil.MSG_CAMPOS_NO_LLENOS, "ATENCION",
+					JOptionPane.ERROR_MESSAGE);
+		}
 		}else if (this.opcionBusqueda == 9){
+		if (!txtCondicion.getText().equals("")){
 			if(!txtCondicion.getText().equals("TODOS")&& (!txtDescripcionCond.getText().equals("TODOS"))){
 				sistema.imprimirPersonalCondicion(txtCondicion.getText());
 			}else{
 				//Debe imprimir todas las CONDICIONES
 				sistema.imprimirPersonalCondicion("TODOS");
 			}
+		}else{
+			JOptionPane.showMessageDialog(null, GlobalUtil.MSG_CAMPOS_NO_LLENOS, "ATENCION",
+					JOptionPane.ERROR_MESSAGE);
+		}
 		}else if (this.opcionBusqueda == 10){
+		if (!txtDependencia.getText().equals("")){
 			if(!txtDependencia.getText().equals("TODOS")&& (!txtDescripcionDep.getText().equals("TODOS"))){
 				sistema.imprimirPersonalDependencia(txtDependencia.getText());
 			}else{
 				//Debe imprimir todas las DEPENDENCIAS
 				sistema.imprimirPersonalDependencia("TODOS");
 			}
+		}else{
+			JOptionPane.showMessageDialog(null, GlobalUtil.MSG_CAMPOS_NO_LLENOS, "ATENCION",
+					JOptionPane.ERROR_MESSAGE);
+		}
 		}else if (this.opcionBusqueda == 11){
+		if(!txtCodOficina.getText().equals("")){
 			if(!txtCodOficina.getText().equals("TODOS")&& (!txtOficina.getText().equals("TODOS"))){
 				//Debe imprimir OFICINA
 				sistema.imprimirPersonalOficina(txtCodOficina.getText());
@@ -802,7 +819,12 @@ public class ReporteVista extends JInternalFrame {
 				//Imprimir todas las oficinas
 				sistema.imprimirPersonalOficina("TODOS");
 			}
+		}else{
+			JOptionPane.showMessageDialog(null, GlobalUtil.MSG_CAMPOS_NO_LLENOS, "ATENCION",
+					JOptionPane.ERROR_MESSAGE);
+		}
 		}else if (this.opcionBusqueda == 12){
+		
 			if(!cbSexo.getSelectedItem().equals("-- TODOS --")){
 				//Debe imprimir la opcion seleccionada
 				//Imprimir todos los sexos
@@ -866,22 +888,42 @@ public class ReporteVista extends JInternalFrame {
 	}
 
 	private void cargarCamposOficina(OficinaModal vista) {
+	if (vista.getCodigo() != (null)){
 		txtCodOficina.setText(vista.getCodigo());
 		txtOficina.setText(vista.getOficina());
+	}else{
+		txtCodOficina.setText("TODO");
+		txtOficina.setText("TODO");
+	}
 	}
 	//-----------------------------------------------------------
 	private void cargarCamposCategoria(CategoriaModal vista){
-		txtCategoria.setText(vista.getCodigo());
-		txtDescripcionCat.setText(vista.getCategoria());
+		if (vista.getCodigo() != (null)){
+			txtCategoria.setText(vista.getCodigo());
+			txtDescripcionCat.setText(vista.getCategoria());
+		}else{
+			txtCategoria.setText("TODOS");
+			txtDescripcionCat.setText("TODOS");
+		}
 	}
 	
 	private void cargarCamposCondicion(CondicionModal vista){
+	if (vista.getCodigo() != (null)){
 		txtCondicion.setText(vista.getCodigo());
 		txtDescripcionCond.setText(vista.getCondicion());
+	}else{
+		txtCondicion.setText("TODOS");
+		txtDescripcionCond.setText("TODOS");
+	}
 	}
 	private void cargarCamposDependencia(DependenciaModal vista){
+	if (vista.getCodigo() != (null)){
 		txtDependencia.setText(vista.getCodigo());
 		txtDescripcionDep.setText(vista.getDependencia());
+	}else{
+		txtDependencia.setText("TODOS");
+		txtDescripcionDep.setText("TODOS");
+	}
 	}
 
 	private boolean verificarPeriodo() throws ParseException {

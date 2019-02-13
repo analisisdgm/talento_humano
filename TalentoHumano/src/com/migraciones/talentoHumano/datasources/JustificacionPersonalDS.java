@@ -35,7 +35,7 @@ public class JustificacionPersonalDS implements JRDataSource {
 				valor = "INACTIVO";
 			}
 		} else if ("txtDireccionImagen".equals(jrf.getName())) {
-			valor = GlobalUtil.RUTA_REPORTE_IMG_CARNET;
+			valor = GlobalUtil.PUBLIC_REPORTE_CARNET;
 		} else if ("txtPersonalImagen".equals(jrf.getName())) {
 			valor = this.justificacion.getImagen();
 		} else if ("txtItem".equals(jrf.getName())) {

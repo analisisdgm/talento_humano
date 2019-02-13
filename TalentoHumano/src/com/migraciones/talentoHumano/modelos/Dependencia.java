@@ -5,6 +5,9 @@ public class Dependencia {
 	private String descripcion;
 	private String codigo;
 	private int idPadre;
+	private int idOficina;
+	private String codigoOficina;
+	private String Oficina;
 
 	public int getId() {
 		return id;
@@ -36,6 +39,30 @@ public class Dependencia {
 
 	public void setIdPadre(int idPadre) {
 		this.idPadre = idPadre;
+	}
+
+	public int getIdOficina() {
+		return idOficina;
+	}
+
+	public void setIdOficina(int idOficina) {
+		this.idOficina = idOficina;
+	}
+
+	public String getCodigoOficina() {
+		return codigoOficina;
+	}
+
+	public void setCodigoOficina(String codigoOficina) {
+		this.codigoOficina = codigoOficina;
+	}
+
+	public String getOficina() {
+		return Oficina;
+	}
+
+	public void setOficina(String oficina) {
+		Oficina = oficina;
 	}
 
 }

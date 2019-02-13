@@ -42,14 +42,14 @@ public class PerDiaCont extends AncestroCont {
 		return cargosHistorial;
 	}
 
-	public boolean actualizarCategoriaTransaccion(PerCat nuevaCategoria) throws ClassNotFoundException, SQLException {
+	public boolean actualizarPersonalDiaTransaccion(PerDias nuevoDia) throws ClassNotFoundException, SQLException {
 		ConexionPostgresql conn = new ConexionPostgresql();
 		conn.conexion.setAutoCommit(false);
 
 		PreparedStatement pstmtUpdate = null, pstmtInsert = null;
-		String updateTableSQL = "UPDATE ficha_personal.personales_categorias SET percat_estado='H', percat_fecha_fin=? WHERE personal_cedula='"
-				+ nuevaCategoria.getCedula() + "' AND percat_estado='A'";
-		String insertTableSQL = "INSERT INTO ficha_personal.personales_categorias(personal_cedula,categoria_id,percat_fecha_inicio,percat_observacion,admin_login) VALUES(?,?,?,?,?)";
+		String updateTableSQL = "UPDATE control_asistencia.personales_dias_trabajo SET perdi_estado='H', perdi_fecha_fin=? WHERE personal_cedula='"
+				+ nuevoDia.getCedula() + "' AND perdi_estado='A'";
+		String insertTableSQL = "INSERT INTO control_asistencia.personales_dias_trabajo(personal_cedula,perdi_fecha_ini,perdi_observacion,perdi_dias,admin_login) VALUES(?,?,?,?,?)";
 
 		try {
 			// actualizacion del ultima categoria del personal que pasa de
@@ -57,19 +57,19 @@ public class PerDiaCont extends AncestroCont {
 			// a historico o a baja
 			pstmtUpdate = conn.conexion.prepareStatement(updateTableSQL);
 			FechaUtil util = new FechaUtil();
-			nuevaCategoria.setFechaFin(util.sumarRestarDiasFecha(nuevaCategoria.getFechaInicio(), -1));
-			java.sql.Date sqlDate0 = new java.sql.Date(nuevaCategoria.getFechaFin().getTime());
+			nuevoDia.setFechaFin(util.sumarRestarDiasFecha(nuevoDia.getFechaInicio(), -1));
+			java.sql.Date sqlDate0 = new java.sql.Date(nuevoDia.getFechaFin().getTime());
 			pstmtUpdate.setDate(1, sqlDate0);
 			pstmtUpdate.executeUpdate();
 
 			// insertcion de la nueva categoria del personal
 			pstmtInsert = conn.conexion.prepareStatement(insertTableSQL);
-			pstmtInsert.setString(1, nuevaCategoria.getCedula());
-			java.sql.Date sqlDate1 = new java.sql.Date(nuevaCategoria.getFechaInicio().getTime());
-			pstmtInsert.setInt(2, nuevaCategoria.getId());
-			pstmtInsert.setDate(3, sqlDate1);
-			pstmtInsert.setString(4, nuevaCategoria.getObservacion());
-			pstmtInsert.setString(5, nuevaCategoria.getAdministrador());
+			pstmtInsert.setString(1, nuevoDia.getCedula());
+			java.sql.Date sqlDate1 = new java.sql.Date(nuevoDia.getFechaInicio().getTime());
+			pstmtInsert.setDate(2, sqlDate1);
+			pstmtInsert.setString(3, nuevoDia.getObservacion());
+			pstmtInsert.setString(4, nuevoDia.getDescripciondia());
+			pstmtInsert.setString(5, nuevoDia.getAdministrador());
 
 			pstmtInsert.executeUpdate();
 			conn.conexion.commit();

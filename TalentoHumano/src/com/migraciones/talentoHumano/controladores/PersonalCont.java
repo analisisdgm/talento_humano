@@ -49,17 +49,17 @@ public class PersonalCont extends AncestroCont {
 				personal.setCondicion(conn.resultado.getString("condicion"));
 				personal.setCondObservacion(conn.resultado.getString("cond_observacion"));
 				personal.setCondFechaIni(conn.resultado.getDate("cond_fecha_inicio"));
+				personal.setCondFechaFin(conn.resultado.getDate("cond_fecha_fin"));
 
 				personal.setCodDependencia(conn.resultado.getString("dep_codigo"));
 				personal.setDependencia(conn.resultado.getString("dependencia"));
 				personal.setDepObservacion(conn.resultado.getString("dep_observacion"));
 				personal.setDepFechaIni(conn.resultado.getDate("dep_fecha_inicio"));
+				//Falta la fecha fin de la dependencia
 
 				personal.setCodOficina(conn.resultado.getString("ofi_codigo"));
 				personal.setOficina(conn.resultado.getString("oficina"));
-				personal.setOfiObservacion(conn.resultado.getString("ofi_observacion"));
-				personal.setOfiFechaIni(conn.resultado.getDate("ofi_fecha_inicio"));
-
+		
 				personal.setCodHorario(conn.resultado.getInt("hor_codigo"));
 				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
 				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
@@ -69,8 +69,13 @@ public class PersonalCont extends AncestroCont {
 				personal.setCategoriaCodigo(conn.resultado.getString("cat_codigo"));
 				personal.setCategoria(conn.resultado.getString("categoria"));
 				personal.setCatObservacion(conn.resultado.getString("categoria_observacion"));
-				personal.setCatFechaInicio(conn.resultado.getDate("categoria_fecha_inicio"));				
+				personal.setCatFechaInicio(conn.resultado.getDate("categoria_fecha_inicio"));	
 				
+				//TABLA FECHA DE INGRESO
+				personal.setPerFechaIngreso(conn.resultado.getDate("fecha_ingreso"));
+				personal.setPerFechaIngCondicion(conn.resultado.getString("fi_condicion"));
+				personal.setPerFechaIngObs(conn.resultado.getString("fi_observacion"));
+								
 				listaPersonales.add(personal);
 			}
 			conn.conexion.close();
@@ -403,37 +408,47 @@ public class PersonalCont extends AncestroCont {
 				personal.setDomicilio(conn.resultado.getString("domicilio"));
 				personal.setObservacion(conn.resultado.getString("observacion"));
 				personal.setEstado(conn.resultado.getString("estado"));
-
+				//CONDICION
 				personal.setCodCondicion(conn.resultado.getInt("cond_codigo"));
 				personal.setCondicion(conn.resultado.getString("condicion"));
 				personal.setCondObservacion(conn.resultado.getString("cond_observacion"));
 				personal.setCondFechaIni(conn.resultado.getDate("cond_fecha_inicio"));
-
+				personal.setCondFechaFin(conn.resultado.getDate("cond_fecha_fin"));
+				//DEPENDENCIA
 				personal.setCodDependencia(conn.resultado.getString("dep_codigo"));
 				personal.setDependencia(conn.resultado.getString("dependencia"));
 				personal.setDepObservacion(conn.resultado.getString("dep_observacion"));
 				personal.setDepFechaIni(conn.resultado.getDate("dep_fecha_inicio"));
-
+				//OFICINA
 				personal.setCodOficina(conn.resultado.getString("ofi_codigo"));
 				personal.setOficina(conn.resultado.getString("oficina"));
-				personal.setOfiObservacion(conn.resultado.getString("ofi_observacion"));
-				personal.setOfiFechaIni(conn.resultado.getDate("ofi_fecha_inicio"));
-
+				//HORARIO
 				personal.setCodHorario(conn.resultado.getInt("hor_codigo"));
 				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
 				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
 				personal.setHorObservacion(conn.resultado.getString("hor_observacion"));
 				personal.setHorFechaIni(conn.resultado.getDate("hor_fecha_inicio"));
-
+				//CARGO - CREDENCIAL
 				personal.setCodCargo(conn.resultado.getInt("cargo_id"));
 				personal.setCargo(conn.resultado.getString("cargo"));
 				personal.setCarObservacion(conn.resultado.getString("cargo_observacion"));
 				personal.setCarFechaIni(conn.resultado.getDate("cargo_fecha_inicio"));
-				
+				//CATEGORIA
 				personal.setCategoriaCodigo(conn.resultado.getString("cat_codigo"));
 				personal.setCategoria(conn.resultado.getString("categoria"));
 				personal.setCatObservacion(conn.resultado.getString("categoria_observacion"));
 				personal.setCatFechaInicio(conn.resultado.getDate("categoria_fecha_inicio"));
+				//TABLA FECHA DE INGRESO
+				personal.setPerFechaIngreso(conn.resultado.getDate("fecha_ingreso"));
+				personal.setPerFechaIngCondicion(conn.resultado.getString("fi_condicion"));
+				personal.setPerFechaIngObs(conn.resultado.getString("fi_observacion"));
+				//TABLA FECHA DESVINCULACION
+				personal.setPerFechaDesvinculacion(conn.resultado.getDate("fecha_desvinculacion"));
+				personal.setPerFechaDesvObs(conn.resultado.getString("fd_observacion"));
+				//DIAS
+				personal.setDiaFechaInicio(conn.resultado.getDate("pd_fecha_inicio"));
+				personal.setDias(conn.resultado.getString("dias_trabajo"));
+				personal.setDiaObservacion(conn.resultado.getString("pd_observacion"));
 				
 			}
 			conn.conexion.close();
@@ -477,14 +492,22 @@ public class PersonalCont extends AncestroCont {
 
 				personal.setCodOficina(conn.resultado.getString("ofi_codigo"));
 				personal.setOficina(conn.resultado.getString("oficina"));
-				personal.setOfiObservacion(conn.resultado.getString("ofi_observacion"));
-				personal.setOfiFechaIni(conn.resultado.getDate("ofi_fecha_inicio"));
-
+				
 				personal.setCodHorario(conn.resultado.getInt("hor_codigo"));
 				personal.setHorEntrada(conn.resultado.getTime("hor_entrada"));
 				personal.setHorSalida(conn.resultado.getTime("hor_salida"));
 				personal.setHorObservacion(conn.resultado.getString("hor_observacion"));
 				personal.setHorFechaIni(conn.resultado.getDate("hor_fecha_inicio"));
+				
+				//TABLA FECHA DE INGRESO
+				personal.setPerFechaIngreso(conn.resultado.getDate("fecha_ingreso"));
+				personal.setPerFechaIngCondicion(conn.resultado.getString("fi_condicion"));
+				personal.setPerFechaIngObs(conn.resultado.getString("fi_observacion"));
+				
+				//tabla dias
+				personal.setDiaFechaInicio(conn.resultado.getDate("pd_fecha_inicio"));
+				personal.setDias(conn.resultado.getString("dias_trabajo"));
+				personal.setDiaObservacion(conn.resultado.getString("pd_observacion"));
 				listaPersonales.add(personal);
 			}
 			conn.conexion.close();
@@ -901,11 +924,11 @@ public class PersonalCont extends AncestroCont {
 		conn.conexion.setAutoCommit(false);
 		PreparedStatement pstmtPersonal = null, pstmtCondicion = null, pstmtDependencia = null, pstmtOficina = null,
 				pstmtInsHorario = null, pstmtUpdHorario = null, pstmtCargo = null, pstmtCargoCredencial = null,
-				pstmtAdmin = null, pstmtCategoria = null;
+				pstmtAdmin = null, pstmtCategoria = null, pstmtFechaIngreso = null, pstmtDias = null;
 
 		try {
 			// insertar en tabla ficha_personal.personales
-			String iPersonalSQL = "INSERT INTO ficha_personal.personales(pers_nombre,pers_apellido,pers_cedula_nro,pers_fecha_nacimiento,pers_sexo,pers_estado_civil,pers_telefonos,pers_observacion,pers_correo,pers_domicilio) VALUES(?,?,?,?,?,?,?,?,?,?)";
+			String iPersonalSQL = "INSERT INTO ficha_personal.personales(pers_nombre,pers_apellido,pers_cedula_nro,pers_fecha_nacimiento,pers_sexo,pers_estado_civil,pers_telefonos,pers_observacion,pers_correo,pers_domicilio,admin_login) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 			pstmtPersonal = conn.conexion.prepareStatement(iPersonalSQL);
 			pstmtPersonal.setString(1, nuevoPersonal.getNombres());
 			pstmtPersonal.setString(2, nuevoPersonal.getApellidos());
@@ -918,21 +941,20 @@ public class PersonalCont extends AncestroCont {
 			pstmtPersonal.setString(8, nuevoPersonal.getObservacion());
 			pstmtPersonal.setString(9, nuevoPersonal.getCorreo());
 			pstmtPersonal.setString(10, nuevoPersonal.getDomicilio());
-			// a eliminar una vez implementada la nueva consulta y reporte
-//			pstmtPersonal.setInt(11, nuevoPersonal.getCodCondicion());
-//			pstmtPersonal.setInt(12, getIdDependencia(nuevoPersonal.getCodDependencia()));
-//			pstmtPersonal.setInt(13, getIdOficina(nuevoPersonal.getCodOficina()));
+			pstmtPersonal.setString(11, nuevoPersonal.getAdministradorAlta());
 			pstmtPersonal.executeUpdate();
 
 			// insertar en tabla ficha_personal.personales_tipos
-			String iCondicionSQL = "INSERT INTO ficha_personal.personales_tipos(personal_cedula,tipo_personal_id,pertip_fecha_inicio,admin_login,pertip_observacion) VALUES(?,?,?,?,?)";
+			String iCondicionSQL = "INSERT INTO ficha_personal.personales_tipos(personal_cedula,tipo_personal_id,pertip_fecha_inicio,pertip_fecha_fin,admin_login,pertip_observacion) VALUES(?,?,?,?,?,?)";
 			pstmtCondicion = conn.conexion.prepareStatement(iCondicionSQL);
 			pstmtCondicion.setString(1, nuevoPersonal.getCedula());
 			pstmtCondicion.setInt(2, nuevoPersonal.getCodCondicion());
 			sqlDate = new java.sql.Date(nuevoPersonal.getCondFechaIni().getTime());
 			pstmtCondicion.setDate(3, sqlDate);
-			pstmtCondicion.setString(4, nuevoPersonal.getAdministradorAlta());
-			pstmtCondicion.setString(5, nuevoPersonal.getCondObservacion());
+			java.sql.Date sqlDateFin = new java.sql.Date(nuevoPersonal.getCondFechaFin().getTime());
+			pstmtCondicion.setDate(4, sqlDateFin);
+			pstmtCondicion.setString(5, nuevoPersonal.getAdministradorAlta());
+			pstmtCondicion.setString(6, nuevoPersonal.getCondObservacion());
 			pstmtCondicion.executeUpdate();
 
 			// insertar en tabla ficha_personal.personales_dependencias
@@ -1019,8 +1041,31 @@ public class PersonalCont extends AncestroCont {
 			pstmtAdmin.setInt(3, 4);
 			pstmtAdmin.setString(4, nuevoPersonal.getCedula());
 			pstmtAdmin.executeUpdate();
-
+			
+			//insertar en la tabla ficha_personal.personales_fecha_ingreso
+			String iIngresoSQL = "INSERT INTO ficha_personal.personales_fecha_ingreso(personal_cedula,pering_fecha,pering_observacion,admin_login,pering_condicion) VALUES(?,?,?,?,?)";
+			pstmtFechaIngreso = conn.conexion.prepareStatement(iIngresoSQL);
+			pstmtFechaIngreso.setString(1, nuevoPersonal.getCedula());
+			sqlDate = new java.sql.Date(nuevoPersonal.getPerFechaIngreso().getTime());
+			pstmtFechaIngreso.setDate(2, sqlDate);
+			pstmtFechaIngreso.setString(3, nuevoPersonal.getPerFechaIngObs());
+			pstmtFechaIngreso.setString(4, nuevoPersonal.getAdministradorAlta());
+			pstmtFechaIngreso.setString(5, nuevoPersonal.getPerFechaIngCondicion());
+			pstmtFechaIngreso.executeUpdate();
+			
+//			//insertar en la tabla control_asistencia.personales_dias_trabajo
+			String iDiasSql = "INSERT INTO control_asistencia.personales_dias_trabajo(personal_cedula,perdi_fecha_ini,perdi_observacion,perdi_dias,admin_login) VALUES(?,?,?,?,?)";
+			pstmtDias = conn.conexion.prepareStatement(iDiasSql);
+			pstmtDias.setString(1, nuevoPersonal.getCedula());
+			sqlDate = new java.sql.Date(nuevoPersonal.getDiaFechaInicio().getTime());
+			pstmtDias.setDate(2, sqlDate);
+			pstmtDias.setString(3, nuevoPersonal.getDiaObservacion());
+			pstmtDias.setString(4, nuevoPersonal.getDias());
+			pstmtDias.setString(5, nuevoPersonal.getAdministradorAlta());
+			pstmtDias.executeUpdate();
+			
 			conn.conexion.commit();
+		
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1050,6 +1095,15 @@ public class PersonalCont extends AncestroCont {
 			}
 			if (pstmtAdmin != null) {
 				pstmtAdmin.close();
+			}
+			if (pstmtCategoria != null){
+				pstmtCategoria.close();
+			}
+			if (pstmtFechaIngreso != null){
+				pstmtFechaIngreso.close();
+			}
+			if (pstmtDias != null){
+				pstmtDias.close();
 			}
 			if (conn.conexion != null) {
 				conn.conexion.close();
@@ -1246,6 +1300,7 @@ public class PersonalCont extends AncestroCont {
 	@Override
 	public String updateSQL() {
 		java.sql.Date sqlDate = new java.sql.Date(this.personal.getFechaNacimiento().getTime());
+		System.out.println("estado: "+this.personal.getEstado());
 		String SQL = "UPDATE ficha_personal.personales SET pers_estado='" + this.personal.getEstado()
 				+ "', pers_fecha_nacimiento='" + sqlDate + "', pers_sexo='" + this.personal.getSexo()
 				+ "', pers_estado_civil='" + this.personal.getEstadoCivil() + "', pers_telefonos='"

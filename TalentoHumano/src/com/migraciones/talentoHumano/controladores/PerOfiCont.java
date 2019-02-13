@@ -63,18 +63,11 @@ public class PerOfiCont extends AncestroCont {
 		conn.conexion.setAutoCommit(false);
 
 		PreparedStatement pstmUpdateTemporal = null, pstmtUpdate = null, pstmtInsert = null;
-//		String updateTempSQL = "UPDATE ficha_personal.personales SET oficina_id="
-//				+ this.getIdOficina(nuevaOficina.getOficinaCodigo()) + " WHERE pers_cedula_nro='"
-//				+ nuevaOficina.getCedula()+"'";
 		String updateTableSQL = "UPDATE ficha_personal.personales_oficinas SET perofi_estado='H', perofi_fecha_fin=? WHERE personal_cedula='"
 				+ nuevaOficina.getCedula() + "' AND perofi_estado='A'";
 		String insertTableSQL = "INSERT INTO ficha_personal.personales_oficinas(personal_cedula,oficina_id,perofi_fecha_inicio,perofi_observacion,admin_login) VALUES(?,?,?,?,?)";
 
 		try {
-			// temporal hasta actualizacion de reportes
-//			pstmUpdateTemporal = conn.conexion.prepareStatement(updateTempSQL);
-//			pstmUpdateTemporal.executeUpdate();
-
 			// actualizacion del ultima oficina del personal que pasa de activo
 			// a historico o a baja
 			pstmtUpdate = conn.conexion.prepareStatement(updateTableSQL);
