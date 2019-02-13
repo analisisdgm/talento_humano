@@ -1,4 +1,4 @@
-package com.migraciones.talentoHumano.controllers;
+package com.migraciones.talentoHumano.controladores;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import com.migraciones.talentoHumano.dataBases.ConexionPostgresql;
 import com.migraciones.talentoHumano.modelos.Dependencia;
 
-public class DependenciaController extends AncestroController {
+public class DependenciaCont extends AncestroCont {
 
 	private Dependencia dependencia = new Dependencia();
 
@@ -17,13 +17,14 @@ public class DependenciaController extends AncestroController {
 		try {
 			ConexionPostgresql conn = new ConexionPostgresql();
 			conn.sentencia = (Statement) conn.conexion.createStatement();
-			conn.resultado = conn.sentencia.executeQuery("SELECT * FROM ficha_personal.dependencias ORDER BY dep_id");
+			conn.resultado = conn.sentencia.executeQuery("SELECT * FROM ficha_personal.dependencias_vista ORDER BY id");
 			while (conn.resultado.next()) {
 				Dependencia dep = new Dependencia();
-				dep.setId(conn.resultado.getInt("dep_id"));
-				dep.setDescripcion(conn.resultado.getString("dep_descripcion"));
-				dep.setCodigo(conn.resultado.getString("dep_codigo"));
-				dep.setIdPadre(conn.resultado.getInt("dependencia_id_padre"));
+				dep.setId(conn.resultado.getInt("id"));
+				dep.setDescripcion(conn.resultado.getString("descripcion"));
+				dep.setCodigo(conn.resultado.getString("codigo"));
+				dep.setIdPadre(conn.resultado.getInt("id_padre"));
+				dep.setOficina(conn.resultado.getString("oficina_codigo"));
 				listaDependencias.add(dep);
 			}
 			conn.conexion.close();
@@ -39,12 +40,15 @@ public class DependenciaController extends AncestroController {
 			ConexionPostgresql conn = new ConexionPostgresql();
 			conn.sentencia = (Statement) conn.conexion.createStatement();
 			conn.resultado = conn.sentencia
-					.executeQuery("SELECT * FROM ficha_personal.dependencias WHERE dep_id=" + id);
+					.executeQuery("SELECT * FROM ficha_personal.dependencias_vista WHERE id=" + id);
 			while (conn.resultado.next()) {
-				dep.setId(conn.resultado.getInt("dep_id"));
-				dep.setDescripcion(conn.resultado.getString("dep_descripcion"));
-				dep.setCodigo(conn.resultado.getString("dep_codigo"));
-				dep.setIdPadre(conn.resultado.getInt("dependencia_id_padre"));
+				dep.setId(conn.resultado.getInt("id"));
+				dep.setDescripcion(conn.resultado.getString("descripcion"));
+				dep.setCodigo(conn.resultado.getString("codigo"));
+				dep.setIdPadre(conn.resultado.getInt("id_padre"));
+				dep.setIdOficina(conn.resultado.getInt("oficina_id"));
+				dep.setCodigoOficina(conn.resultado.getString("oficina_codigo"));
+				dep.setOficina(conn.resultado.getString("oficina"));
 			}
 			conn.conexion.close();
 		} catch (SQLException e) {
@@ -59,12 +63,15 @@ public class DependenciaController extends AncestroController {
 			ConexionPostgresql conn = new ConexionPostgresql();
 			conn.sentencia = (Statement) conn.conexion.createStatement();
 			conn.resultado = conn.sentencia
-					.executeQuery("SELECT * FROM ficha_personal.dependencias WHERE dep_codigo='" + codigo + "'");
+					.executeQuery("SELECT * FROM ficha_personal.dependencias_vista WHERE codigo='" + codigo + "'");
 			while (conn.resultado.next()) {
-				dep.setId(conn.resultado.getInt("dep_id"));
-				dep.setDescripcion(conn.resultado.getString("dep_descripcion"));
-				dep.setCodigo(conn.resultado.getString("dep_codigo"));
-				dep.setIdPadre(conn.resultado.getInt("dependencia_id_padre"));
+				dep.setId(conn.resultado.getInt("id"));
+				dep.setDescripcion(conn.resultado.getString("descripcion"));
+				dep.setCodigo(conn.resultado.getString("codigo"));
+				dep.setIdPadre(conn.resultado.getInt("id_padre"));
+				dep.setIdOficina(conn.resultado.getInt("oficina_id"));
+				dep.setCodigoOficina(conn.resultado.getString("oficina_codigo"));
+				dep.setOficina(conn.resultado.getString("oficina"));
 			}
 			conn.conexion.close();
 		} catch (SQLException e) {
