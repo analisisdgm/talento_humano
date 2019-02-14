@@ -49,13 +49,13 @@ public class Personal {
 	private Date perFechaIngreso;
 	private String perFechaIngObs;
 	private String perFechaIngCondicion;
-	
 	private Date perFechaDesvinculacion;
 	private String perFechaDesvObs;
 	private int idDia;
 	private Date diaFechaInicio;
 	private String diaObservacion;
 	private String dias;
+	private Date fechaActual;
 	
 	public String getCedula() {
 		return cedula;
@@ -452,6 +452,14 @@ public class Personal {
 
 	public void setIdDia(int idDia) {
 		this.idDia = idDia;
+	}
+
+	public Date getFechaActual() {
+		return fechaActual;
+	}
+
+	public void setFechaActual(Date fechaActual) {
+		this.fechaActual = fechaActual;
 	}
 
 }

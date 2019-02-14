@@ -96,7 +96,7 @@ public boolean verificarPeriodo(String cedula, java.util.Date fechaI) throws Cla
 				
 			}
 		} catch (SQLException e) {
-			// e.printStackTrace();
+			 e.printStackTrace();
 			conn.conexion.rollback();
 //			return false;
 		} finally {
@@ -154,7 +154,8 @@ public boolean verificarPeriodo(String cedula, java.util.Date fechaI) throws Cla
 	@Override
 	public String updateSQL() {
 		return "UPDATE ficha_personal.personales_tipos SET pertip_observacion='"
-				+ this.personalCondicion.getObservacion() + "' WHERE personal_cedula='"
+				+ this.personalCondicion.getObservacion() + "', pertip_fecha_inicio='"+this.personalCondicion.getFechaInicio()+"', pertip_fecha_fin='"
+				+this.personalCondicion.getFechaFin()+"' WHERE personal_cedula='"
 				+ this.personalCondicion.getCedula() + "' AND pertip_estado='A'";
 	}
 

@@ -414,6 +414,7 @@ public class PersonalCont extends AncestroCont {
 				personal.setCondObservacion(conn.resultado.getString("cond_observacion"));
 				personal.setCondFechaIni(conn.resultado.getDate("cond_fecha_inicio"));
 				personal.setCondFechaFin(conn.resultado.getDate("cond_fecha_fin"));
+				personal.setTipoPersonal(conn.resultado.getString("tipo_condicion"));
 				//DEPENDENCIA
 				personal.setCodDependencia(conn.resultado.getString("dep_codigo"));
 				personal.setDependencia(conn.resultado.getString("dependencia"));
@@ -1299,14 +1300,21 @@ public class PersonalCont extends AncestroCont {
 
 	@Override
 	public String updateSQL() {
+		String SQL = "";
+		try{
 		java.sql.Date sqlDate = new java.sql.Date(this.personal.getFechaNacimiento().getTime());
-		System.out.println("estado: "+this.personal.getEstado());
-		String SQL = "UPDATE ficha_personal.personales SET pers_estado='" + this.personal.getEstado()
+
+		SQL = "UPDATE ficha_personal.personales SET pers_estado='" + this.personal.getEstado()
+				+ "', pers_nombre='" + this.personal.getNombres() + "', pers_apellido='"+this.personal.getApellidos()
 				+ "', pers_fecha_nacimiento='" + sqlDate + "', pers_sexo='" + this.personal.getSexo()
 				+ "', pers_estado_civil='" + this.personal.getEstadoCivil() + "', pers_telefonos='"
 				+ this.personal.getTelefonos() + "', pers_observacion='" + this.personal.getObservacion()
 				+ "', pers_correo='" + this.personal.getCorreo() + "', pers_domicilio='" + this.personal.getDomicilio()
 				+ "' WHERE pers_cedula_nro='" + this.personal.getCedula() + "';";
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return SQL;
 	}
 

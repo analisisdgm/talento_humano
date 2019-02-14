@@ -1,5 +1,7 @@
 package com.migraciones.talentoHumano.utilities;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import com.migraciones.talentoHumano.dataBases.ConexionPostgresql;
 
 public class FechaUtil {
 
@@ -199,7 +203,23 @@ public class FechaUtil {
 		// numero de dias a sumar o restar en caso que dias sea<0
 		calendario.add(Calendar.DAY_OF_YEAR, dias);
 		return calendario.getTime();
-
+	}
+	//OBTENER LA FECHA ACTUAL DE LA BASE DE DATOS
+	public Date getFechaActual() throws ClassNotFoundException {
+		Date fechaActual=null;
+		try {
+			ConexionPostgresql conn = new ConexionPostgresql();
+			conn.sentencia = (Statement) conn.conexion.createStatement();
+			conn.resultado = conn.sentencia
+					.executeQuery("SELECT CURRENT_TIMESTAMP AS fecha");
+			while (conn.resultado.next()) {
+				fechaActual = conn.resultado.getDate("fecha");
+			}
+			conn.conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return fechaActual;
 	}
 
 }

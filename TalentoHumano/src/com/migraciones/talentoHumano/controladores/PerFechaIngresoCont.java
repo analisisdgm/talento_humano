@@ -66,6 +66,7 @@ public class PerFechaIngresoCont extends AncestroCont {
 			pstmtInsert.setDate(2, sqlDate1);
 			pstmtInsert.setString(3, nuevaFechaIngreso.getObservacion());
 			pstmtInsert.setString(4, nuevaFechaIngreso.getAdministrador());
+			
 			pstmtInsert.setString(5, nuevaFechaIngreso.getCondicion());
 
 			pstmtInsert.executeUpdate();

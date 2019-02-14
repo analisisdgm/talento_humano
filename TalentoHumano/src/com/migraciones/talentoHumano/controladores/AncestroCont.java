@@ -51,6 +51,7 @@ public abstract class AncestroCont {
 			ConexionPostgresql conn = new ConexionPostgresql();
 			conn.sentencia = (Statement) conn.conexion.createStatement();
 			conn.sentencia.executeUpdate(SQL);
+	
 			conn.sentencia.close();
 			conn.conexion.close();
 			return true;

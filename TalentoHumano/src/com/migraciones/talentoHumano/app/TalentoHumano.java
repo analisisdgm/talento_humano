@@ -59,6 +59,7 @@ import com.migraciones.talentoHumano.modelos.Turno;
 import com.migraciones.talentoHumano.models.HorarioPersonal;
 import com.migraciones.talentoHumano.models.TipoJustificativo;
 import com.migraciones.talentoHumano.utilities.Encrypt;
+import com.migraciones.talentoHumano.utilities.FechaUtil;
 import com.migraciones.talentoHumano.utilities.ImprimirReporte;
 
 public class TalentoHumano {
@@ -109,6 +110,11 @@ public class TalentoHumano {
 			Date fechaFin) throws ClassNotFoundException {
 		PersonalCont perCont = new PersonalCont();
 		return perCont.getInasistenciaSinJustificarByCedula(cedula, fechaInicio, fechaFin);
+	}
+	
+	public Date obtenerFechaActual()throws ClassNotFoundException{
+		FechaUtil fecha = new FechaUtil();
+		return fecha.getFechaActual();
 	}
 
 	// ##############################################
@@ -480,10 +486,9 @@ public boolean actualizarPersonalDias(PerDias nuevoDia, String opcion)
 	}
 	
 	
-	// ###############################################
-	// ########## TIPOS DE PERSONALES ################
-	// ###############################################
-
+// ###############################################
+// ########## TIPOS DE PERSONALES ################
+// ###############################################
 	public boolean actualizarCondicionPersonal(PerCon nuevaCondicion, String opcion)
 			throws ClassNotFoundException, SQLException {
 		PerConCont perCont = new PerConCont();

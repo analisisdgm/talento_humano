@@ -14,24 +14,24 @@ public class GlobalUtil {
 	// ######## PATH LOCALES #######
 	// #############################
 
-	private static String PATH_REPORTE = System.getProperty("user.dir")
-			+ "/src/com/migraciones/talentoHumano/reportes/";
-	private static String PATH_REPORTE_CARNET = "C:\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
-	public static String PATH_CARNET = "C:\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
-	public static final String PUBLIC_REPORTE_CARNET = PATH_REPORTE_CARNET;
+//	private static String PATH_REPORTE = System.getProperty("user.dir")
+//			+ "/src/com/migraciones/talentoHumano/reportes/";
+//	private static String PATH_REPORTE_CARNET = "C:\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
+//	public static String PATH_CARNET = "C:\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
+//	public static final String PUBLIC_REPORTE_CARNET = PATH_REPORTE_CARNET;
 
 	// #############################
 	// ######## PATH REMOTOS #######
 	// #############################
 
-	// private static String SERVER = "192.168.1.245";
-	// public static String PATH_CARNET = "\\\\" + SERVER
-	// + "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
-	// private static String PATH_REPORTE = "\\\\" + SERVER
-	// + "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\reportes\\";
-	// private static String PATH_REPORTE_CARNET = "\\\\" + SERVER
-	// + "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
-	// public static final String PUBLIC_REPORTE_CARNET = PATH_REPORTE_CARNET;
+	private static String SERVER = "192.168.1.245";
+	public static String PATH_CARNET = "\\\\" + SERVER
+			+ "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
+	private static String PATH_REPORTE = "\\\\" + SERVER
+			+ "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\reportes\\";
+	private static String PATH_REPORTE_CARNET = "\\\\" + SERVER
+			+ "\\TalentoHumano$\\src\\com\\migraciones\\talentoHumano\\carnets\\";
+	public static final String PUBLIC_REPORTE_CARNET = PATH_REPORTE_CARNET;
 
 	// #############################
 	// ######### IMAGENES ##########

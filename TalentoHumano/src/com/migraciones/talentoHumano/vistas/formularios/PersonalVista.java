@@ -84,7 +84,7 @@ public class PersonalVista extends AncestroVista {
 	private PerDep perDep;
 	private PerTur perTur;
 	private PerCat perCat;
-	private PerDias perDias; 
+	private PerDias perDias;
 	private PerFechaIngreso perFechaIngreso;
 	@SuppressWarnings("rawtypes")
 	private JComboBox cbSexo;
@@ -201,6 +201,7 @@ public class PersonalVista extends AncestroVista {
 	private JPanel panelCredencial;
 	private JPanel panelHorario;
 	private JLabel lblVigDias;
+	private JTextField txtMensaje;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public PersonalVista() {
@@ -221,7 +222,7 @@ public class PersonalVista extends AncestroVista {
 		panelCampos.setLayout(null);
 
 		pnFuncionario = new JPanel();
-		pnFuncionario.setBounds(10, 11, 575, 143);
+		pnFuncionario.setBounds(10, 11, 575, 118);
 		pnFuncionario.setLayout(null);
 		pnFuncionario.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
 		pnFuncionario.setBackground(Color.WHITE);
@@ -375,152 +376,152 @@ public class PersonalVista extends AncestroVista {
 		tbVentanas = new JTabbedPane(JTabbedPane.TOP);
 		tbVentanas.setBounds(10, 165, 731, 340);
 		panelCampos.add(tbVentanas);
-		
-				pnDatosPersonales = new JPanel();
-				pnDatosPersonales.setBackground(Color.WHITE);
-				tbVentanas.addTab("Datos Personales", null, pnDatosPersonales, null);
-				lblFechaNacimento = new JLabel("<html><body>Fecha de<br> Nacimento:</body></html>");
-				lblFechaNacimento.setBounds(3, 4, 89, 32);
-				lblFechaNacimento.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblFechaNacimento.setFont(new Font("Tahoma", Font.BOLD, 11));
-				
-						lblSexo = new JLabel("Sexo:");
-						lblSexo.setHorizontalAlignment(SwingConstants.RIGHT);
-						lblSexo.setBounds(236, 11, 89, 25);
-						lblSexo.setFont(new Font("Tahoma", Font.BOLD, 11));
-						
-								JLabel lblDomicilio = new JLabel("Domicilio:");
-								lblDomicilio.setHorizontalAlignment(SwingConstants.RIGHT);
-								lblDomicilio.setBounds(3, 115, 89, 14);
-								lblDomicilio.setFont(new Font("Tahoma", Font.BOLD, 11));
-								
-										JLabel lblTelefonos = new JLabel("Telefonos:");
-										lblTelefonos.setHorizontalAlignment(SwingConstants.RIGHT);
-										lblTelefonos.setBounds(3, 50, 89, 14);
-										lblTelefonos.setFont(new Font("Tahoma", Font.BOLD, 11));
-										
-												JLabel lblEmail = new JLabel("E-mail:");
-												lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
-												lblEmail.setBounds(3, 82, 89, 14);
-												lblEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
-												
-														JLabel lblObservacin = new JLabel("Observaci\u00F3n:");
-														lblObservacin.setHorizontalAlignment(SwingConstants.RIGHT);
-														lblObservacin.setBounds(3, 182, 89, 14);
-														lblObservacin.setFont(new Font("Tahoma", Font.BOLD, 11));
-														
-																JLabel lblEstadoCivil = new JLabel("Estado civil:");
-																lblEstadoCivil.setHorizontalAlignment(SwingConstants.RIGHT);
-																lblEstadoCivil.setBounds(489, 11, 89, 25);
-																lblEstadoCivil.setFont(new Font("Tahoma", Font.BOLD, 11));
-																
-																		dcFechaNacimiento = new JDateChooser();
-																		dcFechaNacimiento.setDateFormatString("dd/MM/yyyy");
-																		dcFechaNacimiento.setEnabled(false);
-																		
-																				dcFechaNacimiento.setBounds(108, 14, 95, 20);
-																				
-																						cbSexo = new JComboBox();
-																						cbSexo.setEnabled(false);
-																						cbSexo.setBounds(335, 14, 109, 20);
-																						cbSexo.setModel(new DefaultComboBoxModel(new String[] { "SELECCIONE", "FEMENINO", "MASCULINO" }));
-																						
-																								cbEstadoCivil = new JComboBox();
-																								cbEstadoCivil.setEnabled(false);
-																								cbEstadoCivil.setBounds(586, 14, 109, 20);
-																								cbEstadoCivil.setModel(new DefaultComboBoxModel(
-																										new String[] { "SELECCIONE", "SOLTERO/A", "CASADO/A", "DIVORCIADO/A", "VIUDO/A" }));
-																								pnDatosPersonales.setLayout(null);
-																								pnDatosPersonales.add(lblObservacin);
-																								pnDatosPersonales.add(lblTelefonos);
-																								pnDatosPersonales.add(lblDomicilio);
-																								pnDatosPersonales.add(lblEmail);
-																								pnDatosPersonales.add(lblFechaNacimento);
-																								pnDatosPersonales.add(dcFechaNacimiento);
-																								pnDatosPersonales.add(lblSexo);
-																								pnDatosPersonales.add(cbSexo);
-																								pnDatosPersonales.add(lblEstadoCivil);
-																								pnDatosPersonales.add(cbEstadoCivil);
-																								
-																										txtTelefonos = new JTextField();
-																										txtTelefonos.setEnabled(false);
-																										txtTelefonos.setBounds(108, 48, 612, 20);
-																										pnDatosPersonales.add(txtTelefonos);
-																										txtTelefonos.setColumns(10);
-																										
-																												txtCorreo = new JTextField();
-																												txtCorreo.setEnabled(false);
-																												txtCorreo.setBounds(108, 79, 612, 20);
-																												pnDatosPersonales.add(txtCorreo);
-																												txtCorreo.setColumns(10);
-																												
-																														txtDomicilio = new JTextArea();
-																														txtDomicilio.addKeyListener(new KeyAdapter() {
-																															@Override
-																															public void keyTyped(KeyEvent arg0) {
-																																txtDomicilioKeyTyped(arg0);
-																															}
-																														});
-																														txtDomicilio.setEnabled(false);
-																														txtDomicilio.setBorder(UIManager.getBorder("TextField.border"));
-																														txtDomicilio.setBackground(Color.WHITE);
-																														txtDomicilio.setBounds(108, 112, 612, 54);
-																														pnDatosPersonales.add(txtDomicilio);
-																														
-																																lblEdad = new JLabel("");
-																																lblEdad.setVerticalAlignment(SwingConstants.BOTTOM);
-																																lblEdad.setFont(new Font("Tahoma", Font.BOLD, 11));
-																																lblEdad.setBounds(209, 14, 58, 21);
-																																pnDatosPersonales.add(lblEdad);
-																																
-																																		scrollPane_1 = new JScrollPane();
-																																		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-																																		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-																																		scrollPane_1.setBounds(108, 182, 612, 94);
-																																		pnDatosPersonales.add(scrollPane_1);
-																																		
-																																				txtObservacion = new JTextArea();
-																																				scrollPane_1.setViewportView(txtObservacion);
-																																				txtObservacion.addKeyListener(new KeyAdapter() {
-																																					@Override
-																																					public void keyTyped(KeyEvent e) {
-																																						txtObservacionKeyTyped(e);
-																																					}
-																																				});
-																																				txtObservacion.setEnabled(false);
-																																				txtObservacion.setBorder(UIManager.getBorder("TextField.border"));
-																																				txtObservacion.setBackground(Color.WHITE);
+
+		pnDatosPersonales = new JPanel();
+		pnDatosPersonales.setBackground(Color.WHITE);
+		tbVentanas.addTab("Datos Personales", null, pnDatosPersonales, null);
+		lblFechaNacimento = new JLabel("<html><body>Fecha de<br> Nacimento:</body></html>");
+		lblFechaNacimento.setBounds(3, 4, 89, 32);
+		lblFechaNacimento.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblFechaNacimento.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		lblSexo = new JLabel("Sexo:");
+		lblSexo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSexo.setBounds(236, 11, 89, 25);
+		lblSexo.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		JLabel lblDomicilio = new JLabel("Domicilio:");
+		lblDomicilio.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDomicilio.setBounds(3, 115, 89, 14);
+		lblDomicilio.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		JLabel lblTelefonos = new JLabel("Telefonos:");
+		lblTelefonos.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTelefonos.setBounds(3, 50, 89, 14);
+		lblTelefonos.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		JLabel lblEmail = new JLabel("E-mail:");
+		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEmail.setBounds(3, 82, 89, 14);
+		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		JLabel lblObservacin = new JLabel("Observaci\u00F3n:");
+		lblObservacin.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblObservacin.setBounds(3, 182, 89, 14);
+		lblObservacin.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		JLabel lblEstadoCivil = new JLabel("Estado civil:");
+		lblEstadoCivil.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEstadoCivil.setBounds(489, 11, 89, 25);
+		lblEstadoCivil.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		dcFechaNacimiento = new JDateChooser();
+		dcFechaNacimiento.setDateFormatString("dd/MM/yyyy");
+		dcFechaNacimiento.setEnabled(false);
+
+		dcFechaNacimiento.setBounds(108, 14, 95, 20);
+
+		cbSexo = new JComboBox();
+		cbSexo.setEnabled(false);
+		cbSexo.setBounds(335, 14, 109, 20);
+		cbSexo.setModel(new DefaultComboBoxModel(new String[] { "SELECCIONE", "FEMENINO", "MASCULINO" }));
+
+		cbEstadoCivil = new JComboBox();
+		cbEstadoCivil.setEnabled(false);
+		cbEstadoCivil.setBounds(586, 14, 109, 20);
+		cbEstadoCivil.setModel(new DefaultComboBoxModel(
+				new String[] { "SELECCIONE", "SOLTERO/A", "CASADO/A", "DIVORCIADO/A", "VIUDO/A" }));
+		pnDatosPersonales.setLayout(null);
+		pnDatosPersonales.add(lblObservacin);
+		pnDatosPersonales.add(lblTelefonos);
+		pnDatosPersonales.add(lblDomicilio);
+		pnDatosPersonales.add(lblEmail);
+		pnDatosPersonales.add(lblFechaNacimento);
+		pnDatosPersonales.add(dcFechaNacimiento);
+		pnDatosPersonales.add(lblSexo);
+		pnDatosPersonales.add(cbSexo);
+		pnDatosPersonales.add(lblEstadoCivil);
+		pnDatosPersonales.add(cbEstadoCivil);
+
+		txtTelefonos = new JTextField();
+		txtTelefonos.setEnabled(false);
+		txtTelefonos.setBounds(108, 48, 612, 20);
+		pnDatosPersonales.add(txtTelefonos);
+		txtTelefonos.setColumns(10);
+
+		txtCorreo = new JTextField();
+		txtCorreo.setEnabled(false);
+		txtCorreo.setBounds(108, 79, 612, 20);
+		pnDatosPersonales.add(txtCorreo);
+		txtCorreo.setColumns(10);
+
+		txtDomicilio = new JTextArea();
+		txtDomicilio.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				txtDomicilioKeyTyped(arg0);
+			}
+		});
+		txtDomicilio.setEnabled(false);
+		txtDomicilio.setBorder(UIManager.getBorder("TextField.border"));
+		txtDomicilio.setBackground(Color.WHITE);
+		txtDomicilio.setBounds(108, 112, 612, 54);
+		pnDatosPersonales.add(txtDomicilio);
+
+		lblEdad = new JLabel("");
+		lblEdad.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblEdad.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEdad.setBounds(209, 14, 58, 21);
+		pnDatosPersonales.add(lblEdad);
+
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setBounds(108, 182, 612, 94);
+		pnDatosPersonales.add(scrollPane_1);
+
+		txtObservacion = new JTextArea();
+		scrollPane_1.setViewportView(txtObservacion);
+		txtObservacion.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				txtObservacionKeyTyped(e);
+			}
+		});
+		txtObservacion.setEnabled(false);
+		txtObservacion.setBorder(UIManager.getBorder("TextField.border"));
+		txtObservacion.setBackground(Color.WHITE);
 
 		pnDatosLaborales = new JPanel();
 		tbVentanas.addTab("Datos Laborales I", null, pnDatosLaborales, null);
 		pnDatosLaborales.setLayout(null);
 		pnDatosLaborales.setBackground(Color.WHITE);
-		
+
 		JPanel panelCondicion = new JPanel();
 		panelCondicion.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		panelCondicion.setBackground(Color.WHITE);
 		panelCondicion.setBounds(0, 132, 726, 94);
 		pnDatosLaborales.add(panelCondicion);
 		panelCondicion.setLayout(null);
-		
+
 		lblCondicion = new JLabel("Condicion:");
 		lblCondicion.setBounds(3, 4, 89, 14);
 		lblCondicion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCondicion.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelCondicion.add(lblCondicion);
-		
+
 		txtCodCond = new JTextField();
 		txtCodCond.setBounds(108, 4, 49, 20);
 		txtCodCond.setEnabled(false);
 		txtCodCond.setColumns(10);
 		panelCondicion.add(txtCodCond);
-		
+
 		txtCondicion = new JTextField();
 		txtCondicion.setBounds(167, 4, 344, 20);
 		txtCondicion.setEnabled(false);
 		txtCondicion.setColumns(10);
 		panelCondicion.add(txtCondicion);
-		
+
 		btnCondicion = new JButton("");
 		btnCondicion.setBounds(521, 4, 25, 21);
 		btnCondicion.setEnabled(false);
@@ -537,36 +538,36 @@ public class PersonalVista extends AncestroVista {
 				}
 			}
 		});
-		
+
 		lblVigCondicion = new JLabel("Desde:");
 		lblVigCondicion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblVigCondicion.setVerticalAlignment(SwingConstants.TOP);
 		lblVigCondicion.setBounds(3, 34, 89, 14);
 		lblVigCondicion.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelCondicion.add(lblVigCondicion);
-		
+
 		dcHastaCondicion = new JDateChooser();
 		dcHastaCondicion.setBounds(300, 34, 87, 20);
 		dcHastaCondicion.setEnabled(false);
 		dcHastaCondicion.setDateFormatString("dd/MM/yyyy");
 		panelCondicion.add(dcHastaCondicion);
-		
+
 		lblHastaCondicion = new JLabel("Hasta:");
 		lblHastaCondicion.setBounds(250, 34, 57, 14);
 		lblHastaCondicion.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelCondicion.add(lblHastaCondicion);
-		
+
 		dcDesdeCondicion = new JDateChooser();
 		dcDesdeCondicion.setBounds(108, 34, 87, 20);
 		dcDesdeCondicion.setEnabled(false);
 		dcDesdeCondicion.setDateFormatString("dd/MM/yyyy");
 		panelCondicion.add(dcDesdeCondicion);
-		
+
 		JLabel label = new JLabel("Obs.:", SwingConstants.RIGHT);
 		label.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label.setBounds(3, 64, 89, 14);
 		panelCondicion.add(label);
-		
+
 		txtObsCondicion = new JTextField();
 		txtObsCondicion.addKeyListener(new KeyAdapter() {
 			@Override
@@ -578,32 +579,32 @@ public class PersonalVista extends AncestroVista {
 		txtObsCondicion.setColumns(10);
 		txtObsCondicion.setBounds(108, 64, 606, 20);
 		panelCondicion.add(txtObsCondicion);
-		
+
 		JPanel panelDesvinculacion = new JPanel();
 		panelDesvinculacion.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		panelDesvinculacion.setBackground(Color.WHITE);
 		panelDesvinculacion.setBounds(0, 70, 726, 64);
 		pnDatosLaborales.add(panelDesvinculacion);
 		panelDesvinculacion.setLayout(null);
-		
+
 		JLabel lblfechaDeDesvinculacion = new JLabel("<html><body>Fecha de<br> Desvinculacion:</body></html>");
 		lblfechaDeDesvinculacion.setBounds(3, 2, 89, 28);
 		lblfechaDeDesvinculacion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblfechaDeDesvinculacion.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelDesvinculacion.add(lblfechaDeDesvinculacion);
-		
+
 		dcDesvinculacion = new JDateChooser();
 		dcDesvinculacion.setBounds(108, 4, 87, 20);
 		dcDesvinculacion.setEnabled(false);
 		dcDesvinculacion.setDateFormatString("dd/MM/yyyy");
 		panelDesvinculacion.add(dcDesvinculacion);
-		
+
 		JLabel label_4 = new JLabel("Obs.:");
 		label_4.setBounds(3, 42, 89, 14);
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelDesvinculacion.add(label_4);
-		
+
 		txtObsDesvinculacion = new JTextField();
 		txtObsDesvinculacion.addKeyListener(new KeyAdapter() {
 			@Override
@@ -616,7 +617,7 @@ public class PersonalVista extends AncestroVista {
 		txtObsDesvinculacion.setColumns(10);
 		panelDesvinculacion.add(txtObsDesvinculacion);
 		panelCondicion.add(btnCondicion);
-		
+
 		JPanel panelIngreso = new JPanel();
 		panelIngreso.setBackground(Color.WHITE);
 		panelIngreso.setForeground(Color.WHITE);
@@ -624,7 +625,7 @@ public class PersonalVista extends AncestroVista {
 		panelIngreso.setBounds(0, 0, 726, 71);
 		pnDatosLaborales.add(panelIngreso);
 		panelIngreso.setLayout(null);
-		
+
 		txtObsIngreso = new JTextField();
 		txtObsIngreso.setBounds(108, 34, 605, 20);
 		panelIngreso.add(txtObsIngreso);
@@ -636,62 +637,68 @@ public class PersonalVista extends AncestroVista {
 		});
 		txtObsIngreso.setEnabled(false);
 		txtObsIngreso.setColumns(10);
-		
+
 		lblObsIngreso = new JLabel("Obs.:");
 		lblObsIngreso.setBounds(3, 38, 89, 14);
 		panelIngreso.add(lblObsIngreso);
 		lblObsIngreso.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblObsIngreso.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
+
 		lblFechaIngreso = new JLabel("<html><body>Fecha de<br> Ingreso:</body></html>");
 		lblFechaIngreso.setBounds(3, 2, 89, 28);
 		panelIngreso.add(lblFechaIngreso);
 		lblFechaIngreso.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblFechaIngreso.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
+
 		dcFechaIngreso = new JDateChooser();
 		dcFechaIngreso.setBounds(108, 4, 87, 20);
 		panelIngreso.add(dcFechaIngreso);
 		dcFechaIngreso.setEnabled(false);
 		dcFechaIngreso.setDateFormatString("dd/MM/yyyy");
-		
+
 		JPanel panelCategoria = new JPanel();
 		panelCategoria.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		panelCategoria.setBackground(Color.WHITE);
 		panelCategoria.setBounds(0, 225, 726, 71);
 		pnDatosLaborales.add(panelCategoria);
 		panelCategoria.setLayout(null);
-		
+
 		txtCodCategoria = new JTextField();
 		txtCodCategoria.setBounds(108, 4, 49, 20);
 		panelCategoria.add(txtCodCategoria);
 		txtCodCategoria.setEnabled(false);
 		txtCodCategoria.setColumns(10);
-		
+
 		lblCategoria = new JLabel("Categoria:");
 		lblCategoria.setBounds(3, 4, 89, 14);
 		panelCategoria.add(lblCategoria);
 		lblCategoria.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
+
 		JLabel label_3 = new JLabel("Obs:");
 		label_3.setBounds(3, 34, 89, 14);
 		panelCategoria.add(label_3);
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
+
 		txtObsCategoria = new JTextField();
+		txtObsCategoria.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				txtObsCategoriaKeyTyped(e);
+			}
+		});
 		txtObsCategoria.setBounds(108, 34, 597, 20);
 		panelCategoria.add(txtObsCategoria);
 		txtObsCategoria.setEnabled(false);
 		txtObsCategoria.setColumns(10);
-		
+
 		txtCategoria = new JTextField();
 		txtCategoria.setBounds(167, 4, 344, 20);
 		panelCategoria.add(txtCategoria);
 		txtCategoria.setEnabled(false);
 		txtCategoria.setColumns(10);
-		
+
 		btnCategoria = new JButton("");
 		btnCategoria.setBounds(521, 4, 25, 21);
 		panelCategoria.add(btnCategoria);
@@ -708,300 +715,312 @@ public class PersonalVista extends AncestroVista {
 		btnCategoria.setEnabled(false);
 		btnCategoria.setIcon(
 				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
-		
+
 		lblVigCategoria = new JLabel("Vigencia:");
-		lblVigCategoria.setBounds(564, 4, 50, 14);
+		lblVigCategoria.setBounds(564, 4, 61, 14);
 		panelCategoria.add(lblVigCategoria);
 		lblVigCategoria.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
+
 		dcVigCat = new JDateChooser();
 		dcVigCat.setBounds(628, 4, 87, 20);
 		panelCategoria.add(dcVigCat);
 		dcVigCat.setEnabled(false);
 		dcVigCat.setDateFormatString("dd/MM/yyyy");
-		
-				JPanel pnDatosLaboralesII = new JPanel();
-				pnDatosLaboralesII.setLayout(null);
-				pnDatosLaboralesII.setBackground(Color.WHITE);
-				tbVentanas.addTab("Datos Laborales II", null, pnDatosLaboralesII, null);
-				
-				txtObsDependencia = new JTextField();
-				txtObsDependencia.setEnabled(false);
-				txtObsDependencia.setColumns(10);
-				txtObsDependencia.setBounds(108, 64, 607, 20);
-				pnDatosLaboralesII.add(txtObsDependencia);
-				
-				panelDependencia = new JPanel();
-				panelDependencia.setBorder(new LineBorder(Color.LIGHT_GRAY));
-				panelDependencia.setBackground(Color.WHITE);
-				panelDependencia.setBounds(0, 0, 726, 98);
-				pnDatosLaboralesII.add(panelDependencia);
-				panelDependencia.setLayout(null);
-				
-				lblDependencia = new JLabel("Dependencia:");
-				lblDependencia.setBounds(3, 4, 89, 14);
-				panelDependencia.add(lblDependencia);
-				lblDependencia.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblDependencia.setFont(new Font("Tahoma", Font.BOLD, 11));
-				
-				txtCodDep = new JTextField();
-				txtCodDep.setBounds(108, 4, 49, 20);
-				panelDependencia.add(txtCodDep);
-				txtCodDep.setEnabled(false);
-				txtCodDep.setColumns(10);
-				
-				txtDependencia = new JTextField();
-				txtDependencia.setBounds(167, 4, 344, 20);
-				panelDependencia.add(txtDependencia);
-				txtDependencia.setEnabled(false);
-				txtDependencia.setColumns(10);
-				
-				btnDependencia = new JButton("");
-				btnDependencia.setBounds(521, 4, 25, 21);
-				panelDependencia.add(btnDependencia);
-				btnDependencia.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						try {
-							btnDependenciaActionPerformed(arg0);
-						} catch (ClassNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				});
-				btnDependencia.setEnabled(false);
-				btnDependencia.setIcon(
-						new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
-				
-				lblVigDependencia = new JLabel("Vigencia:");
-				lblVigDependencia.setBounds(564, 4, 60, 14);
-				panelDependencia.add(lblVigDependencia);
-				lblVigDependencia.setFont(new Font("Tahoma", Font.BOLD, 11));
-				
-				dcVigDependencia = new JDateChooser();
-				dcVigDependencia.setBounds(628, 4, 87, 20);
-				panelDependencia.add(dcVigDependencia);
-				dcVigDependencia.setEnabled(false);
-				dcVigDependencia.setDateFormatString("dd/MM/yyyy");
-				
-				lblOficina = new JLabel("Oficina:");
-				lblOficina.setBounds(3, 34, 89, 14);
-				panelDependencia.add(lblOficina);
-				lblOficina.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblOficina.setFont(new Font("Tahoma", Font.BOLD, 11));
-				
-				txtCodOfi = new JTextField();
-				txtCodOfi.setBounds(108, 34, 49, 20);
-				panelDependencia.add(txtCodOfi);
-				txtCodOfi.setEnabled(false);
-				txtCodOfi.setColumns(10);
-				
-				txtOficina = new JTextField();
-				txtOficina.setBounds(167, 34, 344, 20);
-				panelDependencia.add(txtOficina);
-				txtOficina.setEnabled(false);
-				txtOficina.setColumns(10);
-				
-				JLabel label_6 = new JLabel("Obs.:");
-				label_6.setBounds(3, 64, 89, 14);
-				panelDependencia.add(label_6);
-				label_6.setHorizontalAlignment(SwingConstants.RIGHT);
-				label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-				
-				panelCredencial = new JPanel();
-				panelCredencial.setBorder(new LineBorder(Color.LIGHT_GRAY));
-				panelCredencial.setBackground(Color.WHITE);
-				panelCredencial.setBounds(0, 97, 726, 68);
-				pnDatosLaboralesII.add(panelCredencial);
-				panelCredencial.setLayout(null);
-				
-						lblObs = new JLabel("Obs:");
-						lblObs.setBounds(3, 34, 89, 14);
-						panelCredencial.add(lblObs);
-						lblObs.setHorizontalAlignment(SwingConstants.RIGHT);
-						lblObs.setFont(new Font("Tahoma", Font.BOLD, 11));
-						
-								lblCargo = new JLabel("Credencial:");
-								lblCargo.setBounds(3, 4, 89, 14);
-								panelCredencial.add(lblCargo);
-								lblCargo.setHorizontalAlignment(SwingConstants.RIGHT);
-								lblCargo.setFont(new Font("Tahoma", Font.BOLD, 11));
-								
-										txtCodCargo = new JTextField();
-										txtCodCargo.setBounds(108, 4, 49, 20);
-										panelCredencial.add(txtCodCargo);
-										txtCodCargo.setEnabled(false);
-										txtCodCargo.setColumns(10);
-										
-												txtObsCargo = new JTextField();
-												txtObsCargo.setBounds(108, 34, 607, 20);
-												panelCredencial.add(txtObsCargo);
-												txtObsCargo.addKeyListener(new KeyAdapter() {
-													@Override
-													public void keyTyped(KeyEvent e) {
-														txtObsCargoKeyTyped(e);
-													}
-												});
-												txtObsCargo.setEnabled(false);
-												txtObsCargo.setColumns(10);
-												
-														txtCargo = new JTextField();
-														txtCargo.setBounds(167, 4, 344, 20);
-														panelCredencial.add(txtCargo);
-														txtCargo.setEnabled(false);
-														txtCargo.setColumns(10);
-														
-																btnCargo = new JButton("");
-																btnCargo.setBounds(521, 4, 25, 21);
-																panelCredencial.add(btnCargo);
-																btnCargo.setEnabled(false);
-																btnCargo.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent e) {
-																		try {
-																			btnCargoActionPerformed(e);
-																		} catch (ClassNotFoundException e1) {
-																			// TODO Auto-generated catch block
-																			e1.printStackTrace();
-																		}
-																	}
-																});
-																btnCargo.setIcon(
-																		new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
-																
-																		lblVigCargo = new JLabel("Vigencia:");
-																		lblVigCargo.setBounds(564, 4, 60, 14);
-																		panelCredencial.add(lblVigCargo);
-																		lblVigCargo.setFont(new Font("Tahoma", Font.BOLD, 11));
-																		
-																				dcVigCargo = new JDateChooser();
-																				dcVigCargo.setBounds(628, 4, 87, 20);
-																				panelCredencial.add(dcVigCargo);
-																				dcVigCargo.setEnabled(false);
-																				dcVigCargo.setDateFormatString("dd/MM/yyyy");
-																				
-																				panelHorario = new JPanel();
-																				panelHorario.setBorder(new LineBorder(Color.LIGHT_GRAY));
-																				panelHorario.setBackground(Color.WHITE);
-																				panelHorario.setBounds(0, 164, 726, 131);
-																				pnDatosLaboralesII.add(panelHorario);
-																				panelHorario.setLayout(null);
-																				
-																						lblHorario = new JLabel("Horario:");
-																						lblHorario.setBounds(3, 4, 89, 14);
-																						panelHorario.add(lblHorario);
-																						lblHorario.setHorizontalAlignment(SwingConstants.RIGHT);
-																						lblHorario.setFont(new Font("Tahoma", Font.BOLD, 11));
-																						
-																								txtCodHor = new JTextField();
-																								txtCodHor.setBounds(108, 4, 49, 20);
-																								panelHorario.add(txtCodHor);
-																								txtCodHor.setEnabled(false);
-																								txtCodHor.setColumns(10);
-																								
-																										label_14 = new JLabel("Entrada:");
-																										label_14.setBounds(153, 4, 80, 14);
-																										panelHorario.add(label_14);
-																										label_14.setHorizontalAlignment(SwingConstants.RIGHT);
-																										label_14.setFont(new Font("Tahoma", Font.BOLD, 11));
-																										
-																												txtEntrada = new JTextField();
-																												txtEntrada.setBounds(239, 4, 100, 20);
-																												panelHorario.add(txtEntrada);
-																												txtEntrada.setEnabled(false);
-																												txtEntrada.setColumns(10);
-																												
-																														label_15 = new JLabel("Salida:");
-																														label_15.setBounds(319, 4, 80, 14);
-																														panelHorario.add(label_15);
-																														label_15.setHorizontalAlignment(SwingConstants.RIGHT);
-																														label_15.setFont(new Font("Tahoma", Font.BOLD, 11));
-																														
-																																txtSalida = new JTextField();
-																																txtSalida.setBounds(409, 4, 100, 20);
-																																panelHorario.add(txtSalida);
-																																txtSalida.setEnabled(false);
-																																txtSalida.setColumns(10);
-																																
-																																		btnHorario = new JButton("");
-																																		btnHorario.setBounds(521, 4, 25, 21);
-																																		panelHorario.add(btnHorario);
-																																		btnHorario.setEnabled(false);
-																																		btnHorario.addActionListener(new ActionListener() {
-																																			public void actionPerformed(ActionEvent e) {
-																																				try {
-																																					btnHorarioActionPerformed(e);
-																																				} catch (ClassNotFoundException e1) {
-																																					// TODO Auto-generated catch block
-																																					e1.printStackTrace();
-																																				}
-																																			}
-																																		});
-																																		btnHorario.setIcon(
-																																				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
-																																		
-																																				lblVigHorario = new JLabel("Vigencia:");
-																																				lblVigHorario.setBounds(564, 4, 61, 14);
-																																				panelHorario.add(lblVigHorario);
-																																				lblVigHorario.setFont(new Font("Tahoma", Font.BOLD, 11));
-																																				
-																																						dcVigHorario = new JDateChooser();
-																																						dcVigHorario.setBounds(628, 4, 87, 20);
-																																						panelHorario.add(dcVigHorario);
-																																						dcVigHorario.setEnabled(false);
-																																						dcVigHorario.setDateFormatString("dd/MM/yyyy");
-																																						
-																																								label_13 = new JLabel("Obs.:");
-																																								label_13.setBounds(3, 34, 89, 14);
-																																								panelHorario.add(label_13);
-																																								label_13.setHorizontalAlignment(SwingConstants.RIGHT);
-																																								label_13.setFont(new Font("Tahoma", Font.BOLD, 11));
-																																								
-																																								lblDia = new JLabel("D\u00EDas:");
-																																								lblDia.setBounds(3, 62, 89, 14);
-																																								panelHorario.add(lblDia);
-																																								lblDia.setHorizontalAlignment(SwingConstants.RIGHT);
-																																								lblDia.setFont(new Font("Tahoma", Font.BOLD, 11));
-																																								
-																																								cbDia = new JComboBox();
-																																								cbDia.setBounds(108, 64, 107, 20);
-																																								panelHorario.add(cbDia);
-																																								cbDia.setEnabled(false);
-																																								cbDia.setModel(new DefaultComboBoxModel(new String[] {"SELECCIONE", "HABILES", "TODOS"}));
-																																								
-																																								dcVigDia = new JDateChooser();
-																																								dcVigDia.setBounds(628, 64, 87, 20);
-																																								panelHorario.add(dcVigDia);
-																																								dcVigDia.setEnabled(false);
-																																								dcVigDia.setDateFormatString("dd/MM/yyyy");
-																																								
-																																								label_1 = new JLabel("Obs.:");
-																																								label_1.setBounds(3, 95, 89, 14);
-																																								panelHorario.add(label_1);
-																																								label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-																																								label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-																																								
-																																								txtObsDia = new JTextField();
-																																								txtObsDia.setBounds(108, 94, 607, 20);
-																																								panelHorario.add(txtObsDia);
-																																								txtObsDia.setEnabled(false);
-																																								txtObsDia.setColumns(10);
-																																								
-																																								lblVigDias = new JLabel("Vigencia:");
-																																								lblVigDias.setBounds(564, 64, 61, 14);
-																																								panelHorario.add(lblVigDias);
-																																								lblVigDias.setFont(new Font("Tahoma", Font.BOLD, 11));
-																																								
-																																										txtObsHorario = new JTextField();
-																																										txtObsHorario.setBounds(108, 34, 607, 20);
-																																										panelHorario.add(txtObsHorario);
-																																										txtObsHorario.addKeyListener(new KeyAdapter() {
-																																											@Override
-																																											public void keyTyped(KeyEvent e) {
-																																												txtObsHorarioKeyTyped(e);
-																																											}
-																																										});
-																																										txtObsHorario.setEnabled(false);
-																																										txtObsHorario.setColumns(10);
+
+		JPanel pnDatosLaboralesII = new JPanel();
+		pnDatosLaboralesII.setLayout(null);
+		pnDatosLaboralesII.setBackground(Color.WHITE);
+		tbVentanas.addTab("Datos Laborales II", null, pnDatosLaboralesII, null);
+
+		txtObsDependencia = new JTextField();
+		txtObsDependencia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				txtObsDesvinculacionKeyTyped(arg0);
+			}
+		});
+		txtObsDependencia.setEnabled(false);
+		txtObsDependencia.setColumns(10);
+		txtObsDependencia.setBounds(108, 64, 607, 20);
+		pnDatosLaboralesII.add(txtObsDependencia);
+
+		panelDependencia = new JPanel();
+		panelDependencia.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		panelDependencia.setBackground(Color.WHITE);
+		panelDependencia.setBounds(0, 0, 726, 98);
+		pnDatosLaboralesII.add(panelDependencia);
+		panelDependencia.setLayout(null);
+
+		lblDependencia = new JLabel("Dependencia:");
+		lblDependencia.setBounds(3, 4, 89, 14);
+		panelDependencia.add(lblDependencia);
+		lblDependencia.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDependencia.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		txtCodDep = new JTextField();
+		txtCodDep.setBounds(108, 4, 49, 20);
+		panelDependencia.add(txtCodDep);
+		txtCodDep.setEnabled(false);
+		txtCodDep.setColumns(10);
+
+		txtDependencia = new JTextField();
+		txtDependencia.setBounds(167, 4, 344, 20);
+		panelDependencia.add(txtDependencia);
+		txtDependencia.setEnabled(false);
+		txtDependencia.setColumns(10);
+
+		btnDependencia = new JButton("");
+		btnDependencia.setBounds(521, 4, 25, 21);
+		panelDependencia.add(btnDependencia);
+		btnDependencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					btnDependenciaActionPerformed(arg0);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnDependencia.setEnabled(false);
+		btnDependencia.setIcon(
+				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
+
+		lblVigDependencia = new JLabel("Vigencia:");
+		lblVigDependencia.setBounds(564, 4, 60, 14);
+		panelDependencia.add(lblVigDependencia);
+		lblVigDependencia.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		dcVigDependencia = new JDateChooser();
+		dcVigDependencia.setBounds(628, 4, 87, 20);
+		panelDependencia.add(dcVigDependencia);
+		dcVigDependencia.setEnabled(false);
+		dcVigDependencia.setDateFormatString("dd/MM/yyyy");
+
+		lblOficina = new JLabel("Oficina:");
+		lblOficina.setBounds(3, 34, 89, 14);
+		panelDependencia.add(lblOficina);
+		lblOficina.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblOficina.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		txtCodOfi = new JTextField();
+		txtCodOfi.setBounds(108, 34, 49, 20);
+		panelDependencia.add(txtCodOfi);
+		txtCodOfi.setEnabled(false);
+		txtCodOfi.setColumns(10);
+
+		txtOficina = new JTextField();
+		txtOficina.setBounds(167, 34, 344, 20);
+		panelDependencia.add(txtOficina);
+		txtOficina.setEnabled(false);
+		txtOficina.setColumns(10);
+
+		JLabel label_6 = new JLabel("Obs.:");
+		label_6.setBounds(3, 64, 89, 14);
+		panelDependencia.add(label_6);
+		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		panelCredencial = new JPanel();
+		panelCredencial.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		panelCredencial.setBackground(Color.WHITE);
+		panelCredencial.setBounds(0, 97, 726, 68);
+		pnDatosLaboralesII.add(panelCredencial);
+		panelCredencial.setLayout(null);
+
+		lblObs = new JLabel("Obs:");
+		lblObs.setBounds(3, 34, 89, 14);
+		panelCredencial.add(lblObs);
+		lblObs.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblObs.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		lblCargo = new JLabel("Credencial:");
+		lblCargo.setBounds(3, 4, 89, 14);
+		panelCredencial.add(lblCargo);
+		lblCargo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCargo.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		txtCodCargo = new JTextField();
+		txtCodCargo.setBounds(108, 4, 49, 20);
+		panelCredencial.add(txtCodCargo);
+		txtCodCargo.setEnabled(false);
+		txtCodCargo.setColumns(10);
+
+		txtObsCargo = new JTextField();
+		txtObsCargo.setBounds(108, 34, 607, 20);
+		panelCredencial.add(txtObsCargo);
+		txtObsCargo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				txtObsCargoKeyTyped(e);
+			}
+		});
+		txtObsCargo.setEnabled(false);
+		txtObsCargo.setColumns(10);
+
+		txtCargo = new JTextField();
+		txtCargo.setBounds(167, 4, 344, 20);
+		panelCredencial.add(txtCargo);
+		txtCargo.setEnabled(false);
+		txtCargo.setColumns(10);
+
+		btnCargo = new JButton("");
+		btnCargo.setBounds(521, 4, 25, 21);
+		panelCredencial.add(btnCargo);
+		btnCargo.setEnabled(false);
+		btnCargo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					btnCargoActionPerformed(e);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnCargo.setIcon(
+				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
+
+		lblVigCargo = new JLabel("Vigencia:");
+		lblVigCargo.setBounds(564, 4, 60, 14);
+		panelCredencial.add(lblVigCargo);
+		lblVigCargo.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		dcVigCargo = new JDateChooser();
+		dcVigCargo.setBounds(628, 4, 87, 20);
+		panelCredencial.add(dcVigCargo);
+		dcVigCargo.setEnabled(false);
+		dcVigCargo.setDateFormatString("dd/MM/yyyy");
+
+		panelHorario = new JPanel();
+		panelHorario.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		panelHorario.setBackground(Color.WHITE);
+		panelHorario.setBounds(0, 164, 726, 131);
+		pnDatosLaboralesII.add(panelHorario);
+		panelHorario.setLayout(null);
+
+		lblHorario = new JLabel("Horario:");
+		lblHorario.setBounds(3, 4, 89, 14);
+		panelHorario.add(lblHorario);
+		lblHorario.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblHorario.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		txtCodHor = new JTextField();
+		txtCodHor.setBounds(108, 4, 49, 20);
+		panelHorario.add(txtCodHor);
+		txtCodHor.setEnabled(false);
+		txtCodHor.setColumns(10);
+
+		label_14 = new JLabel("Entrada:");
+		label_14.setBounds(153, 4, 80, 14);
+		panelHorario.add(label_14);
+		label_14.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_14.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		txtEntrada = new JTextField();
+		txtEntrada.setBounds(239, 4, 100, 20);
+		panelHorario.add(txtEntrada);
+		txtEntrada.setEnabled(false);
+		txtEntrada.setColumns(10);
+
+		label_15 = new JLabel("Salida:");
+		label_15.setBounds(319, 4, 80, 14);
+		panelHorario.add(label_15);
+		label_15.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_15.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		txtSalida = new JTextField();
+		txtSalida.setBounds(409, 4, 100, 20);
+		panelHorario.add(txtSalida);
+		txtSalida.setEnabled(false);
+		txtSalida.setColumns(10);
+
+		btnHorario = new JButton("");
+		btnHorario.setBounds(521, 4, 25, 21);
+		panelHorario.add(btnHorario);
+		btnHorario.setEnabled(false);
+		btnHorario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					btnHorarioActionPerformed(e);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnHorario.setIcon(
+				new ImageIcon(PersonalVista.class.getResource("/com/migraciones/talentoHumano/graphics/lupa.png")));
+
+		lblVigHorario = new JLabel("Vigencia:");
+		lblVigHorario.setBounds(564, 4, 61, 14);
+		panelHorario.add(lblVigHorario);
+		lblVigHorario.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		dcVigHorario = new JDateChooser();
+		dcVigHorario.setBounds(628, 4, 87, 20);
+		panelHorario.add(dcVigHorario);
+		dcVigHorario.setEnabled(false);
+		dcVigHorario.setDateFormatString("dd/MM/yyyy");
+
+		label_13 = new JLabel("Obs.:");
+		label_13.setBounds(3, 34, 89, 14);
+		panelHorario.add(label_13);
+		label_13.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_13.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		lblDia = new JLabel("D\u00EDas:");
+		lblDia.setBounds(3, 62, 89, 14);
+		panelHorario.add(lblDia);
+		lblDia.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDia.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		cbDia = new JComboBox();
+		cbDia.setBounds(108, 64, 107, 20);
+		panelHorario.add(cbDia);
+		cbDia.setEnabled(false);
+		cbDia.setModel(new DefaultComboBoxModel(new String[] { "SELECCIONE", "HABILES", "TODOS" }));
+
+		dcVigDia = new JDateChooser();
+		dcVigDia.setBounds(628, 64, 87, 20);
+		panelHorario.add(dcVigDia);
+		dcVigDia.setEnabled(false);
+		dcVigDia.setDateFormatString("dd/MM/yyyy");
+
+		label_1 = new JLabel("Obs.:");
+		label_1.setBounds(3, 95, 89, 14);
+		panelHorario.add(label_1);
+		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		txtObsDia = new JTextField();
+		txtObsDia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				txtObsDiaTyped(e);
+			}
+		});
+		txtObsDia.setBounds(108, 94, 607, 20);
+		panelHorario.add(txtObsDia);
+		txtObsDia.setEnabled(false);
+		txtObsDia.setColumns(10);
+
+		lblVigDias = new JLabel("Vigencia:");
+		lblVigDias.setBounds(564, 64, 61, 14);
+		panelHorario.add(lblVigDias);
+		lblVigDias.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		txtObsHorario = new JTextField();
+		txtObsHorario.setBounds(108, 34, 607, 20);
+		panelHorario.add(txtObsHorario);
+		txtObsHorario.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				txtObsHorarioKeyTyped(e);
+			}
+		});
+		txtObsHorario.setEnabled(false);
+		txtObsHorario.setColumns(10);
 
 		pnEvaluaciones = new JPanel();
 		pnEvaluaciones.setBackground(Color.WHITE);
@@ -1027,13 +1046,13 @@ public class PersonalVista extends AncestroVista {
 		tbCategoria.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if (arg0.getClickCount() == 2){
-					JOptionPane.showMessageDialog(null, tbCategoria.getValueAt(tbCategoria.getSelectedRow(), 4).toString());
+				if (arg0.getClickCount() == 2) {
+					JOptionPane.showMessageDialog(null,
+							tbCategoria.getValueAt(tbCategoria.getSelectedRow(), 4).toString());
 				}
 			}
 		});
-		
-		
+
 		JScrollPane scrollPaneCat = new JScrollPane();
 		scrollPaneCat.setBounds(0, 0, 726, 256);
 		pnHistorialCategoria.add(scrollPaneCat);
@@ -1049,8 +1068,9 @@ public class PersonalVista extends AncestroVista {
 		tbDependencia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if (arg0.getClickCount() == 2){
-					JOptionPane.showMessageDialog(null, tbDependencia.getValueAt(tbDependencia.getSelectedRow(), 4).toString());
+				if (arg0.getClickCount() == 2) {
+					JOptionPane.showMessageDialog(null,
+							tbDependencia.getValueAt(tbDependencia.getSelectedRow(), 4).toString());
 				}
 			}
 		});
@@ -1108,6 +1128,13 @@ public class PersonalVista extends AncestroVista {
 		scrollPaneDias.setViewportView(tbDias);
 		formatearTablaHistorial(tbDias, "tbDias");
 
+		txtMensaje = new JTextField();
+		txtMensaje.setEnabled(false);
+		txtMensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		txtMensaje.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtMensaje.setColumns(10);
+		txtMensaje.setBounds(10, 135, 575, 20);
+		panelCampos.add(txtMensaje);
 	}
 
 	// /////////////////// MANEJO DE EVENTOS ///////////////////////////
@@ -1124,6 +1151,9 @@ public class PersonalVista extends AncestroVista {
 	}
 
 	protected void txtDomicilioKeyTyped(KeyEvent arg0) {
+		convertirMayusculas(arg0);
+	}
+	protected void txtObsDiaTyped(KeyEvent arg0){
 		convertirMayusculas(arg0);
 	}
 
@@ -1164,11 +1194,12 @@ public class PersonalVista extends AncestroVista {
 		}
 	}
 
-//	protected void btnOficinaActionPerformed(ActionEvent e) throws ClassNotFoundException {
-//		OficinaModal vista = new OficinaModal();
-//		vista.setVisible(true);
-//		obtenerOficina(vista);
-//	}
+	// protected void btnOficinaActionPerformed(ActionEvent e) throws
+	// ClassNotFoundException {
+	// OficinaModal vista = new OficinaModal();
+	// vista.setVisible(true);
+	// obtenerOficina(vista);
+	// }
 
 	protected void btnCargoActionPerformed(ActionEvent arg0) throws ClassNotFoundException {
 		CargoModal vista = new CargoModal();
@@ -1221,19 +1252,26 @@ public class PersonalVista extends AncestroVista {
 	protected void txtObsCondicionKeyTyped(KeyEvent arg0) {
 		convertirMayusculas(arg0);
 	}
-	
+
 	protected void txtObsIngresoKeyTyped(KeyEvent arg0) {
 		convertirMayusculas(arg0);
 	}
+	protected void txtObsCategoriaKeyTyped(KeyEvent arg0){
+		convertirMayusculas(arg0);
+	}
+
 	protected void txtObsCargoKeyTyped(KeyEvent e) {
-		convertirMayusculas(e);		
-	}
-	protected void txtObsHorarioKeyTyped(KeyEvent e){
 		convertirMayusculas(e);
 	}
-	protected void txtObsDesvinculacionKeyTyped(KeyEvent e){
+
+	protected void txtObsHorarioKeyTyped(KeyEvent e) {
 		convertirMayusculas(e);
 	}
+
+	protected void txtObsDesvinculacionKeyTyped(KeyEvent e) {
+		convertirMayusculas(e);
+	}
+
 	// /////////////////// MANEJO DE METODOS ///////////////////////////
 	@Override
 	protected void agregarObjeto() {
@@ -1275,10 +1313,10 @@ public class PersonalVista extends AncestroVista {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else if (this.OPCION == 3){
-			try{
+		} else if (this.OPCION == 3) {
+			try {
 				guardarDesvinculacion();
-			}catch (IOException e){
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -1316,21 +1354,21 @@ public class PersonalVista extends AncestroVista {
 
 	// /////////////////// METODOS DEL SISTEMA ///////////////////////////
 	private void guardarActualizacion() throws ParseException, ClassNotFoundException, SQLException, IOException {
-		boolean ctrlCond = false, ctrlDep = false, ctrlCar = false, ctrlHor = false, ctrlCat = false, ctrlIngreso = false, ctrlDia=false;
+		boolean ctrlCond = false, ctrlDep = false, ctrlCar = false, ctrlHor = false, ctrlCat = false,
+				ctrlIngreso = false, ctrlDia = false, ctrlPersonal = false;
 		String opCond = "", opDep = "", opCar = "", opHor = "", opCat = "", opIngreso = "", opDia = "";
-		
+
 		// ######## DATOS LABORALES ########
 		// guardar datos de la condicion del personal
 		cargarNuevaCondicion();
 		if (modificoCondicion()) {
-				ctrlCond = true;
-				opCond = "I";
+			ctrlCond = true;
+			opCond = "I";
 		} else {
 			// modificacion de la observacion
 			ctrlCond = true;
 			opCond = "A";
 		}
-
 		// guardar datos de la dependencia del personal
 		cargarNuevaDependencia();
 		if (modificoDependencia()) {
@@ -1343,8 +1381,7 @@ public class PersonalVista extends AncestroVista {
 			ctrlDep = true;
 			opDep = "A";
 		}
-		
-		
+
 		// guardar datos de la categoria del personal
 		cargarNuevaCategoria();
 		if (modificoCategoria()) {
@@ -1358,7 +1395,7 @@ public class PersonalVista extends AncestroVista {
 			ctrlCat = true;
 			opCat = "A";
 		}
-		
+
 		// guardar datos de la oficina del personal
 		cargarNuevoCargo();
 		if (modificoCargo()) {
@@ -1384,11 +1421,11 @@ public class PersonalVista extends AncestroVista {
 			ctrlHor = true;
 			opHor = "A";
 		}
-		
+
 		// guardar datos de la fecha de ingreso del personal
 		cargarNuevoIngresoPersonal();
-		if (verificarFechaIngreso() == true){
-			if (verificarPeriodoInicioFin() == true){
+		if (verificarFechaIngreso() == true) {
+			if (verificarPeriodoInicioFin() == true) {
 				ctrlIngreso = true;
 				opIngreso = "I";
 			}
@@ -1397,21 +1434,30 @@ public class PersonalVista extends AncestroVista {
 			ctrlIngreso = true;
 			opIngreso = "A";
 		}
-		
+
 		// guardar datos de los dias de trabajo del personal
 		cargarNuevoDia();
 		if (modificoDia()) {
-				ctrlDia = true;
-				opDia = "I";
+			ctrlDia = true;
+			opDia = "I";
 		} else {
 			// modificacion de la observacion
 			ctrlDia = true;
 			opDia = "A";
 		}
-	
+		
+		//guarda los datos personales
+		cargarNuevoPersonal();
+		if(modificoDatosPersonales()){
+			//Si devuelve true entonces el se edita el personal
+			ctrlPersonal = true;
+		}else{
+			ctrlPersonal = false;
+		}
+
 		// verificar las actualizaciones y desplegar mensaje
-		if (ctrlCond && ctrlDep && ctrlCar && ctrlHor && ctrlCat && ctrlIngreso 
-				&& verificarCamposObligatorios() && ctrlDia) {
+		if (ctrlCond && ctrlDep && ctrlCar && ctrlHor && ctrlCat && ctrlIngreso && verificarCamposObligatorios()
+				&& ctrlDia) {
 			this.sistema.actualizarCondicionPersonal(this.perCon, opCond);
 			this.sistema.actualizarDependenciaPersonal(this.perDep, opDep);
 			this.sistema.actualizarCargoPersonal(this.perCar, opCar);
@@ -1419,11 +1465,13 @@ public class PersonalVista extends AncestroVista {
 			this.sistema.actualizarCategoriaPersonal(this.perCat, opCat);
 			this.sistema.actualizarIngresoPersonal(this.perFechaIngreso, opIngreso);
 			this.sistema.actualizarPersonalDias(this.perDias, opDia);
-			Personal per = cargarNuevosDatosPersonales();
-			this.sistema.actualizarDatosPersonal(per);
+
+			if  (ctrlPersonal){
+				this.sistema.actualizarDatosPersonal(cargarNuevosDatosPersonales());	
+			}
 			if (this.fichero != null) {
 				this.bytesImg = abrirImagen(this.fichero);
-				File file = new File(per.getRutaImagen());
+				File file = new File(this.personal.getRutaImagen());
 				guardarImagen(file, this.bytesImg);
 
 			}
@@ -1444,11 +1492,11 @@ public class PersonalVista extends AncestroVista {
 	private void guardarNuevoPersonal() throws ClassNotFoundException, SQLException, IOException {
 		if (verificarCamposObligatorios()) {
 			try {
-				//Verifica las fechas de ingreso y de condicion
-				if (verificarFechaIngreso()){
-					if (verificarPeriodoInicioFin()){
+				// Verifica las fechas de ingreso y de condicion
+				if (verificarFechaIngreso()) {
+					if (verificarPeriodoInicioFin()) {
 						Personal per = cargarNuevoPersonal();
-						if (this.sistema.agregarNuevoPersonal(per)){
+						if (this.sistema.agregarNuevoPersonal(per)) {
 							if (this.fichero != null) {
 								this.bytesImg = abrirImagen(this.fichero);
 								File file = new File(per.getRutaImagen());
@@ -1462,20 +1510,24 @@ public class PersonalVista extends AncestroVista {
 							inicializarCampos();
 							desmarcarCamposObligatorios();
 							cargarCampos(cedula);
-						}else{
-							JOptionPane.showMessageDialog(null, GlobalUtil.MSG_DATOS_GUARDADOS_FAIL + "Transacción no válida",
-									"ATENCION", JOptionPane.ERROR_MESSAGE);
+						} else {
+							JOptionPane.showMessageDialog(null,
+									GlobalUtil.MSG_DATOS_GUARDADOS_FAIL + "Transacción no válida", "ATENCION",
+									JOptionPane.ERROR_MESSAGE);
 						}
-					}else{
-						JOptionPane.showMessageDialog(null, GlobalUtil.MSG_DATOS_GUARDADOS_FAIL + "Verificar Fecha inicio y Fin de la condición",
+					} else {
+						JOptionPane.showMessageDialog(null,
+								GlobalUtil.MSG_DATOS_GUARDADOS_FAIL + "Verificar Fecha inicio y Fin de la condición",
 								"ATENCION", JOptionPane.ERROR_MESSAGE);
-					}//fin verificar fecha inicio y fin
-				}else{
-					//MENSA DE ERROR EN CASO DE QUE LA FECHA DE INGRESO Y LA DE CONDICION NO CUMPLAN CON EL REQUISITO
-					JOptionPane.showMessageDialog(null, GlobalUtil.MSG_DATOS_GUARDADOS_FAIL + "Verifique Fecha de ingreso y Fecha condición",
+					} // fin verificar fecha inicio y fin
+				} else {
+					// MENSA DE ERROR EN CASO DE QUE LA FECHA DE INGRESO Y LA DE
+					// CONDICION NO CUMPLAN CON EL REQUISITO
+					JOptionPane.showMessageDialog(null,
+							GlobalUtil.MSG_DATOS_GUARDADOS_FAIL + "Verifique Fecha de ingreso y Fecha condición",
 							"ATENCION", JOptionPane.ERROR_MESSAGE);
 				}
-			}catch (ParseException e) {
+			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		} else {
@@ -1483,11 +1535,11 @@ public class PersonalVista extends AncestroVista {
 					"ATENCION", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+
 	private void guardarDesvinculacion() throws ParseException, ClassNotFoundException, SQLException, IOException {
 		// verificar las actualizaciones y desplegar mensaje
 		PerFechaDesvinculacion desvinculacion = cargarNuevosDatosDesvinculacion();
-		if (this.sistema.actualizarDatosDesvinculacion(desvinculacion)){
+		if (this.sistema.actualizarDatosDesvinculacion(desvinculacion)) {
 			this.OPCION = 0;
 			JOptionPane.showMessageDialog(null, "Información actualizada correctamente", "ATENCION",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -1497,8 +1549,8 @@ public class PersonalVista extends AncestroVista {
 			cargarCampos(cedula);
 		} else {
 			JOptionPane.showMessageDialog(null, GlobalUtil.MSG_DATOS_GUARDADOS_FAIL + "Verifique periodos de tiempo",
-				"ATENCION", JOptionPane.ERROR_MESSAGE);
-		}	
+					"ATENCION", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private Personal cargarNuevoPersonal() {
@@ -1511,7 +1563,7 @@ public class PersonalVista extends AncestroVista {
 		per.setPerFechaIngreso(dcFechaIngreso.getDate());
 		per.setPerFechaIngObs(txtObsIngreso.getText());
 		per.setPerFechaIngCondicion(varCondicion);
-		
+
 		// ######### CONDICION ##########
 		per.setCodCondicion(Integer.parseInt(txtCodCond.getText()));
 		per.setCondFechaIni(dcDesdeCondicion.getDate());
@@ -1525,10 +1577,10 @@ public class PersonalVista extends AncestroVista {
 
 		// ########### OFICINA ###########
 		per.setCodOficina(txtCodOfi.getText());
-		//Toma la fecha y la Observacion de la Dependencia
+		// Toma la fecha y la Observacion de la Dependencia
 		per.setOfiFechaIni(dcVigDependencia.getDate());
 		per.setOfiObservacion(txtObsDependencia.getText().trim());
-		
+
 		// ########### CARGO ###########
 		per.setCodCargo(Integer.parseInt(txtCodCargo.getText()));
 		per.setCarFechaIni(dcVigCargo.getDate());
@@ -1543,12 +1595,12 @@ public class PersonalVista extends AncestroVista {
 		per.setCodHorario(Integer.parseInt(txtCodHor.getText()));
 		per.setHorFechaIni(dcVigHorario.getDate());
 		per.setHorObservacion(txtObsHorario.getText().trim());
-		
-		//############ DIAS ##############
-		per.setDias(cbDia.getSelectedItem().toString().substring(0,3));
+
+		// ############ DIAS ##############
+		per.setDias(cbDia.getSelectedItem().toString().substring(0, 3));
 		per.setDiaFechaInicio(dcVigDia.getDate());
 		per.setDiaObservacion(txtObsDia.getText());
-		
+
 		return per;
 	}
 
@@ -1583,7 +1635,7 @@ public class PersonalVista extends AncestroVista {
 		if (txtCodOfi.getText().equals("")) {
 			control = false;
 		}
-		
+
 		if (txtCodCategoria.getText().equals("")) {
 			control = false;
 		}
@@ -1599,14 +1651,14 @@ public class PersonalVista extends AncestroVista {
 		if (dcFechaNacimiento.getDate() == null) {
 			control = false;
 		}
-		
-		if (cbSexo.getSelectedItem().equals("") || cbSexo.getSelectedItem().equals("SELECCIONE")){
+
+		if (cbSexo.getSelectedItem().equals("") || cbSexo.getSelectedItem().equals("SELECCIONE")) {
 			control = false;
 		}
 		if (dcFechaIngreso.getDate() == null) {
 			control = false;
 		}
-		if(cbDia.getSelectedItem().equals("") || cbDia.getSelectedItem().equals("SELECCIONE")){
+		if (cbDia.getSelectedItem().equals("") || cbDia.getSelectedItem().equals("SELECCIONE")) {
 			control = false;
 		}
 
@@ -1621,7 +1673,7 @@ public class PersonalVista extends AncestroVista {
 		lblApellidos.setText("*Apellidos:");
 		lblApellidos.setForeground(Color.RED);
 		lblFotoCarnet.setBorder(new LineBorder(Color.RED, 2));
-		
+
 		lblFechaIngreso.setText("<html><body>*Fecha de<br> Ingreso:</body></html>");
 		lblFechaIngreso.setForeground(Color.RED);
 		lblCondicion.setText("*Condicion:");
@@ -1638,7 +1690,7 @@ public class PersonalVista extends AncestroVista {
 
 		lblOficina.setText("*Oficina:");
 		lblOficina.setForeground(Color.RED);
-		
+
 		lblCargo.setText("*Cargo:");
 		lblCargo.setForeground(Color.RED);
 		lblVigCargo.setText("*Vigencia:");
@@ -1656,10 +1708,10 @@ public class PersonalVista extends AncestroVista {
 
 		lblFechaNacimento.setText("<html><body>*Fecha de<br> Nacimento:</body></html>");
 		lblFechaNacimento.setForeground(Color.RED);
-		
+
 		lblSexo.setText("*Sexo:");
 		lblSexo.setForeground(Color.RED);
-		
+
 		lblDia.setText("*Días:");
 		lblDia.setForeground(Color.RED);
 		lblVigDias.setText("*Vigencia:");
@@ -1674,7 +1726,7 @@ public class PersonalVista extends AncestroVista {
 		lblApellidos.setText("Apellidos:");
 		lblApellidos.setForeground(Color.BLACK);
 		lblFotoCarnet.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
-		
+
 		lblFechaIngreso.setText("<html><body>Fecha de<br> Ingreso:</body></html>");
 		lblFechaIngreso.setForeground(Color.BLACK);
 		lblCondicion.setText("Condicion:");
@@ -1691,7 +1743,7 @@ public class PersonalVista extends AncestroVista {
 
 		lblOficina.setText("Oficina:");
 		lblOficina.setForeground(Color.BLACK);
-		
+
 		lblCargo.setText("Oficina:");
 		lblCargo.setForeground(Color.BLACK);
 		lblVigCargo.setText("Vigencia:");
@@ -1709,10 +1761,10 @@ public class PersonalVista extends AncestroVista {
 
 		lblFechaNacimento.setText("<html><body>Fecha de<br> Nacimento:</body></html>");
 		lblFechaNacimento.setForeground(Color.BLACK);
-		
+
 		lblSexo.setText("Sexo:");
 		lblSexo.setForeground(Color.BLACK);
-		
+
 		lblDia.setText("Días:");
 		lblDia.setForeground(Color.BLACK);
 		lblVigDias.setText("Vigencia");
@@ -1816,6 +1868,7 @@ public class PersonalVista extends AncestroVista {
 		panelBotones.btnModificar.setEnabled(true);
 		this.btnCredencial.setEnabled(true);
 		cambiarEstado(this.personal.getEstado());
+		varCondicion = this.personal.getTipoPersonal();
 	}
 
 	private void habilitarCabecera() {
@@ -1837,20 +1890,52 @@ public class PersonalVista extends AncestroVista {
 		btnDirectorio.setEnabled(false);
 		btnActualizarEstado.setEnabled(false);
 		btnCredencial.setEnabled(false);
+		txtMensaje.setText("");
+
 		// ######## IMAGEN ##############
 		lblFotoCarnet.setIcon(null);
 		cambiarEstado("SIN ESTADO");
 	}
 
-	// ventana de datos laborales
-	private void cargarDatosLaborales() {
+	private void verificarEstado() throws ClassNotFoundException, ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 
+		Date fechaFinCondicion = sdf.parse(String.valueOf(sdf.format(dcHastaCondicion.getDate())));
+		Date fechaActual = sdf1.parse(String.valueOf(sdf1.format(this.sistema.obtenerFechaActual())));
+
+		FechaUtil fecha = new FechaUtil();
+		int anho = fecha.getDateToAnho(fechaFinCondicion);
+		// Si el año es 2099
+		if (anho == 2099) {
+			// Fin año
+			// FECHA DE CONTRATO A MODIFICAR FCM
+			cambiarEstado("FCM");
+		} else if (fechaFinCondicion.compareTo(fechaActual) < 0) {
+			// FECHA DE CONTRATO FINALIZADO
+			cambiarEstado("FCF");
+		}
+	}
+
+	// ventana de datos laborales
+	private void cargarDatosLaborales() throws ClassNotFoundException {
 		// ######### CONDICION ##########
 		txtCodCond.setText(Integer.toString(this.personal.getCodCondicion()));
 		txtCondicion.setText(this.personal.getCondicion());
 		txtObsCondicion.setText(this.personal.getCondObservacion());
 		dcDesdeCondicion.setDate(this.personal.getCondFechaIni());
 		dcHastaCondicion.setDate(this.personal.getCondFechaFin());
+		// VERIFICAR ESTADO DEL CONTRATO
+		// Si el tipo de personal es contratado
+		if (this.personal.getTipoPersonal().equals("C")) {
+			// Si la fecha fin del contrato supera la fecha actual
+			try {
+				verificarEstado();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 		// ########### DEPENDENCIA ###########
 		txtCodDep.setText(this.personal.getCodDependencia());
@@ -1873,26 +1958,26 @@ public class PersonalVista extends AncestroVista {
 		txtEntrada.setText(this.personal.getHorEntrada().toString());
 		txtSalida.setText(this.personal.getHorSalida().toString());
 		txtObsHorario.setText(this.personal.getHorObservacion());
-		 dcVigHorario.setDate(this.personal.getHorFechaIni());
+		dcVigHorario.setDate(this.personal.getHorFechaIni());
 
 		// ########### CATEGORIA ###########
 		txtCodCategoria.setText(this.personal.getCategoriaCodigo());
 		txtCategoria.setText(this.personal.getCategoria());
 		txtObsCategoria.setText(this.personal.getCatObservacion());
 		dcVigCat.setDate(this.personal.getCatFechaInicio());
-		
+
 		// ########### FECHA INGRESO ###########
 		dcFechaIngreso.setDate(this.personal.getPerFechaIngreso());
 		txtObsIngreso.setText(this.personal.getPerFechaIngObs());
-		
+
 		// ########### FECHA DESVINCULACION ###########
 		dcDesvinculacion.setDate(this.personal.getPerFechaDesvinculacion());
 		txtObsDesvinculacion.setText(this.personal.getPerFechaDesvObs());
-		
-		//########### DIAS DE TRABAJO ################
-		if (this.personal.getDias().equals("HAB")){
+
+		// ########### DIAS DE TRABAJO ################
+		if (this.personal.getDias().equals("HAB")) {
 			cbDia.setSelectedItem("HABILES");
-		}else{
+		} else {
 			cbDia.setSelectedItem("TODOS");
 		}
 		dcVigDia.setDate(this.personal.getDiaFechaInicio());
@@ -1900,13 +1985,15 @@ public class PersonalVista extends AncestroVista {
 	}
 
 	private void habilitarDatosLaborales() {
-		//habilita fecha de ingreso
+		// habilita fecha de ingreso
 		dcFechaIngreso.setEnabled(true);
 		txtObsIngreso.setEnabled(true);
-		
+
 		// habilitacion de Condicion
 		btnCondicion.setEnabled(true);
 		txtObsCondicion.setEnabled(true);
+		dcDesdeCondicion.setEnabled(true);
+		dcHastaCondicion.setEnabled(true);
 
 		// habilitacion de dependencia
 		btnDependencia.setEnabled(true);
@@ -1923,22 +2010,22 @@ public class PersonalVista extends AncestroVista {
 		// habilitacion de categoria
 		btnCategoria.setEnabled(true);
 		txtObsCategoria.setEnabled(true);
-		
-		//habilitacion de dias de trabajo
+
+		// habilitacion de dias de trabajo
 		cbDia.setEnabled(true);
 		txtObsDia.setEnabled(true);
 		dcVigDia.setEnabled(true);
 	}
-	
-	private void inhabilitarCampos(){
-		//####### Cabecera ###################
+
+	private void inhabilitarCampos() {
+		// ####### Cabecera ###################
 		txtCedula.setEnabled(false);
 		txtNombres.setEnabled(false);
 		txtApellidos.setEnabled(false);
 		btnDirectorio.setEnabled(false);
 		btnActualizarEstado.setEnabled(false);
 		btnCredencial.setEnabled(false);
-		//######## Datos personales ##############
+		// ######## Datos personales ##############
 		dcFechaNacimiento.setEnabled(false);
 		cbSexo.setEnabled(false);
 		cbEstadoCivil.setEnabled(false);
@@ -1947,7 +2034,6 @@ public class PersonalVista extends AncestroVista {
 		txtDomicilio.setEnabled(false);
 		txtObservacion.setEnabled(false);
 		dcFechaNacimiento.setEnabled(false);
-		
 		// ########### FECHA DE INGRESO ###########
 		dcFechaIngreso.setEnabled(false);
 		txtObsIngreso.setEnabled(false);
@@ -1978,6 +2064,8 @@ public class PersonalVista extends AncestroVista {
 		cbDia.setSelectedItem("SELECCIONE");
 		txtObsDia.setEnabled(false);
 		dcVigDia.setEnabled(false);
+		// ########## DESVINCULACION ############
+
 	}
 
 	private void inicializarDatosLaborales() {
@@ -1986,7 +2074,7 @@ public class PersonalVista extends AncestroVista {
 		dcFechaIngreso.setDate(null);
 		txtObsIngreso.setEnabled(false);
 		txtObsIngreso.setText("");
-		
+
 		// ########### CONDICION ###########
 		txtCodCond.setText("");
 		txtCondicion.setText("");
@@ -2039,68 +2127,76 @@ public class PersonalVista extends AncestroVista {
 		txtObsCategoria.setEnabled(false);
 		txtObsCategoria.setText("");
 		btnCategoria.setEnabled(false);
-		
-		// ##############Dias#################
+
+		// ############## DIAS #################
 		cbDia.setEnabled(false);
 		cbDia.setSelectedItem("SELECCIONE");
 		txtObsDia.setText("");
 		txtObsDia.setEnabled(false);
 		dcVigDia.setEnabled(false);
 		dcVigDia.setDate(null);
+
+		// ############## DESVINCULACION ############
+		dcDesvinculacion.setEnabled(false);
+		dcDesvinculacion.setDate(null);
+		txtObsDesvinculacion.setEnabled(false);
+		txtObsDesvinculacion.setText("");
 	}
 
-	private boolean verificarFechaIngreso() throws ParseException{
-		//verifica que la fecha desde de la condicion no sea antes que la de ingreso
+	private boolean verificarFechaIngreso() throws ParseException {
+		// verifica que la fecha desde de la condicion no sea antes que la de
+		// ingreso
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaDesde, fechaIngreso;
 		boolean control = true;
-			fechaDesde = sdf.parse(String.valueOf(sdf.format(dcDesdeCondicion.getDate())));
-			fechaIngreso = sdf1.parse(String.valueOf(sdf1.format(dcFechaIngreso.getDate())));
-			
-			//Si arroja <0 entonces  es un dia antes; ==0 en el dia, >0 dias despues
-			if (fechaIngreso.compareTo(fechaDesde)<0){
-				if (this.OPCION==1){
-					//Si se le da de alta al usuario entonces la fecha de ingreso 
-					//no debe ser menor a la fecha condicion
-					control = false;
-				}else{
-					control = true;
-				}
-			}else if (fechaIngreso.compareTo(fechaDesde) == 0){
-				control = true;
-			}else if (fechaIngreso.compareTo(fechaDesde)>0){
+		fechaDesde = sdf.parse(String.valueOf(sdf.format(dcDesdeCondicion.getDate())));
+		fechaIngreso = sdf1.parse(String.valueOf(sdf1.format(dcFechaIngreso.getDate())));
+
+		// Si arroja <0 entonces es un dia antes; ==0 en el dia, >0 dias despues
+		if (fechaIngreso.compareTo(fechaDesde) < 0) {
+			if (this.OPCION == 1) {
+				// Si se le da de alta al usuario entonces la fecha de ingreso
+				// no debe ser menor a la fecha condicion
 				control = false;
+			} else {
+				control = true;
 			}
-			
-		return control ;
+		} else if (fechaIngreso.compareTo(fechaDesde) == 0) {
+			control = true;
+		} else if (fechaIngreso.compareTo(fechaDesde) > 0) {
+			control = false;
+		}
+		return control;
 	}
-	//Ya no es necesario verificar esta condicion
+
+
 	private boolean modificoCondicion() {
 		boolean control = true;
 		int codigo = this.personal.getCodCondicion();
 		if (Integer.toString(codigo).equals(txtCodCond.getText())) {
-			control = true;
+			control = false;
 		}
 		return control;
 	}
-	
+
 	private boolean verificarPeriodoInicioFin() throws ParseException {
-		//Verifica que la fecha de fin no sea menor que la fecha de inicio
+		// Verifica que la fecha de fin no sea menor que la fecha de inicio
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		boolean control = false;
 		if (dcDesdeCondicion.getDate() != null) {
 			Date fechaInicio = sdf.parse(String.valueOf(sdf.format(dcDesdeCondicion.getDate())));
 			Date fechaFin = sdf.parse(String.valueOf(sdf.format(dcHastaCondicion.getDate())));
-			//Si arroja <0 entonces  es un dia antes; ==0 en el dia, >0 dias despues
-			if (fechaInicio.compareTo(fechaFin)<0){
-				//Inicio anterior a fin
+			// Si arroja <0 entonces es un dia antes; ==0 en el dia, >0 dias
+			// despues
+			if (fechaInicio.compareTo(fechaFin) < 0) {
+				// Inicio anterior a fin
 				control = true;
-			}else if (fechaInicio.compareTo(fechaFin) == 0){
-				//Inicio y fin iguales
+			} else if (fechaInicio.compareTo(fechaFin) == 0) {
+				// Inicio y fin iguales
 				control = true;
-			}else if (fechaInicio.compareTo(fechaFin)>0){
-				//Inicio es posterior a fin
+			} else if (fechaInicio.compareTo(fechaFin) > 0) {
+				// Inicio es posterior a fin
 				control = false;
 			}
 		}
@@ -2126,15 +2222,6 @@ public class PersonalVista extends AncestroVista {
 		return control;
 	}
 
-//	private boolean modificoOficina() {
-//		boolean control = true;
-//		String codigo = this.personal.getCodOficina();
-//		if (codigo.equals(txtCodOfi.getText())) {
-//			control = false;
-//		}
-//		return control;
-//	}
-
 	private boolean modificoCargo() {
 		boolean control = true;
 		String codigo = Integer.toString(this.personal.getCodCargo());
@@ -2143,16 +2230,46 @@ public class PersonalVista extends AncestroVista {
 		}
 		return control;
 	}
-	
-	private boolean modificoDia(){
+
+	private boolean modificoDia() {
 		boolean control = true;
 		String descripcion = this.personal.getDias().trim();
-		if(descripcion.equals(cbDia.getSelectedItem().toString().substring(0, 3))){
+		if (descripcion.equals(cbDia.getSelectedItem().toString().substring(0, 3))) {
 			control = false;
 		}
 		return control;
 	}
 	
+	private boolean modificoDatosPersonales() throws ClassNotFoundException, SQLException {
+		boolean control = true;
+		String nombres = this.personal.getNombres();
+		String apellidos = this.personal.getApellidos();
+		Date fechaNacimiento = this.personal.getFechaNacimiento();
+		String estado = this.personal.getEstado();
+		String sexo = this.personal.getSexo();
+		String estadoCivil = this.personal.getEstadoCivil();
+		String telef = this.personal.getTelefonos();
+		String observacion = this.personal.getObservacion();
+		String correo = this.personal.getCorreo();
+		String domicilio = this.personal.getDomicilio();
+		String varEstadoCivil = "";
+		
+		//SI EL ESTADO CIVIL NO ESTA SELECCIONADO
+		if (cbEstadoCivil.getSelectedItem().toString().equals("SELECCIONE")){
+			varEstadoCivil = "";
+		}else{
+			varEstadoCivil = cbEstadoCivil.getSelectedItem().toString();
+		}
+		//SI LOS DATOS DEL FORMULARIO SON IGUALES A LOS DATOS DEL MODELO, EL CONTROL SE VUELVE NEGATIVO Y NO ES NECESARIO MODIFICARLOS
+		if ((nombres.equals(txtNombres.getText())) && (apellidos.equals(txtApellidos.getText())) && (fechaNacimiento.equals(dcFechaNacimiento.getDate()))
+				&& (estado.equals(txtEstado.getText().substring(0, 1))) && (sexo.equals(cbSexo.getSelectedItem().toString().trim().substring(0, 1))) 
+				&& (telef.equals(txtTelefonos.getText())) && (estadoCivil.equals(varEstadoCivil))
+				&& (observacion.equals(txtObservacion.getText())) && (correo.equals(txtCorreo.getText())) && (domicilio.equals(txtDomicilio.getText()))){
+				control = false;
+		}
+	return control;
+	}
+
 	private boolean verificarPeriodoCargo() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		boolean control = false;
@@ -2282,23 +2399,29 @@ public class PersonalVista extends AncestroVista {
 	private void inicializarEvaluaciones() {
 		limpiarTabla(tbEvaluaciones, modelo);
 	}
-	private void inicializarCategorias(){
+
+	private void inicializarCategorias() {
 		limpiarTabla(tbCategoria, modeloCat);
 	}
-	private void inicializarDependencias(){
+
+	private void inicializarDependencias() {
 		limpiarTabla(tbDependencia, modeloDep);
 	}
+
 	private void inicializarOficinas() {
 		limpiarTabla(tbOficina, modeloOfi);
 
 	}
-	private void inicializarTipos(){
+
+	private void inicializarTipos() {
 		limpiarTabla(tbTipos, modeloTipo);
 	}
-	private void inicializarTurnos(){
+
+	private void inicializarTurnos() {
 		limpiarTabla(tbTurnos, modeloTurnos);
 	}
-	private void inicializarDias(){
+
+	private void inicializarDias() {
 		limpiarTabla(tbDias, modeloDias);
 	}
 
@@ -2399,23 +2522,6 @@ public class PersonalVista extends AncestroVista {
 		}
 	}
 
-	// obtener objeto de una lista
-
-//	private void obtenerOficina(OficinaModal vista) throws ClassNotFoundException {
-//		if (vista.getCodigo() != null) {
-//			Oficina ofi = this.sistema.obtenerOficina(vista.getCodigo());
-//			txtCodOfi.setText(ofi.getCodigo());
-//			txtOficina.setText(ofi.getDescripcion());
-//			if (this.OPCION == 2) {
-//				if (!this.personal.getCodOficina().equals(txtCodOfi.getText())) {
-//					
-//				} else {
-//			
-//				}
-//			}
-//		}
-//	}
-
 	private void obtenerCargo(CargoModal vista) throws ClassNotFoundException {
 		if (vista.getCodigo() != null) {
 			Cargo cargo = this.sistema.obtenerCargo(vista.getCodigo());
@@ -2435,59 +2541,53 @@ public class PersonalVista extends AncestroVista {
 
 		}
 	}
-private void obtenerCondicionID() throws ClassNotFoundException{
-	
-}
+
+	private void obtenerCondicionID() throws ClassNotFoundException {
+
+	}
+
 	private void obtenerCondicion(CondicionModal vista) throws ClassNotFoundException, ParseException {
 		if (vista.getCodigo() != null) {
 			TipoPersonal condicion = this.sistema.obtenerCondicionById(vista.getCodigo());
 			txtCodCond.setText(Integer.toString(condicion.getId()));
 			txtCondicion.setText(condicion.getDescripcion());
 			if (this.OPCION == 2) {
-//				if (Integer.toString(this.personal.getCodCondicion()).equals(txtCodCond.getText())) {
-					txtObsCondicion.setText("");
-					dcDesdeCondicion.setEnabled(true);
-					dcHastaCondicion.setEnabled(true);
-//			} 
-//				else {
-//					txtObsCondicion.setText(this.personal.getCondObservacion());
-//					dcDesdeCondicion.setDate(this.personal.getCondFechaIni());
-//					dcDesdeCondicion.setDate(this.personal.getCondFechaIni());
-//					dcDesdeCondicion.setEnabled(false);
-//					dcHastaCondicion.setEnabled(false);
-//				}
-
+				txtObsCondicion.setText("");
+				dcDesdeCondicion.setEnabled(true);
+				dcHastaCondicion.setEnabled(true);
 			}
 			comprobarCondicion(condicion.getCondicion());
 		}
 	}
-//Comprobar la dependencia para habilitar el campo fecha hasta
-//Si  la dependencia esNOMBRADO o NOMBRADO COMISIONADO
-//El campo fecha permanece deshabilitado
-private void comprobarCondicion(String condicion) throws ParseException{
-	
-	java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2099-12-31");
-	   	   
+
+	// Comprobar la dependencia para habilitar el campo fecha hasta
+	// Si la dependencia esNOMBRADO o NOMBRADO COMISIONADO
+	// El campo fecha permanece deshabilitado
+	private void comprobarCondicion(String condicion) throws ParseException {
+
+		java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2099-12-31");
+
 		varCondicion = condicion;
-	if ((condicion.equals("C"))){
-		dcHastaCondicion.setEnabled(true);
-	}else{
-		dcHastaCondicion.setEnabled(false);
-		dcHastaCondicion.setDate(date);
-		lblHastaCondicion.setText("Hasta:");
-		lblHastaCondicion.setForeground(Color.BLACK);
+		if ((condicion.equals("C"))) {
+			dcHastaCondicion.setEnabled(true);
+		} else {
+			dcHastaCondicion.setEnabled(false);
+			dcHastaCondicion.setDate(date);
+			lblHastaCondicion.setText("Hasta:");
+			lblHastaCondicion.setForeground(Color.BLACK);
+		}
+
 	}
-	
-}
+
 	private void obtenerDependencia(DependenciaModal vista) throws ClassNotFoundException {
 		if (vista.getCodigo() != null) {
 			Dependencia dep = this.sistema.obtenerDependencia(vista.getCodigo());
 			txtCodDep.setText(dep.getCodigo());
 			txtDependencia.setText(dep.getDescripcion());
-			//######## DATOS DE LA OFICINA
+			// ######## DATOS DE LA OFICINA
 			txtCodOfi.setText(dep.getCodigoOficina());
 			txtOficina.setText(dep.getOficina());
-			
+
 			if (this.OPCION == 2) {
 				if (!this.personal.getCodDependencia().equals(txtCodDep.getText())) {
 					txtObsDependencia.setText("");
@@ -2565,23 +2665,24 @@ private void comprobarCondicion(String condicion) throws ParseException{
 		this.perDep.setObservacion(txtObsDependencia.getText().trim());
 		this.perDep.setAdministrador(MenuPrincipalVista.administrador.getLogin());
 	}
-	
-	private void cargarNuevoIngresoPersonal(){
+
+	private void cargarNuevoIngresoPersonal() {
 		this.perFechaIngreso = new PerFechaIngreso();
 		this.perFechaIngreso.setCedula(txtCedula.getText());
 		this.perFechaIngreso.setFecha(dcFechaIngreso.getDate());
 		this.perFechaIngreso.setObservacion(txtObsIngreso.getText());
 		this.perFechaIngreso.setAdministrador(MenuPrincipalVista.administrador.getLogin());
 		this.perFechaIngreso.setCondicion(varCondicion);
+		
 	}
 
-//	private void cargarNuevaOficina() {
-//		this.perOfi = new PerOfi();
-//		this.perOfi.setCedula(txtCedula.getText());
-//		this.perOfi.setOficinaCodigo(txtCodOfi.getText());
-//		this.perOfi.setObservacion(txtObsDependencia.getText());
-//		this.perOfi.setAdministrador(MenuPrincipalVista.administrador.getLogin());
-//	}
+	// private void cargarNuevaOficina() {
+	// this.perOfi = new PerOfi();
+	// this.perOfi.setCedula(txtCedula.getText());
+	// this.perOfi.setOficinaCodigo(txtCodOfi.getText());
+	// this.perOfi.setObservacion(txtObsDependencia.getText());
+	// this.perOfi.setAdministrador(MenuPrincipalVista.administrador.getLogin());
+	// }
 
 	private void cargarNuevoCargo() {
 		this.perCar = new PerCar();
@@ -2609,34 +2710,40 @@ private void comprobarCondicion(String condicion) throws ParseException{
 		this.perCat.setObservacion(txtObsCategoria.getText().trim());
 		this.perCat.setAdministrador(MenuPrincipalVista.administrador.getLogin());
 	}
-	
-	private void cargarNuevoDia(){
+
+	private void cargarNuevoDia() {
 		this.perDias = new PerDias();
 		this.perDias.setCedula(txtCedula.getText());
-		this.perDias.setDescripciondia(cbDia.getSelectedItem().toString().substring(0,3));
+		this.perDias.setDescripciondia(cbDia.getSelectedItem().toString().substring(0, 3));
 		this.perDias.setFechaInicio(dcVigDia.getDate());
 		this.perDias.setObservacion(txtObsDia.getText());
 		this.perDias.setAdministrador(MenuPrincipalVista.administrador.getLogin());
 	}
-private PerFechaDesvinculacion cargarNuevosDatosDesvinculacion() throws ClassNotFoundException{
-	PerFechaDesvinculacion perDesvinculacion = new PerFechaDesvinculacion();
-	perDesvinculacion.setFecha(dcDesvinculacion.getDate());
-	perDesvinculacion.setObservacion(txtObsDesvinculacion.getText());
-	perDesvinculacion.setCedula(txtCedula.getText());
-	perDesvinculacion.setAdministrador(MenuPrincipalVista.administrador.getLogin());
-	
-	//Obtener el id de la condicion
-	TipoPersonal tipoPer = this.sistema.obtenerCondicionByCedula(txtCedula.getText());
-	perDesvinculacion.setIdPersonalesTipos(Integer.toString(tipoPer.getId()));
-	
-	return perDesvinculacion;
-}
+
+	private PerFechaDesvinculacion cargarNuevosDatosDesvinculacion() throws ClassNotFoundException {
+		PerFechaDesvinculacion perDesvinculacion = new PerFechaDesvinculacion();
+		perDesvinculacion.setFecha(dcDesvinculacion.getDate());
+		perDesvinculacion.setObservacion(txtObsDesvinculacion.getText());
+		perDesvinculacion.setCedula(txtCedula.getText());
+		perDesvinculacion.setAdministrador(MenuPrincipalVista.administrador.getLogin());
+
+		// Obtener el id de la condicion
+		TipoPersonal tipoPer = this.sistema.obtenerCondicionByCedula(txtCedula.getText());
+		perDesvinculacion.setIdPersonalesTipos(Integer.toString(tipoPer.getId()));
+
+		return perDesvinculacion;
+	}
+
 	private Personal cargarNuevosDatosPersonales() {
 		Personal per = new Personal();
 		per.setCedula(txtCedula.getText().trim());
 		per.setNombres(txtNombres.getText());
 		per.setApellidos(txtApellidos.getText());
 		per.setFechaNacimiento(dcFechaNacimiento.getDate());
+		
+		if (!txtEstado.getText().equals("")){
+			per.setEstado(txtEstado.getText().substring(0,1));
+		}		
 		if (cbSexo.getSelectedIndex() == 0) {
 			per.setSexo("");
 		} else {
@@ -2660,27 +2767,56 @@ private PerFechaDesvinculacion cargarNuevosDatosDesvinculacion() throws ClassNot
 			txtEstado.setBackground(Color.GREEN);
 			lblFotoCarnet.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 			pnFuncionario.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+			tbVentanas.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+			txtMensaje.setBackground(new Color(255, 255, 255));
+			txtMensaje.setText("");
 		} else if (estado.equals("I")) {
 			txtEstado.setText("INACTIVO");
 			txtEstado.setBackground(Color.RED);
 			lblFotoCarnet.setBorder(BorderFactory.createLineBorder(Color.RED));
 			pnFuncionario.setBorder(BorderFactory.createLineBorder(Color.RED));
+			tbVentanas.setBorder(BorderFactory.createLineBorder(Color.RED));
+			txtMensaje.setBackground(new Color(255, 255, 255));
+			txtMensaje.setText("");
+		} else if (estado.equals("FCF")) {
+			txtEstado.setText("ACTIVO");
+			txtEstado.setBackground(new Color(255, 215, 0));
+			txtMensaje.setText("VERIFICAR FECHA DE FIN DE CONDICION");
+			txtMensaje.setBackground(new Color(255, 215, 0));
+			lblFotoCarnet.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0)));
+			pnFuncionario.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0)));
+			tbVentanas.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0)));
+		} else if (estado.equals("FCM")) {
+			txtEstado.setText("ACTIVO");
+			txtEstado.setBackground(new Color(255, 102, 0));
+			txtMensaje.setText("MODIFICAR LA FECHA FIN DE CONDICION");
+			txtMensaje.setBackground(new Color(255, 102, 0));
+			lblFotoCarnet.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
+			pnFuncionario.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
+			tbVentanas.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
 		} else {
 			txtEstado.setText("");
 			txtEstado.setBackground(Color.LIGHT_GRAY);
 			lblFotoCarnet.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 			pnFuncionario.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+			tbVentanas.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+			txtMensaje.setBackground(new Color(255, 255, 255));
+			txtMensaje.setText("");
 		}
+
 		txtEstado.setEnabled(true);
 		txtEstado.setEditable(false);
+
+		txtMensaje.setEnabled(true);
+		txtMensaje.setEditable(false);
 	}
 
-	private void habilitarDesvinculacion(){
+	private void habilitarDesvinculacion() {
 		dcDesvinculacion.setEnabled(true);
 		txtObsDesvinculacion.setEnabled(true);
 		txtObsDesvinculacion.setText("");
 	}
-	
+
 	private void formatearTablaEvaluaciones() {
 		modelo.addColumn("PERIODO");
 		modelo.addColumn("PUNTAJE DESEMP.");
